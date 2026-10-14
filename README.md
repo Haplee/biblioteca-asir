@@ -1,7 +1,7 @@
 # ASIR · Fran Vidal
 
 **Biblioteca técnica personal.** Sitio estático que reúne los apuntes de ASIR y los
-presenta para consultarlos rápido: búsqueda global, favoritos, índice por
+presenta para consultarlos rápido: búsqueda global, índice por
 asignaturas, temas transversales y modo de lectura con índice lateral.
 
 > **Todo tu conocimiento. En un solo lugar.**
@@ -13,8 +13,8 @@ asignaturas, temas transversales y modo de lectura con índice lateral.
 - **Es** un sitio estático generado a partir de los apuntes en Markdown que están
   en este mismo repositorio. No hay servidor, ni base de datos remota, ni
   servicios de pago.
-- **No es** una aplicación con cuentas ni autenticación. Los favoritos, las
-  lecturas y las preferencias se guardan **solo en el navegador** de cada
+- **No es** una aplicación con cuentas ni autenticación. Las lecturas y las
+  preferencias se guardan **solo en el navegador** de cada
   persona (`localStorage`) y no se sincronizan entre dispositivos.
 - El sitio sigue siendo útil aunque el navegador bloquee el almacenamiento: se
   puede leer, buscar, navegar e imprimir igualmente.
@@ -58,7 +58,7 @@ src/
   components/                 Icon, ThemeToggle, DocCard, SubjectCard, Toc, …
   layouts/                    BaseLayout, DocLayout
   pages/                      una ruta por página + endpoints JSON
-  scripts/app.ts              lógica de cliente (tema, búsqueda, favoritos, TOC…)
+  scripts/app.ts              lógica de cliente (tema, búsqueda, panel, TOC…)
   styles/global.css           sistema de diseño completo
 .github/workflows/deploy.yml  despliegue en GitHub Pages
 ```
@@ -90,10 +90,11 @@ se calculan en tiempo de compilación a partir de los ficheros reales.
 **Inicio** — marca, buscador visible de inmediato, estadísticas reales, tarjetas
 de asignatura, «Continuar leyendo» y accesos rápidos.
 
-**Navegación** — barra lateral fija en escritorio y panel deslizante en móvil y
-tableta: Inicio · Todas las asignaturas · ASO · IAW · BBDD · Programación/Python ·
-Git · Redes y servicios · Favoritos · Pendientes de revisar · Índice de lotes y
-fechas · bloques de procedencia.
+**Navegación** — panel plegable: se comprime en escritorio y se desliza sobre el
+contenido en móvil y tableta (el estado se recuerda por navegador). Inicio ·
+Todas las asignaturas · ASO · IAW · BBDD · Programación/Python · Git · Redes y
+servicios · Pendientes de revisar · Índice de lotes y fechas · bloques de
+procedencia.
 
 **Asignatura** — descripción real, índice de temas con recuento, buscador propio,
 filtro por tema y orden por fecha, orden del índice o título.
@@ -102,8 +103,8 @@ filtro por tema y orden por fecha, orden del índice o título.
 lectura), índice lateral con seguimiento del desplazamiento, barras de progreso,
 botón «Copiar» en cada bloque de código, enlaces de anclaje en los encabezados,
 avisos destacados para `[ilegible]`, `[lectura dudosa]` y `[revisar]`,
-navegación anterior/siguiente y botones de favorito, leído, pendiente, copiar
-enlace e imprimir.
+navegación anterior/siguiente y botones de leído, pendiente, copiar enlace e
+imprimir.
 
 **Búsqueda global** — índice estático (`/search-index.json`) generado en la
 compilación; busca en títulos, encabezados, temas, comandos y rutas del texto.
@@ -114,7 +115,7 @@ compilación; busca en títulos, encabezados, temas, comandos y rutas del texto.
 Cada tema agrupa apuntes de distintas asignaturas sin duplicar contenido.
 
 **Estudio** — impresión con hoja de estilos propia, encabezados con enlace
-directo, favoritos, pendientes y progreso de lectura locales.
+directo, pendientes y progreso de lectura locales.
 
 **Accesibilidad** — tema oscuro por defecto y claro opcional (preferencia
 guardada, sin parpadeo al cargar), `prefers-reduced-motion` respetado, foco
@@ -186,7 +187,7 @@ La ruta base se deduce sola en GitHub Actions a partir de `GITHUB_REPOSITORY`
 - Si necesitas que no sea público, no uses GitHub Pages: opciones razonables son
   un repositorio privado con otro hosting protegido, o Cloudflare Access sobre un
   despliegue propio.
-- Este sitio no envía datos a ningún sitio: favoritos, lecturas y tema se quedan
+- Este sitio no envía datos a ningún sitio: lecturas y tema se quedan
   en el navegador. No hay analítica ni cookies de terceros.
 
 ---
@@ -210,8 +211,8 @@ añade una nota aparte de «posible corrección técnica».
 
 ## Limitaciones conocidas
 
-- Las imágenes de origen (`lote-1/` … `lote-7/`) **no están en el repositorio**;
-  el inventario de lotes las referencia, pero no se incluyen.
+- La transcripción procede de 7 lotes de origen; algunas lecturas quedan marcadas
+  como dudosas o pendientes de revisar (`apuntes/control/dudas-y-revision.md`).
 - Las asignaturas se han agrupado a partir del contenido. Algunas
   clasificaciones (Git, Django, LDAP, Windows Server, cifrado/GPG, iptables) son
   provisionales y se pueden ajustar editando el frontmatter.

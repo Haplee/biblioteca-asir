@@ -36,11 +36,11 @@ listado de archivos por tamaño en Windows.
 | 03/02/2025 | Puerto RDP (Lote 3) |
 | 10/02/2025 | Listado de archivos por tamaño en Windows (Lote 4) |
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 2** — carpeta `lote-2/` (10 imágenes). Transcrito originariamente desde el texto facilitado por el usuario; existen fotografías sin contrastar.
-- **Lote 3** — carpeta `lote-3/` (10 imágenes), transcrito de fotografías.
-- **Lote 4** — carpeta `lote-4/` (10 imágenes). Transcrito originariamente desde el texto facilitado por el usuario; existen fotografías sin contrastar.
+- **Lote 2**
+- **Lote 3**
+- **Lote 4**
 
 Los nombres de archivo completos de cada lote están en `00_Indice_y_control/inventario_de_lotes.md`.
 
@@ -130,8 +130,7 @@ Get-ChildItem -Recursive -Path C:\ | Sort-Object -Descending -Property length | 
 - La expresión para conocer cuánto ocupa un proceso, con conversión mediante `1MB`, no se distingue
   por completo en el apunte.
 - `RequiredServices` es una lectura probable.
-- El listado de Windows (Lote 4) proviene del texto facilitado por el usuario; conviene contrastarlo
-  con la imagen original.
+- El listado de Windows (Lote 4) proviene del texto facilitado por el usuario; conviene revisarlo.
 
 ## Notas técnicas
 

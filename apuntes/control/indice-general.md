@@ -15,7 +15,7 @@ status: "organizado"
 
 **Documento maestro de origen:** `apuntes_unificados_lotes_1-7.md` (lotes 1 a 7).
 **Organización creada:** 14/10/2026.
-**Fotografías de origen:** carpetas `lote-1/` … `lote-7/` (70 imágenes, sin modificar).
+**Lotes de origen:** 1 a 7.
 **Criterio:** la transcripción se ha repartido por asignaturas y temas **sin alterar el contenido**.
 El maestro original se conserva intacto como fuente de referencia.
 
@@ -25,9 +25,9 @@ Estados usados: `transcrito` · `organizado` · `pendiente de revisar` · `pendi
 
 ## Resumen por asignatura
 
-| Asignatura | Documento | Temas incluidos | Fechas cubiertas | Lotes / imágenes de origen | Estado |
+| Asignatura | Documento | Temas incluidos | Fechas cubiertas | Lote de origen | Estado |
 |---|---|---|---|---|---|
-| **IAW** — Implantación de Aplicaciones Web | `IAW/01_Apache_y_VirtualHost.md` | Configuración de equipos, archivo `hosts`, Apache, `VirtualHost`, `DocumentRoot`, cortafuegos | 20/11/2024, 08/01/2025 | Lote 1 (`lote-1/`, 10 fotos) | organizado |
+| **IAW** — Implantación de Aplicaciones Web | `IAW/01_Apache_y_VirtualHost.md` | Configuración de equipos, archivo `hosts`, Apache, `VirtualHost`, `DocumentRoot`, cortafuegos | 20/11/2024, 08/01/2025 | Lote 1 | organizado |
 | IAW | `IAW/02_PHP.md` | `php.ini`, extensiones ZIP e `intl`, búfer de salida, tamaño de subida | sin fecha explícita (Lote 1) | Lote 1 | organizado |
 | IAW | `IAW/03_Joomla.md` | Plantillas y posiciones, instalación, base de datos, vídeos, mapas, menús, sindicación RSS | 20/11/2024, 08/01/2025 | Lote 1 | organizado |
 | IAW | `IAW/04_WordPress.md` | Páginas/entradas, categorías/etiquetas, `wp-admin`, fecha, enlaces permanentes, caché | 08/01/2025 | Lote 1 | organizado |
@@ -52,8 +52,8 @@ Estados usados: `transcrito` · `organizado` · `pendiente de revisar` · `pendi
 | Documento | Contenido |
 |---|---|
 | `00_Indice_y_control/indice_general.md` | Este índice. |
-| `00_Indice_y_control/inventario_de_lotes.md` | Qué hay en cada lote, imágenes y asignaturas detectadas. |
-| `00_Indice_y_control/registro_de_duplicados.md` | Solapamientos de contenido y estado de la comprobación de fotos repetidas. |
+| `00_Indice_y_control/inventario_de_lotes.md` | Qué contiene cada lote y asignaturas detectadas. |
+| `00_Indice_y_control/registro_de_duplicados.md` | Solapamientos de contenido y tratamiento aplicado. |
 | `00_Indice_y_control/dudas_y_revision.md` | Lecturas dudosas, comandos incompletos y clasificación provisional. |
 
 ---
@@ -69,8 +69,6 @@ Estados usados: `transcrito` · `organizado` · `pendiente de revisar` · `pendi
 
 ## Pendiente de material / de revisar
 
-1. **Todo el contenido marcado como dudoso** (sección A de `dudas_y_revision.md`) queda *pendiente de revisar* contra las fotografías.
-2. **Lotes 2, 4 y 6:** existen fotografías sin contrastar con el texto del maestro (ver incidencia C1).
-3. **Duplicados de imagen:** sin comprobar visualmente.
-4. **Clasificación provisional** de Git, Django, LDAP y Windows Server a la espera de confirmación.
-5. No se ha detectado ningún contenido para `Por_clasificar`; si en la revisión apareciera material inclasificable, se creará esa carpeta.
+1. **Todo el contenido marcado como dudoso** (sección A de `dudas_y_revision.md`) queda *pendiente de revisar*.
+2. **Clasificación provisional** de Git, Django, LDAP y Windows Server a la espera de confirmación.
+3. No se ha detectado ningún contenido para `Por_clasificar`; si en la revisión apareciera material inclasificable, se creará esa carpeta.

@@ -35,7 +35,7 @@ const pageTitle = !title || title === SITE.name ? SITE.name : `${title} · ${SIT
 const canonical = Astro.site ? new URL(pathname, Astro.site).href : undefined;
 ---
 <!doctype html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="dark" data-nav="closed">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -68,6 +68,19 @@ const canonical = Astro.site ? new URL(pathname, Astro.site).href : undefined;
           document.documentElement.dataset.theme = theme;
         } catch (e) {
           document.documentElement.dataset.theme = 'dark';
+        }
+      })();
+    </script>
+
+    {/* El panel de navegación arranca plegado en escritorio; se recuerda si se abrió. */}
+    <script is:inline>
+      (function () {
+        try {
+          var desktop = window.matchMedia('(min-width: 1024px)').matches;
+          var stored = localStorage.getItem('asir:nav');
+          document.documentElement.dataset.nav = desktop && stored === 'open' ? 'open' : 'closed';
+        } catch (e) {
+          document.documentElement.dataset.nav = 'closed';
         }
       })();
     </script>

@@ -19,7 +19,7 @@ export const SITE = {
     text: 'Apuntes, comandos y documentación técnica de ASIR, organizados para encontrar lo que necesitas.',
   },
   description:
-    'Biblioteca personal de apuntes de ASIR: sistemas operativos, redes y servicios, implantación de aplicaciones web, bases de datos, programación y control de versiones. Con búsqueda, favoritos y modo claro/oscuro.',
+    'Biblioteca personal de apuntes de ASIR: sistemas operativos, redes y servicios, implantación de aplicaciones web, bases de datos, programación y control de versiones. Con búsqueda y modo claro/oscuro.',
   author: 'Fran Vidal',
 } as const;
 

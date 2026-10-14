@@ -301,7 +301,7 @@ ol {
 /* --------------------------------------------------------------- shell */
 .shell {
   display: grid;
-  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  grid-template-columns: auto minmax(0, 1fr);
   min-height: 100dvh;
 }
 
@@ -310,6 +310,8 @@ ol {
   position: sticky;
   top: 0;
   align-self: start;
+  width: var(--sidebar-w);
+  min-width: 0;
   height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -318,7 +320,19 @@ ol {
   background: var(--bg-soft);
   border-right: 1px solid var(--border);
   overflow-y: auto;
+  overflow-x: hidden;
   overscroll-behavior: contain;
+  transition: width 0.24s var(--ease), padding 0.24s var(--ease);
+}
+
+/* En escritorio el panel se comprime dentro de su propia columna. */
+@media (min-width: 1024px) {
+  html[data-nav='closed'] .sidebar {
+    width: 0;
+    padding-inline: 0;
+    border-right-color: transparent;
+    overflow: hidden;
+  }
 }
 
 .brand {
@@ -547,11 +561,6 @@ kbd {
 .icon-btn:active {
   transform: scale(0.94);
 }
-.icon-btn--accent[aria-pressed='true'] {
-  color: var(--accent);
-  border-color: var(--accent-line);
-  background: var(--accent-soft);
-}
 .icon-btn--search {
   width: auto;
   padding: 0 0.7rem;
@@ -572,7 +581,7 @@ kbd {
 }
 
 .sidebar-toggle {
-  display: none;
+  display: inline-grid;
 }
 
 /* Barra de progreso de lectura */
@@ -794,11 +803,6 @@ a.card:hover,
   box-shadow: var(--ring);
   border-color: var(--accent-line);
 }
-.card--link .icon-btn {
-  position: relative;
-  z-index: 2;
-}
-
 .subject-card {
   overflow: hidden;
 }
@@ -1123,6 +1127,17 @@ a.chip:hover {
 .prose p,
 .prose li {
   color: var(--text);
+  /* Texto «cuadrado»: justificado a ambos lados. */
+  text-align: justify;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+.prose h2,
+.prose h3,
+.prose h4,
+.prose td,
+.prose th {
+  overflow-wrap: break-word;
 }
 .prose strong {
   font-weight: 660;
@@ -1144,6 +1159,15 @@ a.chip:hover {
 .prose ul,
 .prose ol {
   padding-left: 1.35rem;
+}
+
+/* En pantallas anchas, el texto de las listas se alinea con el de los párrafos
+   (la viñeta o el número quedan en el margen izquierdo). */
+@media (min-width: 1024px) {
+  .prose ul,
+  .prose ol {
+    margin-left: -1.35rem;
+  }
 }
 .prose li + li {
   margin-top: 0.3em;
@@ -1181,6 +1205,8 @@ a.chip:hover {
   border: 1px solid var(--border-soft);
   color: var(--accent-text);
   overflow-wrap: break-word;
+  /* Los identificadores técnicos no se parten con guion. */
+  hyphens: none;
 }
 
 /* Bloques de código */
@@ -1783,11 +1809,8 @@ a.chip:hover {
     box-shadow: var(--shadow-lg);
     height: 100dvh;
   }
-  .sidebar.is-open {
+  html[data-nav='open'] .sidebar {
     transform: none;
-  }
-  .sidebar-toggle {
-    display: inline-grid;
   }
   .drawer-backdrop {
     display: block;
@@ -1799,7 +1822,7 @@ a.chip:hover {
     pointer-events: none;
     transition: opacity 0.2s var(--ease);
   }
-  .drawer-backdrop.is-open {
+  html[data-nav='open'] .drawer-backdrop {
     opacity: 1;
     pointer-events: auto;
   }

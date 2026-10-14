@@ -2,9 +2,6 @@
 /**
  * Tarjeta de documento. Muestra solo datos reales del apunte: título, resumen,
  * temas, fechas y tiempo de lectura estimado.
- *
- * El enlace que cubre la tarjeta (`.card__cover`) no envuelve al botón de
- * favoritos: son elementos hermanos, para no anidar contenido interactivo.
  */
 import Icon from './Icon.astro';
 import { docUrl } from '../lib/url';
@@ -31,16 +28,6 @@ const lastDate = meta.dates.length > 0 ? meta.dates[meta.dates.length - 1] : nul
     <h3 class="doc-card__title">
       <a class="card__cover" href={url}>{meta.title}</a>
     </h3>
-    <button
-      type="button"
-      class="icon-btn icon-btn--accent no-print"
-      data-fav-toggle={meta.id}
-      aria-pressed="false"
-      title="Añadir a favoritos"
-      aria-label={`Añadir «${meta.title}» a favoritos`}
-    >
-      <Icon name="star" size={15} />
-    </button>
   </div>
 
   <div class="doc-card__sub">

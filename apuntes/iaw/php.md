@@ -23,10 +23,9 @@ archivos subidos.
 
 - Sin fecha explícita en la hoja (contenido del Lote 1, práctica de Joomla; entorno del 20/11/2024).
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 1** — carpeta `lote-1/` (10 imágenes), transcrito de fotografías.
-  Nombres de archivo completos en `00_Indice_y_control/inventario_de_lotes.md`.
+- **Lote 1**
 
 ---
 
@@ -58,8 +57,8 @@ Editar `php.ini`:
 - Habilitar `intl`.
 - Cambiar el parámetro relacionado con el tamaño máximo de archivos subidos.
 
-En la fotografía parece leerse `upload_file_size`, pero el parámetro habitual de PHP es
-`upload_max_filesize`. **[Revisar contra la imagen original]**
+El apunte parece indicar `upload_file_size`, pero el parámetro habitual de PHP es
+`upload_max_filesize`. **[Revisar]**
 
 ---
 

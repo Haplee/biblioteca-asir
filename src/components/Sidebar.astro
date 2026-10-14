@@ -1,7 +1,8 @@
 ---
 /**
- * Barra lateral de navegación. En pantallas grandes es fija; en móvil/tableta
- * se convierte en un panel deslizante controlado desde la barra superior.
+ * Barra lateral de navegación. Es plegable: se abre y se cierra desde la barra
+ * superior (en escritorio se comprime; en móvil y tableta se desliza sobre el
+ * contenido).
  */
 import Icon from './Icon.astro';
 import { withBase } from '../lib/url';
@@ -98,15 +99,6 @@ const controlLinks = CONTROL_DOCS.map((doc) => ({
       </a>
       <a
         class="nav__link"
-        href={withBase('favoritos/')}
-        aria-current={isCurrent(withBase('favoritos/')) ? 'page' : undefined}
-      >
-        <Icon name="star" size={17} />
-        <span>Favoritos</span>
-        <span class="nav__badge" data-count="favorites" hidden></span>
-      </a>
-      <a
-        class="nav__link"
         href={withBase('pendientes/')}
         aria-current={isCurrent(withBase('pendientes/')) ? 'page' : undefined}
       >
@@ -139,7 +131,7 @@ const controlLinks = CONTROL_DOCS.map((doc) => ({
 
   <div class="sidebar__foot">
     <p class="local-note">
-      <Icon name="shield-check" size={12} /> Tus favoritos, lecturas y preferencias se guardan
+      <Icon name="shield-check" size={12} /> Tus lecturas y preferencias se guardan
       <strong>solo en este navegador</strong>. No se sincronizan ni se envían a ningún servidor.
     </p>
   </div>

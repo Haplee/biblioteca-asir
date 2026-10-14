@@ -1,7 +1,7 @@
 ---
 /**
  * Layout de lectura de un apunte: migas, cabecera con metadatos reales, barra
- * de herramientas (favorito, leído, pendiente, copiar enlace, imprimir),
+ * de herramientas (leído, pendiente, copiar enlace, imprimir),
  * contenido renderizado, índice lateral y navegación anterior/siguiente.
  */
 import BaseLayout from './BaseLayout.astro';
@@ -92,15 +92,6 @@ const indexLabel = meta.subjectSlug ? 'Volver a la asignatura' : 'Volver al índ
         </header>
 
         <div class="doc-toolbar no-print">
-          <button
-            type="button"
-            class="btn btn--sm"
-            data-fav-toggle={meta.id}
-            aria-pressed="false"
-            title="Añadir a favoritos"
-          >
-            <Icon name="star" size={14} /> <span data-fav-label>Favorito</span>
-          </button>
           <button
             type="button"
             class="btn btn--sm"

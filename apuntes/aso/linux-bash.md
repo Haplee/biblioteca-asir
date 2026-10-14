@@ -58,13 +58,12 @@ y ficheros temporales.
 | 06/02/2025 | Parámetros y `case` | 3 |
 | 10/02/2025 | Ficheros temporales | 4 |
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 2** — `lote-2/` (texto del usuario; fotos sin contrastar).
-- **Lote 3** — `lote-3/` (fotografías).
-- **Lote 4** — `lote-4/` (texto del usuario; fotos sin contrastar).
+- **Lote 2**
+- **Lote 3**
+- **Lote 4**
 
-Nombres de archivo completos en `00_Indice_y_control/inventario_de_lotes.md`.
 
 ---
 
@@ -237,7 +236,7 @@ case $opcion in
 esac
 ```
 
-En la foto parece repetirse `"-m")`, pero puede tratarse de otra opción. *(Revisar: ver Dudas.)*
+Parece repetirse `"-m")`, pero puede tratarse de otra opción. *(Revisar: ver Dudas.)*
 
 ---
 
@@ -271,8 +270,8 @@ En la foto parece repetirse `"-m")`, pero puede tratarse de otra opción. *(Revi
   `Fconv_nomb`; puede ser una errata del manuscrito.
 - **Posible corrección técnica:** en `lista=(uno, dos, tres)` los elementos de un array de Bash se
   separan por espacios, no por comas; el apunte escribe comas. Se conserva literal.
-- Contenido de los lotes 2 y 4 proveniente del texto del usuario; conviene contrastarlo con las
-  fotografías si se requiere literalidad.
+- Contenido de los lotes 2 y 4 proveniente del texto del usuario; conviene revisarlo si se
+  requiere literalidad.
 
 ## Referencias cruzadas
 

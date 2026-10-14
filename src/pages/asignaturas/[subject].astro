@@ -165,16 +165,6 @@ const docs = [...group.docs].sort((a, b) => {
                       {doc.data.title}
                     </a>
                   </h3>
-                  <button
-                    type="button"
-                    class="icon-btn icon-btn--accent no-print"
-                    data-fav-toggle={doc.id}
-                    aria-pressed="false"
-                    title="Añadir a favoritos"
-                    aria-label={`Añadir «${doc.data.title}» a favoritos`}
-                  >
-                    <Icon name="star" size={15} />
-                  </button>
                 </div>
                 <div class="doc-card__sub">
                   <span>

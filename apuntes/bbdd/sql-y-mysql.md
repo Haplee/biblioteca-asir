@@ -25,10 +25,9 @@ status: "organizado"
 |---|---|
 | 20/11/2024 | Creación de base de datos, usuario y permisos (dentro de la práctica de Joomla, Lote 1) |
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 1** — carpeta `lote-1/` (10 imágenes), transcrito de fotografías.
-  Nombres de archivo completos en `00_Indice_y_control/inventario_de_lotes.md`.
+- **Lote 1**
 
 > **Nota de clasificación:** este bloque aparece dentro de la instalación de Joomla (IAW), pero su
 > contenido es de BBDD (MySQL). Se documenta aquí como principal; Joomla lo referencia desde
@@ -67,14 +66,14 @@ FLUSH PRIVILEGES;
 Salir de MySQL.
 
 > Las sentencias SQL se han reconstruido siguiendo la sintaxis habitual de MySQL cuando los
-> caracteres de la fotografía no se distinguían bien.
+> caracteres no se distinguían bien.
 
 ---
 
 ## Dudas de lectura
 
-- Las sentencias se reconstruyeron por sintaxis habitual; comprobar contra la fotografía original
-  si se requiere literalidad exacta.
+- Las sentencias se reconstruyeron por sintaxis habitual; revisar si se requiere literalidad
+  exacta.
 
 ## Notas técnicas
 

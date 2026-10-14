@@ -5,7 +5,7 @@ import { SUBJECTS, SITE } from '../config/site';
 /**
  * Catálogo de documentos + datos de asignaturas, generado en tiempo de
  * compilación. Lo usa el cliente para pintar las secciones dinámicas
- * (continuar leyendo, favoritos, pendientes, recientes) sin consultar nada
+ * (continuar leyendo, pendientes, recientes) sin consultar nada
  * externo.
  */
 export const GET: APIRoute = async () => {

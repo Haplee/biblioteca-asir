@@ -31,10 +31,9 @@ vídeos y mapas, menús y distribución del contenido, sindicación de contenido
 | (sin fecha) | Plantillas, instalación, vídeos, mapas, menús |
 | 04/12/2024 | Sindicación de contenido (RSS) |
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 1** — carpeta `lote-1/` (10 imágenes), transcrito de fotografías.
-  Nombres de archivo completos en `00_Indice_y_control/inventario_de_lotes.md`.
+- **Lote 1**
 
 ---
 
@@ -76,7 +75,7 @@ FLUSH PRIVILEGES;
 Salir de MySQL. Descomprimir el archivo ZIP de Joomla dentro de `public_html` y comprobar los permisos.
 
 > Las sentencias SQL se han reconstruido siguiendo la sintaxis habitual de MySQL cuando los
-> caracteres de la fotografía no se distinguían bien. El tratamiento principal del bloque MySQL está
+> caracteres no se distinguían bien. El tratamiento principal del bloque MySQL está
 > en `BBDD/02_SQL_y_MySQL.md`; aquí se conserva por formar parte del procedimiento de Joomla.
 
 ---
@@ -147,7 +146,7 @@ y tres bloques inferiores de artículos.
 ## Dudas de lectura
 
 - Las sentencias SQL de creación de la base de datos se reconstruyeron por sintaxis habitual; no se
-  distinguían bien en la fotografía.
+  distinguían bien.
 - No se ha podido confirmar el número exacto de columnas/bloques del esquema de distribución dibujado.
 
 ## Notas técnicas

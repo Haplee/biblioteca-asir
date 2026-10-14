@@ -2,7 +2,7 @@
 title: "Dudas y revisión"
 kind: "control"
 order: 4
-summary: "Lecturas dudosas, comandos incompletos o posiblemente erróneos y contenidos pendientes de revisar contra el original."
+summary: "Lecturas dudosas, comandos incompletos o posiblemente erróneos y contenidos pendientes de revisar."
 topics:
   - "Dudas"
   - "Revisión"
@@ -23,16 +23,16 @@ Estados: `pendiente` (sin resolver) · `resuelto` (confirmado por el usuario).
 
 ---
 
-## A. Dudas de lectura (contrastar con las fotografías)
+## A. Dudas de lectura
 
 | # | Lote | Documento | Fragmento | Estado |
 |---|---|---|---|---|
 | A1 | 1 | `IAW/01_Apache_y_VirtualHost.md` | «M. huésped → RBAC (?) → Alta puesto (?) — (Reset MAC)» | pendiente |
 | A2 | 1 | `IAW/01_Apache_y_VirtualHost.md` | «Análisis de permisos / antivirus del host» | pendiente |
 | A3 | 1 | `IAW/01_Apache_y_VirtualHost.md` | Entrada de `VirtualHost`: parte del texto original dudosa | pendiente |
-| A4 | 1 | `IAW/01_Apache_y_VirtualHost.md` | `AllowOverride All` — en la foto parece «Override all» | pendiente |
+| A4 | 1 | `IAW/01_Apache_y_VirtualHost.md` | `AllowOverride All` — el apunte parece poner «Override all» | pendiente |
 | A5 | 1 | `IAW/01_Apache_y_VirtualHost.md` | Comandos `chown` y `chmod` del directorio web | pendiente |
-| A6 | 1 | `IAW/01_Apache_y_VirtualHost.md` | Comandos para habilitar el sitio y reiniciar Apache (borrosos) | pendiente |
+| A6 | 1 | `IAW/01_Apache_y_VirtualHost.md` | Comandos para habilitar el sitio y reiniciar Apache (no se distinguen con claridad) | pendiente |
 | A7 | 1 | `IAW/02_PHP.md` | `upload_file_size` (probable `upload_max_filesize`) | pendiente |
 | A8 | 1 | `IAW/04_WordPress.md` | «La categoría es obligatoria en páginas y entradas y solo puede haber una» | pendiente |
 | A9 | 3 | `ASO/01_Windows_PowerShell.md` | Conversión con `1MB` en la consulta de tamaño de un proceso | pendiente |
@@ -77,10 +77,9 @@ Estados: `pendiente` (sin resolver) · `resuelto` (confirmado por el usuario).
 
 | # | Descripción | Estado |
 |---|---|---|
-| C1 | El maestro dice que los lotes 2, 4 y 6 se tomaron del texto del usuario y no de fotos, pero las carpetas `lote-2/`, `lote-4/` y `lote-6/` contienen 10 fotografías cada una. Hay originales sin contrastar. | pendiente |
-| C2 | El maestro advierte de que algunos comandos de IAW y BBDD se reconstruyeron «a partir de la sintaxis habitual» y deben verificarse contra las fotos. | pendiente |
-| C3 | Las fotografías no están ordenadas cronológicamente por número de lote; el orden temporal hay que deducirlo de las fechas escritas en cada hoja. | pendiente |
-| C4 | No se ha podido mapear cada fotografía concreta con el texto del maestro: la transcripción solo conserva el nivel de lote. En las fotos podría haber páginas que no llegasen al maestro o viceversa. | pendiente |
+| C1 | El maestro advierte de que algunos comandos de IAW y BBDD se reconstruyeron «a partir de la sintaxis habitual» y deben verificarse. | pendiente |
+| C2 | Los lotes no están ordenados cronológicamente; el orden temporal hay que deducirlo de las fechas escritas en cada hoja. | pendiente |
+| C3 | La transcripción solo conserva el nivel de lote, no la página concreta: podría haber páginas que no llegasen al maestro o viceversa. | pendiente |
 
 ---
 

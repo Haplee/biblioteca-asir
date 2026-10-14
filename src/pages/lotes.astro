@@ -28,7 +28,7 @@ const allDates = [...new Set(apuntes.flatMap((doc) => doc.data.dates))].sort();
 
 <BaseLayout
   title="Lotes y fechas"
-  description="Procedencia de los apuntes: qué lote de fotografías aportó cada documento y qué fechas cubre."
+  description="Procedencia de los apuntes: qué lote de origen aportó cada documento y qué fechas cubre."
 >
   <Breadcrumbs
     slot="breadcrumb"
@@ -40,7 +40,7 @@ const allDates = [...new Set(apuntes.flatMap((doc) => doc.data.dates))].sort();
       <p class="doc-header__subject"><Icon name="layers" size={14} /> Procedencia</p>
       <h1 class="doc-header__title">Índice de lotes y fechas</h1>
       <p class="doc-header__summary">
-        Los apuntes provienen de {batchNumbers.length} lotes de fotografías. Cada lote puede aportar
+        Los apuntes provienen de {batchNumbers.length} lotes de origen. Cada lote puede aportar
         contenido de varias asignaturas, por eso las asignaturas se reparten entre lotes y no al
         contrario.
       </p>

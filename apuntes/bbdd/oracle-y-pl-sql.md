@@ -53,14 +53,13 @@ instancia y vistas del diccionario.
 | 11/02/2025 | `ROWNUM` | 3 |
 | (sin fecha) | Triggers, sinónimos, funciones, secuencias | 3 y 6 |
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 3** — `lote-3/` (fotografías).
-- **Lote 4** — `lote-4/` (texto del usuario; fotos sin contrastar).
-- **Lote 5** — `lote-5/` (fotografías).
-- **Lote 6** — `lote-6/` (texto del usuario; fotos sin contrastar).
+- **Lote 3**
+- **Lote 4**
+- **Lote 5**
+- **Lote 6**
 
-Nombres de archivo completos en `00_Indice_y_control/inventario_de_lotes.md`.
 
 ---
 

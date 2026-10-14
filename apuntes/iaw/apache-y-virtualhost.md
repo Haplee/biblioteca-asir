@@ -31,10 +31,9 @@ status: "organizado"
 | (sin fecha) | Instalación y configuración de Apache, `VirtualHost` |
 | 08/01/2025 | Directorio raíz de Apache (`DocumentRoot`) |
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 1** — carpeta `lote-1/` (10 imágenes), transcrito de fotografías.
-  Los nombres de archivo completos están en `00_Indice_y_control/inventario_de_lotes.md`.
+- **Lote 1**
 
 ---
 
@@ -62,7 +61,7 @@ Archivo de configuración:
 ```
 
 - Buscar `/var/www/`.
-- Editar `AllowOverride All`. **[En la fotografía parece poner «Override all»]**
+- Editar `AllowOverride All`. **[El apunte parece poner «Override all»]**
 
 ---
 
@@ -88,7 +87,7 @@ mkdir -p /var/www/nombre/public_html
 ```
 
 A continuación, configurar el propietario y los permisos del directorio.
-**[Los comandos `chown` y `chmod` no se distinguen por completo en la fotografía]**
+**[Los comandos `chown` y `chmod` no se distinguen por completo]**
 
 Configurar un `VirtualHost` en:
 
@@ -139,7 +138,7 @@ La ruta se puede cambiar y de ella depende la ubicación de los archivos que sir
 - «M. huésped → RBAC (?) → Alta puesto (?) — (Reset MAC)».
 - «Análisis de permisos / antivirus del host».
 - La entrada de `VirtualHost` y la parte de configuración de rutas y permisos.
-- `AllowOverride All`: en la fotografía parece leerse «Override all».
+- `AllowOverride All`: el apunte parece escribir «Override all».
 - Comandos `chown` y `chmod` del directorio web (no se distinguen).
 - Comandos para habilitar el sitio y reiniciar Apache (parcialmente borrosos).
 
@@ -149,7 +148,7 @@ La ruta se puede cambiar y de ella depende la ubicación de los archivos que sir
   «All»); el apunte parece escribir «Override all».
 - **Posible corrección técnica:** los pasos para habilitar el sitio y recargar Apache suelen ser
   `a2ensite nombre.com.conf` y `systemctl reload apache2`, pero **no se incluyen aquí porque no
-  figuran con claridad en el original**. Se dejan como pendientes de verificar contra la foto.
+  figuran con claridad en el apunte**. Se dejan como pendientes de verificar.
 
 ## Referencias cruzadas
 

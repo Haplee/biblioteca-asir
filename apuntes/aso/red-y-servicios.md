@@ -45,13 +45,12 @@ encriptación (GPG), servidor Samba y servidor de impresión CUPS.
 | (sin fecha) | Seguridad y cortafuegos: iptables y encriptación | 4 |
 | 21/11/2024 | Servidor Linux — Samba y CUPS (detallado) | 6 |
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 2** — `lote-2/` (texto del usuario; fotos sin contrastar).
-- **Lote 4** — `lote-4/` (texto del usuario; fotos sin contrastar).
-- **Lote 6** — `lote-6/` (texto del usuario; fotos sin contrastar).
+- **Lote 2**
+- **Lote 4**
+- **Lote 6**
 
-Nombres de archivo completos en `00_Indice_y_control/inventario_de_lotes.md`.
 
 ---
 
@@ -258,8 +257,7 @@ guest ok = yes
 ## Dudas de lectura
 
 - No se han marcado lecturas dudosas específicas en estos bloques, salvo los comandos señalados en
-  Notas técnicas. Los lotes 2, 4 y 6 provienen del texto del usuario y no se han contrastado aún
-  con las fotografías.
+  Notas técnicas. Los lotes 2, 4 y 6 provienen del texto del usuario y se conservan tal cual.
 
 ## Notas técnicas
 

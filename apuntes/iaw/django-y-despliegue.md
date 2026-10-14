@@ -24,10 +24,9 @@ status: "organizado"
 |---|---|
 | 15/01/2025 | Django |
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 1** — carpeta `lote-1/` (10 imágenes), transcrito de fotografías.
-  Nombres de archivo completos en `00_Indice_y_control/inventario_de_lotes.md`.
+- **Lote 1**
 
 ---
 

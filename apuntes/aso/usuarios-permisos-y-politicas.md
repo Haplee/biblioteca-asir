@@ -34,13 +34,12 @@ status: "organizado"
 | 23/01/2025 | GPO no se aplican a los administradores | 3 |
 | (sin fecha) | Cuotas de disco (servidor Linux) | 6 |
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 2** — `lote-2/` (texto del usuario; fotos sin contrastar).
-- **Lote 3** — `lote-3/` (fotografías).
-- **Lote 6** — `lote-6/` (texto del usuario; fotos sin contrastar).
+- **Lote 2**
+- **Lote 3**
+- **Lote 6**
 
-Nombres de archivo completos en `00_Indice_y_control/inventario_de_lotes.md`.
 
 ---
 
@@ -119,8 +118,8 @@ quotaoff -v /home
   `find /lib/modules/$(uname -r) -type f -name '*quota_v.ko*'` (sustitución de comando con `$(...)`).
 - **Posible corrección técnica (B10):** lo habitual es crear los **ficheros** `aquota.user` y
   `aquota.group` (no directorios); el apunte usa `mkdir`. Se conserva literal.
-- Contenido de los lotes 2 y 6 proveniente del texto del usuario; conviene contrastarlo con las
-  fotografías si se requiere literalidad.
+- Contenido de los lotes 2 y 6 proveniente del texto del usuario; conviene revisarlo si se
+  requiere literalidad.
 
 ## Referencias cruzadas
 

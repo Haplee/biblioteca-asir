@@ -34,12 +34,11 @@ administración de cuentas en Oracle.
 | 14/01/2025 | Roles, perfiles y conexión | 5 |
 | (sin fecha) | Perfiles, usuarios y roles (detallado) | 6 |
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 5** — `lote-5/` (fotografías).
-- **Lote 6** — `lote-6/` (texto del usuario; fotos sin contrastar).
+- **Lote 5**
+- **Lote 6**
 
-Nombres de archivo completos en `00_Indice_y_control/inventario_de_lotes.md`.
 
 ---
 
@@ -59,7 +58,7 @@ completamente.
 Los perfiles permiten limitar el uso de algunos recursos.
 
 En el apunte aparece una posible opción `PASSWORD_LIMIT = TRUE`.
-**[Lectura dudosa; comprobar contra la imagen]**
+**[Lectura dudosa]**
 
 Estructura anotada:
 

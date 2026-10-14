@@ -4,8 +4,8 @@
  * Hace tres cosas, sin alterar ni una sola letra del contenido:
  *
  * 1. Convierte los avisos entre corchetes que ya existen en la fuente
- *    (`[ilegible]`, `[Lectura dudosa]`, `[revisar original]`, `[comprobar contra
- *    la imagen]`, …) en insignias visuales discretas. El texto original,
+ *    (`[ilegible]`, `[Lectura dudosa]`, `[revisar]`, …) en insignias visuales
+ *    discretas. El texto original,
  *    corchetes incluidos, se conserva intacto dentro de la insignia.
  * 2. Envuelve cada tabla en un contenedor con desplazamiento horizontal para
  *    que sea legible en móvil.
@@ -30,14 +30,14 @@ const FLAG_RULES = [
   },
   {
     key: 'revisar',
-    re: /revisar|comprobar|verificar|contra la imagen|imagen original|no debe considerarse|cautela|provisional/i,
+    re: /revisar|comprobar|verificar|no debe considerarse|cautela|provisional/i,
   },
 ];
 
 const FLAG_LABELS = {
   ilegible: 'Texto ilegible en el original',
   dudosa: 'Lectura dudosa',
-  revisar: 'Pendiente de revisar contra el original',
+  revisar: 'Pendiente de revisar',
 };
 
 const NOTE_RE = /^(Posible corrección técnica|Posible corrección|Aclaración|Nota|Aviso|Advertencia)\b/i;

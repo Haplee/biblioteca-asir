@@ -2,7 +2,7 @@
 title: "Registro de duplicados y solapamientos"
 kind: "control"
 order: 3
-summary: "Solapamientos de contenido entre lotes, tratamiento aplicado y estado de la comprobación de duplicados."
+summary: "Solapamientos de contenido entre lotes y tratamiento aplicado."
 topics:
   - "Duplicados"
   - "Control"
@@ -16,29 +16,15 @@ status: "organizado"
 **Fecha de creación:** 14/10/2026.
 **Alcance de esta primera tanda:** organización del texto del maestro `apuntes_unificados_lotes_1-7.md`.
 
-> Ninguna imagen original ha sido borrada, movida ni sobrescrita.
+> El documento maestro original se conserva intacto como fuente de referencia.
 
 ---
 
-## 1. Duplicados a nivel de imagen (pendiente de comprobar)
+## 1. Temas repetidos dentro del propio maestro (solapamiento de contenido)
 
-En esta tanda **no se ha comparado visualmente cada fotografía**, por lo que **no se confirma ni se
-descarta** la existencia de fotos repetidas, tomas de la misma página desde otro ángulo o páginas
-solapadas.
-
-Queda pendiente, cuando el usuario lo solicite:
-
-- Comparar las 10 imágenes de cada lote entre sí y entre lotes.
-- Detectar fotos repetidas o continuaciones de una misma página.
-- Comprobar si las fotos de `lote-2/`, `lote-4/` y `lote-6/` se corresponden con el texto que el
-  maestro ya tenía de esos lotes (ver `inventario_de_lotes.md`, incidencia 1).
-
----
-
-## 2. Temas repetidos dentro del propio maestro (solapamiento de contenido)
-
-Estos no son duplicados de imagen, sino **contenido que aparece en más de un punto del maestro**.
-Se ha integrado en un único documento principal, con nota de las apariciones, para no repetir texto.
+Estos no son duplicados de un mismo fragmento, sino **contenido que aparece en más de un punto del
+maestro**. Se ha integrado en un único documento principal, con nota de las apariciones, para no
+repetir texto.
 
 | Tema | Aparece en | Documento principal | Tratamiento |
 |---|---|---|---|
@@ -55,7 +41,7 @@ Se ha integrado en un único documento principal, con nota de las apariciones, p
 
 ---
 
-## 3. Discrepancias entre versiones
+## 2. Discrepancias entre versiones
 
 No se ha detectado, dentro del maestro, dos versiones distintas del **mismo** fragmento con contenido
 diferente. Donde el maestro recoge dudas de lectura, se han trasladado a
@@ -63,8 +49,8 @@ diferente. Donde el maestro recoge dudas de lectura, se han trasladado a
 
 ---
 
-## 4. Cómo se conserva la referencia a las imágenes
+## 3. Cómo se conserva la referencia al lote de origen
 
-Cada documento temático indica el **lote** de origen y remite a `inventario_de_lotes.md`, que
-enumera los nombres de archivo completos de cada lote. Así se conserva la trazabilidad a todas las
-imágenes que contienen ese texto sin repetir la lista de ficheros en cada documento.
+Cada documento temático indica el **lote** de origen y remite a `inventario_de_lotes.md`, que detalla
+el contenido de cada lote. Así se conserva la trazabilidad al lote de origen sin repetir la
+información en cada documento.

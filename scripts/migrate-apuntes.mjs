@@ -177,7 +177,7 @@ const DOCS = [
   {
     src: '00_Indice_y_control/inventario_de_lotes.md', dest: 'control/inventario-de-lotes.md', kind: 'control',
     order: 2,
-    summary: 'Detalle de los 7 lotes de origen (70 fotografías), asignaturas detectadas e incidencias del inventario.',
+    summary: 'Detalle de los 7 lotes de origen, asignaturas detectadas e incidencias del inventario.',
     topics: ['Lotes', 'Control'],
     batches: [1, 2, 3, 4, 5, 6, 7],
     dates: [],
@@ -185,7 +185,7 @@ const DOCS = [
   {
     src: '00_Indice_y_control/registro_de_duplicados.md', dest: 'control/registro-de-duplicados.md', kind: 'control',
     order: 3,
-    summary: 'Solapamientos de contenido entre lotes, tratamiento aplicado y estado de la comprobación de duplicados.',
+    summary: 'Solapamientos de contenido entre lotes y tratamiento aplicado.',
     topics: ['Duplicados', 'Control'],
     batches: [],
     dates: [],
@@ -193,7 +193,7 @@ const DOCS = [
   {
     src: '00_Indice_y_control/dudas_y_revision.md', dest: 'control/dudas-y-revision.md', kind: 'control',
     order: 4,
-    summary: 'Lecturas dudosas, comandos incompletos o posiblemente erróneos y contenidos pendientes de revisar contra el original.',
+    summary: 'Lecturas dudosas, comandos incompletos o posiblemente erróneos y contenidos pendientes de revisar.',
     topics: ['Dudas', 'Revisión', 'Control'],
     batches: [],
     dates: [],

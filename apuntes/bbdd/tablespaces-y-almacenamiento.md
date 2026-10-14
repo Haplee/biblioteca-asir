@@ -41,12 +41,11 @@ automático de datafiles.
 | 03/12/2024 | `DBA_FREE_SPACE` | 5 |
 | 14/01/2025 | Operaciones sobre tablespaces | 5 |
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 4** — `lote-4/` (texto del usuario; fotos sin contrastar).
-- **Lote 5** — `lote-5/` (fotografías).
+- **Lote 4**
+- **Lote 5**
 
-Nombres de archivo completos en `00_Indice_y_control/inventario_de_lotes.md`.
 
 ---
 
@@ -225,7 +224,7 @@ SIZE n;
 - Tipo de tablespace `local` / `dictionary` (lectura probable).
 - Interpretación de `DBA_FREE_SPACE`.
 - Parte del bloque «Tablas y espacio» (02/12/2024) no se distingue.
-- Los bloques del Lote 4 provienen del texto del usuario; conviene contrastarlos con las fotos.
+- Los bloques del Lote 4 provienen del texto del usuario; conviene revisarlos.
 
 ## Notas técnicas
 

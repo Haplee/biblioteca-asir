@@ -27,11 +27,9 @@ status: "organizado"
 |---|---|
 | 23/01/2025 y 29/01/2025 | Sintaxis básica y funciones (Lote 2) |
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 2** — carpeta `lote-2/` (10 imágenes). Transcrito originariamente desde el texto facilitado
-  por el usuario; existen fotografías sin contrastar.
-  Nombres de archivo completos en `00_Indice_y_control/inventario_de_lotes.md`.
+- **Lote 2**
 
 ---
 
@@ -60,8 +58,8 @@ status: "organizado"
 
 ## Dudas de lectura
 
-- El contenido proviene del texto facilitado por el usuario; conviene contrastarlo con las
-  fotografías de `lote-2/` si se requiere literalidad.
+- El contenido proviene del texto facilitado por el usuario; conviene revisarlo si se requiere
+  literalidad.
 - La notación `def nombre(0..n parametros)` es una forma de indicar «de 0 a n parámetros», no
   sintaxis literal de Python.
 

@@ -3,9 +3,9 @@
  *
  * Cubre, sin dependencias externas:
  *  - selector de tema (oscuro por defecto, claro opcional) con persistencia;
- *  - panel de navegación deslizante en móvil/tableta;
+ *  - panel de navegación plegable (se comprime en escritorio y se desliza en móvil);
  *  - búsqueda global sobre el índice estático generado en la compilación;
- *  - favoritos, leídos y pendientes (solo en `localStorage`);
+ *  - leídos y pendientes (solo en `localStorage`);
  *  - «continuar leyendo» y listas dinámicas a partir del catálogo;
  *  - botón «Copiar» en cada bloque de código;
  *  - enlaces de anclaje en los encabezados, índice activo y progreso de lectura.
@@ -19,7 +19,6 @@ const BASE = RAW_BASE.endsWith('/') ? RAW_BASE : `${RAW_BASE}/`;
 
 const KEYS = {
   theme: 'asir:theme',
-  favorites: 'asir:favorites',
   read: 'asir:read',
   pending: 'asir:pending',
   visits: 'asir:visits',
@@ -148,7 +147,6 @@ function readStringSet(key: string): Set<string> {
 /* ----------------------------------------------------------- estado global */
 
 const state = {
-  favorites: readStringSet(KEYS.favorites),
   read: readStringSet(KEYS.read),
   pending: readStringSet(KEYS.pending),
   visits: safeRead<Visit[]>(KEYS.visits, []).filter(
@@ -159,9 +157,6 @@ const state = {
   catalogPromise: null as Promise<Catalog | null> | null,
 };
 
-function persistFavorites(): void {
-  safeWrite(KEYS.favorites, [...state.favorites]);
-}
 function persistRead(): void {
   safeWrite(KEYS.read, [...state.read]);
 }
@@ -214,40 +209,62 @@ function initTheme(): void {
 
 /* -------------------------------------------------------------- navegación */
 
-function initDrawer(): void {
+const NAV_KEY = 'asir:nav';
+
+function navIsDesktop(): boolean {
+  return window.matchMedia('(min-width: 1024px)').matches;
+}
+
+/**
+ * Panel de navegación plegable. El estado vive en `data-nav` del elemento
+ * `html`: en escritorio la barra se comprime dentro de su columna y en móvil se
+ * desliza sobre el contenido. La preferencia se recuerda por navegador.
+ */
+function initSidebar(): void {
   const sidebar = $('[data-sidebar]');
   const toggle = $('[data-sidebar-toggle]');
   const backdrop = $('[data-drawer-backdrop]');
   if (!sidebar || !toggle || !backdrop) return;
 
-  const open = (): void => {
-    sidebar.classList.add('is-open');
-    backdrop.classList.add('is-open');
-    toggle.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-  };
-  const close = (): void => {
-    sidebar.classList.remove('is-open');
-    backdrop.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+  const isOpen = (): boolean => document.documentElement.dataset.nav === 'open';
+
+  const sync = (): void => {
+    const open = isOpen();
+    const overlay = open && !navIsDesktop();
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Ocultar la navegación' : 'Mostrar la navegación');
+    document.body.style.overflow = overlay ? 'hidden' : '';
+    backdrop.setAttribute('aria-hidden', String(!overlay));
   };
 
-  toggle.addEventListener('click', () => {
-    if (sidebar.classList.contains('is-open')) close();
-    else open();
-  });
-  backdrop.addEventListener('click', close);
-  for (const link of $$('a', sidebar)) link.addEventListener('click', close);
+  const setNav = (open: boolean, persist: boolean): void => {
+    document.documentElement.dataset.nav = open ? 'open' : 'closed';
+    if (persist) safeWrite(NAV_KEY, open ? 'open' : 'closed');
+    sync();
+  };
+
+  toggle.addEventListener('click', () => setNav(!isOpen(), true));
+  backdrop.addEventListener('click', () => setNav(false, false));
+
+  for (const link of $$('a', sidebar)) {
+    link.addEventListener('click', () => {
+      if (!navIsDesktop()) setNav(false, false);
+    });
+  }
+
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && sidebar.classList.contains('is-open')) {
-      close();
+    if (event.key === 'Escape' && isOpen() && !navIsDesktop()) {
+      setNav(false, false);
       toggle.focus();
     }
   });
+
   window.addEventListener('resize', () => {
-    if (window.innerWidth >= 1024) close();
+    const open = navIsDesktop() && safeRead<string>(NAV_KEY, 'closed') === 'open';
+    setNav(open, false);
   });
+
+  sync();
 }
 
 /* -------------------------------------------------------------- búsqueda */
@@ -517,11 +534,10 @@ function initSearch(): void {
   });
 }
 
-/* ------------------------------------------------- favoritos / leído / pendiente */
+/* ------------------------------------------------------- leído / pendiente */
 
 function updateBadges(): void {
   const map: Record<string, number> = {
-    favorites: state.favorites.size,
     pending: state.pending.size,
   };
   for (const badge of $$('[data-count]')) {
@@ -537,22 +553,6 @@ function syncToggle(button: Element, pressed: boolean): void {
 }
 
 function initMarks(): void {
-  for (const button of $$('[data-fav-toggle]')) {
-    const id = button.getAttribute('data-fav-toggle') ?? '';
-    syncToggle(button, state.favorites.has(id));
-    button.addEventListener('click', (event) => {
-      event.preventDefault();
-      if (state.favorites.has(id)) state.favorites.delete(id);
-      else state.favorites.add(id);
-      persistFavorites();
-      for (const other of $$(`[data-fav-toggle="${CSS.escape(id)}"]`)) {
-        syncToggle(other, state.favorites.has(id));
-      }
-      updateBadges();
-      refreshDynamicSections();
-    });
-  }
-
   for (const button of $$('[data-read-toggle]')) {
     const id = button.getAttribute('data-read-toggle') ?? '';
     const label = $('[data-read-label]', button);
@@ -719,23 +719,15 @@ function initDocToolbar(): void {
 
 /* ------------------------------------------------------- secciones dinámicas */
 
-function starIcon(): string {
-  return '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
-}
-
 function cardHtml(doc: CatalogDoc): string {
   const subject = doc.subject ? escapeHtml(doc.subject) : 'Procedencia';
   const topics = doc.topics
     .slice(0, 3)
     .map((topic) => `<span class="chip chip--muted">${escapeHtml(topic)}</span>`)
     .join('');
-  const isFav = state.favorites.has(doc.id);
   return `<article class="card card--link doc-card" data-doc-id="${escapeHtml(doc.id)}">
     <div class="doc-card__head">
       <h3 class="doc-card__title"><a class="card__cover" href="${docUrl(doc.id)}">${escapeHtml(doc.title)}</a></h3>
-      <button type="button" class="icon-btn icon-btn--accent no-print" data-fav-toggle="${escapeHtml(doc.id)}" aria-pressed="${isFav}" title="Añadir a favoritos" aria-label="Añadir «${escapeHtml(doc.title)}» a favoritos">
-        ${starIcon()}
-      </button>
     </div>
     <div class="doc-card__sub">
       <span class="chip chip--accent">${subject}</span>
@@ -767,9 +759,7 @@ async function refreshDynamicSections(): Promise<void> {
     const emptyText = section.getAttribute('data-empty-text') ?? '';
 
     let docs: CatalogDoc[] = [];
-    if (kind === 'favorites') {
-      docs = [...state.favorites].map((id) => byId.get(id)).filter((doc): doc is CatalogDoc => Boolean(doc));
-    } else if (kind === 'pending') {
+    if (kind === 'pending') {
       docs = [...state.pending].map((id) => byId.get(id)).filter((doc): doc is CatalogDoc => Boolean(doc));
     } else if (kind === 'continue' || kind === 'recent') {
       docs = state.visits
@@ -782,35 +772,17 @@ async function refreshDynamicSections(): Promise<void> {
     const visible = docs.slice(0, Number.isFinite(limit) ? limit : 6);
     section.innerHTML =
       visible.length > 0 ? visible.map(cardHtml).join('') : emptyHtml(emptyTitle, emptyText);
-
-    // Los botones de favorito recién creados necesitan sus manejadores.
-    for (const button of $$('[data-fav-toggle]', section)) {
-      const id = button.getAttribute('data-fav-toggle') ?? '';
-      button.addEventListener('click', (event) => {
-        event.preventDefault();
-        if (state.favorites.has(id)) state.favorites.delete(id);
-        else state.favorites.add(id);
-        persistFavorites();
-        for (const other of $$(`[data-fav-toggle="${CSS.escape(id)}"]`)) {
-          syncToggle(other, state.favorites.has(id));
-        }
-        updateBadges();
-        void refreshDynamicSections();
-      });
-    }
   }
 
   const countTargets = $$('[data-dynamic-count]');
   for (const target of countTargets) {
     const kind = target.getAttribute('data-dynamic-count') ?? '';
     const count =
-      kind === 'favorites'
-        ? state.favorites.size
-        : kind === 'pending'
-          ? state.pending.size
-          : kind === 'read'
-            ? state.read.size
-            : state.visits.length;
+      kind === 'pending'
+        ? state.pending.size
+        : kind === 'read'
+          ? state.read.size
+          : state.visits.length;
     target.textContent = String(count);
   }
 }
@@ -819,7 +791,7 @@ async function refreshDynamicSections(): Promise<void> {
 
 function init(): void {
   initTheme();
-  initDrawer();
+  initSidebar();
   initSearch();
   initMarks();
   initCodeCopy();

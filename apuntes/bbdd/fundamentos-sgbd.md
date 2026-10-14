@@ -26,10 +26,9 @@ del modelo relacional, sistemas NoSQL, funciones del DBA y elección de un SGBD.
 
 - Sin fecha explícita en la hoja (tema teórico del Lote 7).
 
-## Lotes e imágenes de origen
+## Lotes de origen
 
-- **Lote 7** — carpeta `lote-7/` (10 imágenes), transcrito de fotografías.
-  Nombres de archivo completos en `00_Indice_y_control/inventario_de_lotes.md`.
+- **Lote 7**
 
 ---
 
