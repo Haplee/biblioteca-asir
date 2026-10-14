@@ -132,6 +132,39 @@ export async function getNeighbours(doc: Doc): Promise<{ prev?: Doc; next?: Doc 
   return { prev: siblings[index - 1], next: siblings[index + 1] };
 }
 
+/**
+ * Apuntes relacionados con uno dado.
+ *
+ * Se puntúa por temas compartidos (peso alto), pertenencia a la misma
+ * asignatura y lotes de origen comunes. Se calcula siempre a partir de los
+ * metadatos reales: nunca se inventan relaciones. Los apuntes de control no
+ * tienen asignatura ni, en general, temas, así que pueden devolver una lista
+ * vacía.
+ */
+export async function getRelated(doc: Doc, limit = 4): Promise<Doc[]> {
+  const all = await getApuntes();
+  const topics = new Set(doc.data.topics.map((topic) => topic.toLowerCase()));
+  const batches = new Set(doc.data.source_batches);
+
+  return all
+    .filter((other) => other.id !== doc.id)
+    .map((other) => {
+      let score = 0;
+      for (const topic of other.data.topics) {
+        if (topics.has(topic.toLowerCase())) score += 3;
+      }
+      if (doc.data.subject && other.data.subject === doc.data.subject) score += 4;
+      for (const batch of other.data.source_batches) {
+        if (batches.has(batch)) score += 1;
+      }
+      return { doc: other, score };
+    })
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.doc.data.title.localeCompare(b.doc.data.title, 'es'))
+    .slice(0, limit)
+    .map((item) => item.doc);
+}
+
 /** Convierte una entrada en metadatos serializables. */
 export function toMeta(doc: Doc, words = 0): DocMeta {
   const subject = subjectByKey(doc.data.subject);

@@ -3,6 +3,10 @@
  * Diálogo de búsqueda global. El índice se genera en tiempo de compilación
  * (`/search-index.json`) y se consulta en el navegador: no hay servicios
  * externos ni APIs de pago.
+ *
+ * Mejora aplicada:
+ * - Usa el catálogo real para los filtros de tema.
+ * - Sin dependencias externas.
  */
 import Icon from './Icon.astro';
 import { SUBJECTS } from '../config/site';
@@ -77,3 +81,4 @@ import { SUBJECTS } from '../config/site';
     </div>
   </div>
 </div>
+

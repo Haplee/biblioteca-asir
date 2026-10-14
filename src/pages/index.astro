@@ -2,37 +2,41 @@
 /**
  * Panel de inicio: marca, presentación, buscador, estadísticas reales,
  * asignaturas, continuar leyendo y accesos rápidos.
+ *
+ * Mejora aplicada:
+ * - Una única fuente de datos (`getLibraryStats`) para todos los recuentos.
+ * - Estadísticas ordenadas por importancia: apuntes > asignaturas > lecturas.
+ * - Sin duplicidad de conteos.
+ * - Prioriza el contenido académico por encima de la decoración.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SubjectCard from '../components/SubjectCard.astro';
 import Icon from '../components/Icon.astro';
 import DocCard from '../components/DocCard.astro';
 import Empty from '../components/Empty.astro';
-import { SITE } from '../config/site';
 import { withBase } from '../lib/url';
-import { getCatalog, getSubjectGroups, formatDateShort } from '../lib/docs';
+import { getLibraryStats } from '../lib/stats';
+import { SITE } from '../config/site';
+import { getSubjectGroups } from '../lib/docs';
+import type { SubjectGroup } from '../lib/docs';
 
+const stats = await getLibraryStats();
 const groups = await getSubjectGroups();
-const catalog = await getCatalog();
-const apuntes = catalog.filter((doc) => doc.kind === 'apunte');
+const totalDocs = stats.apunteCount + stats.controlCount;
 
-const totalMinutes = apuntes.reduce((sum, doc) => sum + doc.minutes, 0);
-const allDates = apuntes.flatMap((doc) => doc.dates).sort();
+const totalMinutes = stats.totalMinutes;
+const allDates = stats.dates;
 const firstDate = allDates[0];
 const lastDate = allDates[allDates.length - 1];
-const maxBatch = apuntes.reduce(
-  (max, doc) => Math.max(max, ...(doc.batches.length ? doc.batches : [0])),
-  0,
-);
+const maxBatch = stats.batches.length > 0 ? Math.max(...stats.batches) : 0;
 
-const recentDocs = [...apuntes]
+const recentDocs = [...stats.apuntes]
   .filter((doc) => doc.dates.length > 0)
   .sort((a, b) => (b.dates[b.dates.length - 1] ?? '').localeCompare(a.dates[a.dates.length - 1] ?? ''))
   .slice(0, 3);
 
-const controlDocs = catalog.filter((doc) => doc.kind === 'control');
+const controlDocs = stats.control;
 ---
-
 <BaseLayout title={SITE.name} description={SITE.description}>
   <div class="wrap">
     <section class="hero">
@@ -67,8 +71,8 @@ const controlDocs = catalog.filter((doc) => doc.kind === 'control');
       </div>
       <div class="grid grid--stats">
         <div class="stat">
-          <p class="stat__value">{apuntes.length}</p>
-          <p class="stat__label">Apuntes</p>
+          <p class="stat__value">{stats.apunteCount}</p>
+          <p class="stat__label">Apuntes académicos</p>
         </div>
         <div class="stat">
           <p class="stat__value">{groups.length}</p>
@@ -84,7 +88,7 @@ const controlDocs = catalog.filter((doc) => doc.kind === 'control');
         </div>
         <div class="stat">
           <p class="stat__value">
-            {firstDate && lastDate ? `${formatDateShort(firstDate)} — ${formatDateShort(lastDate)}` : '—'}
+            {firstDate && lastDate ? `${firstDate} — ${lastDate}` : '—'}
           </p>
           <p class="stat__label">Fechas cubiertas</p>
         </div>
@@ -101,7 +105,7 @@ const controlDocs = catalog.filter((doc) => doc.kind === 'control');
         </a>
       </div>
       <div class="grid grid--subjects">
-        {groups.map((group) => <SubjectCard group={group} />)}
+        {groups.map((group: SubjectGroup) => <SubjectCard group={group} />)}
       </div>
     </section>
 
@@ -117,7 +121,7 @@ const controlDocs = catalog.filter((doc) => doc.kind === 'control');
         data-dynamic="continue"
         data-limit="3"
         data-empty-title="Todavía no has abierto ningún apunte"
-        data-empty-text="Cuando abras un apunte aparecerá aquí para que retomes la lectura donde la dejaste."
+        data-empty-text="Cuando abras un apunte aparecerá aquí para que retomes la lectura donde la dejiste."
       >
       </div>
     </section>
@@ -147,7 +151,7 @@ const controlDocs = catalog.filter((doc) => doc.kind === 'control');
           <Icon name="library" size={18} />
           <span class="quick__text">
             <span class="quick__title">Todos los documentos</span>
-            <span class="quick__sub">{apuntes.length + controlDocs.length} en total</span>
+            <span class="quick__sub">{totalDocs} en total</span>
           </span>
         </a>
       </div>

@@ -37,6 +37,8 @@ const lastDate = allDates[allDates.length - 1];
 const batches = [...new Set(group.docs.flatMap((doc) => doc.data.source_batches))].sort((a, b) => a - b);
 
 // Orden por fecha (más reciente primero) como orden inicial.
+
+// Orden por fecha (más reciente primero) como orden inicial.
 const docs = [...group.docs].sort((a, b) => {
   const aDate = a.data.dates[a.data.dates.length - 1] ?? '';
   const bDate = b.data.dates[b.data.dates.length - 1] ?? '';
