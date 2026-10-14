@@ -499,22 +499,6 @@ kbd {
   display: none;
 }
 
-.sidebar__foot {
-  margin-top: auto;
-  padding-top: 0.9rem;
-  border-top: 1px solid var(--border-soft);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.local-note {
-  font-size: 0.7rem;
-  line-height: 1.45;
-  color: var(--text-faint);
-  padding: 0 0.6rem;
-}
-
 /* ---------------------------------------------------------------- main */
 .main {
   min-width: 0;
