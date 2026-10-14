@@ -72,18 +72,32 @@ const canonical = Astro.site ? new URL(pathname, Astro.site).href : undefined;
       })();
     </script>
 
-    {/* El panel de navegación arranca plegado en escritorio; se recuerda si se abrió. */}
+    {/* El panel arranca desplegado en escritorio; se recuerda si se plegó. */}
     <script is:inline>
       (function () {
         try {
           var desktop = window.matchMedia('(min-width: 1024px)').matches;
           var stored = localStorage.getItem('asir:nav');
-          document.documentElement.dataset.nav = desktop && stored === 'open' ? 'open' : 'closed';
+          document.documentElement.dataset.nav = desktop && stored !== 'closed' ? 'open' : 'closed';
         } catch (e) {
           document.documentElement.dataset.nav = 'closed';
         }
       })();
     </script>
+
+    {/* Sin JavaScript, en escritorio se muestra igualmente el panel. */}
+    <noscript>
+      <style>
+        @media (min-width: 1024px) {
+          html[data-nav='closed'] .sidebar {
+            width: var(--sidebar-w);
+            padding-inline: 1rem;
+            border-right-color: var(--border);
+            overflow-y: auto;
+          }
+        }
+      </style>
+    </noscript>
   </head>
 
   <body>

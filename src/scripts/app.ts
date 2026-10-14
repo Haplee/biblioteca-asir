@@ -260,7 +260,7 @@ function initSidebar(): void {
   });
 
   window.addEventListener('resize', () => {
-    const open = navIsDesktop() && safeRead<string>(NAV_KEY, 'closed') === 'open';
+    const open = navIsDesktop() && safeRead<string>(NAV_KEY, 'open') === 'open';
     setNav(open, false);
   });
 

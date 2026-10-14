@@ -90,11 +90,11 @@ se calculan en tiempo de compilación a partir de los ficheros reales.
 **Inicio** — marca, buscador visible de inmediato, estadísticas reales, tarjetas
 de asignatura, «Continuar leyendo» y accesos rápidos.
 
-**Navegación** — panel plegable: se comprime en escritorio y se desliza sobre el
-contenido en móvil y tableta (el estado se recuerda por navegador). Inicio ·
-Todas las asignaturas · ASO · IAW · BBDD · Programación/Python · Git · Redes y
-servicios · Pendientes de revisar · Índice de lotes y fechas · bloques de
-procedencia.
+**Navegación** — panel plegable, abierto por defecto en escritorio: se comprime
+con el botón y se desliza sobre el contenido en móvil y tableta (el estado se
+recuerda por navegador). Inicio · Todas las asignaturas · ASO · IAW · BBDD ·
+Programación/Python · Git · Redes y servicios · Pendientes de revisar · Índice de
+lotes y fechas · bloques de procedencia.
 
 **Asignatura** — descripción real, índice de temas con recuento, buscador propio,
 filtro por tema y orden por fecha, orden del índice o título.
