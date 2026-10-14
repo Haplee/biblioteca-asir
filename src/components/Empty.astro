@@ -1,0 +1,18 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  icon?: string;
+  title: string;
+  text?: string;
+  size?: number;
+}
+
+const { icon = 'circle-alert', title, text, size = 28 } = Astro.props;
+---
+<div class="empty" role="status">
+  <Icon name={icon} size={size} />
+  <p class="empty__title">{title}</p>
+  {text && <p class="empty__text">{text}</p>}
+  <slot />
+</div>

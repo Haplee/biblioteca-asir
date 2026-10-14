@@ -1,0 +1,76 @@
+# Despliegue del sitio en GitHub Pages.
+#
+# No hay ningún usuario ni repositorio escrito a mano: la ruta base se deduce de
+# la variable `GITHUB_REPOSITORY` que GitHub Actions define automáticamente
+# ("propietario/repositorio"), tal y como hace `astro.config.mjs`.
+#
+# Requisito previo (una sola vez): en el repositorio, Ajustes → Pages →
+# «Build and deployment» → Source: **GitHub Actions**.
+
+name: Desplegar en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Permite lanzarlo a mano desde la pestaña «Actions».
+  workflow_dispatch:
+
+# Permisos mínimos necesarios para publicar en Pages mediante OIDC.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un solo despliegue a la vez; no se cancela el que esté en curso.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Compilar y verificar
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar dependencias (versiones fijadas)
+        run: npm ci
+
+      - name: Comprobar tipos y estructura
+        run: npm run check
+
+      - name: Compilar el sitio
+        run: npm run build
+
+      - name: Verificar el índice de búsqueda
+        run: npm run verify:search
+
+      - name: Verificar la integridad del contenido
+        run: npm run verify:integrity
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir el resultado de la compilación
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Publicar
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Desplegar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

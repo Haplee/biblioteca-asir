@@ -1,0 +1,79 @@
+---
+/**
+ * Diálogo de búsqueda global. El índice se genera en tiempo de compilación
+ * (`/search-index.json`) y se consulta en el navegador: no hay servicios
+ * externos ni APIs de pago.
+ */
+import Icon from './Icon.astro';
+import { SUBJECTS } from '../config/site';
+---
+<div class="search-overlay" data-search-overlay hidden>
+  <div
+    class="search-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="search-title"
+  >
+    <h2 id="search-title" class="visually-hidden">Buscar en los apuntes</h2>
+
+    <div class="search-field">
+      <Icon name="search" size={18} />
+      <input
+        type="search"
+        data-search-input
+        placeholder="Buscar apuntes, comandos, temas…"
+        aria-label="Términos de búsqueda"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        role="combobox"
+        aria-expanded="false"
+        aria-controls="search-results"
+      />
+      <button
+        type="button"
+        class="icon-btn"
+        data-search-close
+        aria-label="Cerrar búsqueda"
+      >
+        <Icon name="x" size={16} />
+      </button>
+    </div>
+
+    <div class="search-filters">
+      <button type="button" class="chip" data-search-subject="" aria-pressed="true">
+        Todas
+      </button>
+      {
+        SUBJECTS.map((subject) => (
+          <button
+            type="button"
+            class="chip"
+            data-search-subject={subject.key}
+            aria-pressed="false"
+          >
+            {subject.name}
+          </button>
+        ))
+      }
+      <label class="search-filters__topic">
+        <span class="visually-hidden">Filtrar por tema</span>
+        <select data-search-topic>
+          <option value="">Todos los temas</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="search-results" id="search-results" data-search-results></div>
+    <p class="visually-hidden" role="status" data-search-status></p>
+
+    <div class="search-foot">
+      <span><kbd>↑</kbd><kbd>↓</kbd> navegar</span>
+      <span><kbd>Enter</kbd> abrir</span>
+      <span><kbd>Esc</kbd> cerrar</span>
+      <span class="search-foot__local">
+        <Icon name="shield-check" size={12} /> Índice local
+      </span>
+    </div>
+  </div>
+</div>

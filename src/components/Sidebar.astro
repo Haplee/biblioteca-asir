@@ -1,0 +1,146 @@
+---
+/**
+ * Barra lateral de navegación. En pantallas grandes es fija; en móvil/tableta
+ * se convierte en un panel deslizante controlado desde la barra superior.
+ */
+import Icon from './Icon.astro';
+import { withBase } from '../lib/url';
+import { SITE, CONTROL_DOCS } from '../config/site';
+import { slugifyTopic } from '../lib/topics';
+import type { SubjectGroup } from '../lib/docs';
+
+interface Props {
+  pathname: string;
+  groups: SubjectGroup[];
+}
+
+const { pathname, groups } = Astro.props;
+const totalDocs = groups.reduce((sum, group) => sum + group.docs.length, 0);
+
+function isCurrent(href: string): boolean {
+  if (href === withBase('') || href === withBase('/')) {
+    return pathname === withBase('') || pathname === withBase('/');
+  }
+  return pathname === href || pathname.startsWith(href);
+}
+
+const mainLinks = [
+  { href: withBase(''), label: 'Inicio', icon: 'house' },
+  { href: withBase('asignaturas/'), label: 'Todas las asignaturas', icon: 'library', count: totalDocs },
+];
+
+const controlLinks = CONTROL_DOCS.map((doc) => ({
+  href: withBase(`apuntes/${doc.id}/`),
+  label: doc.label,
+  icon: doc.icon,
+}));
+---
+<aside class="sidebar" id="sidebar" data-sidebar aria-label="Navegación principal">
+  <a class="brand" href={withBase('')} aria-label={`${SITE.name} — inicio`}>
+    <span class="brand__mark" aria-hidden="true">F</span>
+    <span class="brand__text">
+      <span class="brand__name">{SITE.mark}</span>
+      <span class="brand__signature">{SITE.signature}</span>
+    </span>
+  </a>
+
+  <button type="button" class="sidebar__search" data-search-open aria-label="Buscar en los apuntes">
+    <Icon name="search" size={16} />
+    <span>Buscar…</span>
+    <kbd>Ctrl</kbd><kbd>K</kbd>
+  </button>
+
+  <nav aria-label="Secciones">
+    <div class="nav">
+      {
+        mainLinks.map((link) => (
+          <a
+            class="nav__link"
+            href={link.href}
+            aria-current={isCurrent(link.href) ? 'page' : undefined}
+          >
+            <Icon name={link.icon} size={17} />
+            <span>{link.label}</span>
+            {typeof link.count === 'number' && <span class="nav__count">{link.count}</span>}
+          </a>
+        ))
+      }
+    </div>
+
+    <p class="nav__label" id="nav-subjects">Asignaturas</p>
+    <div class="nav" aria-labelledby="nav-subjects">
+      {
+        groups.map((group) => (
+          <a
+            class="nav__link"
+            href={withBase(`asignaturas/${group.slug}/`)}
+            aria-current={isCurrent(withBase(`asignaturas/${group.slug}/`)) ? 'page' : undefined}
+          >
+            <Icon name={group.icon} size={17} />
+            <span>{group.name}</span>
+            <span class="nav__count">{group.docs.length}</span>
+          </a>
+        ))
+      }
+    </div>
+
+    <p class="nav__label" id="nav-study">Estudio</p>
+    <div class="nav" aria-labelledby="nav-study">
+      <a
+        class="nav__link"
+        href={withBase(`temas/${slugifyTopic('Redes y servicios')}/`)}
+        aria-current={
+          isCurrent(withBase(`temas/${slugifyTopic('Redes y servicios')}/`)) ? 'page' : undefined
+        }
+      >
+        <Icon name="network" size={17} />
+        <span>Redes y servicios</span>
+      </a>
+      <a
+        class="nav__link"
+        href={withBase('favoritos/')}
+        aria-current={isCurrent(withBase('favoritos/')) ? 'page' : undefined}
+      >
+        <Icon name="star" size={17} />
+        <span>Favoritos</span>
+        <span class="nav__badge" data-count="favorites" hidden></span>
+      </a>
+      <a
+        class="nav__link"
+        href={withBase('pendientes/')}
+        aria-current={isCurrent(withBase('pendientes/')) ? 'page' : undefined}
+      >
+        <Icon name="list-todo" size={17} />
+        <span>Pendientes de revisar</span>
+        <span class="nav__badge" data-count="pending" hidden></span>
+      </a>
+      <a
+        class="nav__link"
+        href={withBase('lotes/')}
+        aria-current={isCurrent(withBase('lotes/')) ? 'page' : undefined}
+      >
+        <Icon name="calendar-days" size={17} />
+        <span>Índice de lotes y fechas</span>
+      </a>
+    </div>
+
+    <p class="nav__label" id="nav-control">Procedencia</p>
+    <div class="nav" aria-labelledby="nav-control">
+      {
+        controlLinks.map((link) => (
+          <a class="nav__link" href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+            <Icon name={link.icon} size={17} />
+            <span>{link.label}</span>
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+
+  <div class="sidebar__foot">
+    <p class="local-note">
+      <Icon name="shield-check" size={12} /> Tus favoritos, lecturas y preferencias se guardan
+      <strong>solo en este navegador</strong>. No se sincronizan ni se envían a ningún servidor.
+    </p>
+  </div>
+</aside>

@@ -1,0 +1,44 @@
+---
+/**
+ * Favoritos. Se guardan solo en el navegador (localStorage); no se sincronizan.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Icon from '../components/Icon.astro';
+import { withBase } from '../lib/url';
+---
+
+<BaseLayout
+  title="Favoritos"
+  description="Apuntes marcados como favoritos, guardados solo en tu navegador."
+>
+  <Breadcrumbs
+    slot="breadcrumb"
+    items={[{ label: 'Inicio', href: withBase('') }, { label: 'Favoritos' }]}
+  />
+
+  <div class="wrap">
+    <header class="doc-header">
+      <p class="doc-header__subject"><Icon name="star" size={14} /> Marcadores</p>
+      <h1 class="doc-header__title">Favoritos</h1>
+      <p class="doc-header__summary">
+        Tus apuntes marcados con la estrella. Se guardan <strong>solo en este navegador</strong>: no se
+        sincronizan entre dispositivos ni se envían a ningún servidor.
+      </p>
+    </header>
+
+    <div
+      class="grid grid--docs"
+      style="margin-top:1.5rem"
+      data-dynamic="favorites"
+      data-limit="200"
+      data-empty-title="Todavía no tienes favoritos"
+      data-empty-text="Pulsa la estrella en cualquier apunte para guardarlo aquí y encontrarlo rápido."
+    >
+    </div>
+
+    <p class="local-note" style="margin-top:1.5rem; padding:0">
+      <Icon name="shield-check" size={12} /> Si borras los datos del navegador, esta lista se perderá.
+    </p>
+  </div>
+</BaseLayout>

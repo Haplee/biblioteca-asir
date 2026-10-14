@@ -1,0 +1,89 @@
+---
+/**
+ * Página de tema: todos los apuntes que tratan un concepto concreto.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Icon from '../../components/Icon.astro';
+import DocCard from '../../components/DocCard.astro';
+import Empty from '../../components/Empty.astro';
+import { withBase } from '../../lib/url';
+import { getTopicGroups } from '../../lib/topics';
+import { getMetaMap } from '../../lib/docs';
+
+export async function getStaticPaths() {
+  const topics = await getTopicGroups();
+  return topics.map((topic) => ({ params: { topic: topic.slug }, props: { slug: topic.slug } }));
+}
+
+const { slug } = Astro.props;
+const topics = await getTopicGroups();
+const topic = topics.find((item) => item.slug === slug);
+if (!topic) throw new Error(`Tema no encontrado: ${slug}`);
+const metaById = await getMetaMap();
+
+const related = topics
+  .filter((item) => item.slug !== slug)
+  .sort((a, b) => {
+    const sharedA = a.docs.filter((doc) => topic.docs.some((d) => d.id === doc.id)).length;
+    const sharedB = b.docs.filter((doc) => topic.docs.some((d) => d.id === doc.id)).length;
+    return sharedB - sharedA || a.name.localeCompare(b.name, 'es');
+  })
+  .slice(0, 8);
+---
+
+<BaseLayout
+  title={`Tema: ${topic.name}`}
+  description={`Apuntes de ASIR que tratan el tema «${topic.name}».`}
+>
+  <Breadcrumbs
+    slot="breadcrumb"
+    items={[
+      { label: 'Inicio', href: withBase('') },
+      { label: 'Temas', href: withBase('temas/') },
+      { label: topic.name },
+    ]}
+  />
+
+  <div class="wrap">
+    <header class="doc-header">
+      <p class="doc-header__subject"><Icon name="tag" size={14} /> Tema</p>
+      <h1 class="doc-header__title">{topic.name}</h1>
+      <p class="doc-header__summary">
+        {topic.docs.length} {topic.docs.length === 1 ? 'apunte trata' : 'apuntes tratan'} este tema.
+      </p>
+    </header>
+
+    {
+      topic.docs.length > 0 ? (
+        <div class="grid grid--docs" style="margin-top:1.5rem">
+          {topic.docs.map((doc) => {
+            const meta = metaById.get(doc.id);
+            return meta ? <DocCard meta={meta} /> : null;
+          })}
+        </div>
+      ) : (
+        <Empty title="Sin apuntes" text="Ningún apunte trata este tema todavía." />
+      )
+    }
+
+    {
+      related.length > 0 && (
+        <section class="section" aria-labelledby="related-title">
+          <div class="section__head">
+            <h2 class="section__title" id="related-title">
+              <Icon name="hash" size={18} /> Temas relacionados
+            </h2>
+          </div>
+          <div class="subject-card__docs">
+            {related.map((item) => (
+              <a class="chip" href={withBase(`temas/${item.slug}/`)}>
+                {item.name} <span class="chip__count">{item.docs.length}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )
+    }
+  </div>
+</BaseLayout>

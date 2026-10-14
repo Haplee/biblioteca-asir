@@ -1,0 +1,17 @@
+---
+import Icon from './Icon.astro';
+import { withBase } from '../lib/url';
+import { SITE } from '../config/site';
+---
+<footer class="site-foot">
+  <span>
+    <strong>{SITE.name}</strong> · {SITE.subtitle}
+  </span>
+  <span>
+    <Icon name="shield-check" size={12} /> Datos guardados solo en tu navegador
+  </span>
+  <span class="site-foot__spacer"></span>
+  <a href={withBase('apuntes/control/indice-general/')}>Índice general</a>
+  <a href={withBase('apuntes/control/inventario-de-lotes/')}>Lotes de origen</a>
+  <a href={withBase('apuntes/control/dudas-y-revision/')}>Dudas y revisión</a>
+</footer>

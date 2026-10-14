@@ -1,0 +1,44 @@
+---
+/**
+ * Índice del documento (TOC). Recibe los encabezados reales que devuelve
+ * `render()` de Astro, por lo que los anclajes coinciden exactamente.
+ */
+import Icon from './Icon.astro';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+const items = headings.filter((h) => h.depth >= 2 && h.depth <= 4);
+---
+
+{
+  items.length > 0 && (
+    <nav class="toc no-print" aria-labelledby="toc-title">
+      <p class="toc__title" id="toc-title">
+        <Icon name="list-tree" size={13} /> En esta página
+      </p>
+      <ul class="toc__list">
+        {items.map((heading) => (
+          <li>
+            <a
+              class="toc__link"
+              href={`#${heading.slug}`}
+              data-toc-depth={heading.depth}
+              style={heading.depth === 3 ? 'padding-left:1.2rem' : heading.depth === 4 ? 'padding-left:2rem' : undefined}
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}

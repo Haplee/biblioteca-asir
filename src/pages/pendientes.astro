@@ -1,0 +1,124 @@
+---
+/**
+ * Pendientes de revisar: dos bloques.
+ *  1) Los que tú marques (guardado en el navegador).
+ *  2) Los apuntes que contienen avisos de lectura dudosa en el propio texto,
+ *     detectados a partir del contenido real.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Icon from '../components/Icon.astro';
+import { withBase } from '../lib/url';
+import { getApuntes, getMetaMap, readNoteBody } from '../lib/docs';
+
+const FLAG_RE = /\[[^\[\]\n]{2,180}\]/g;
+const DOUBT_RE = /ilegible|dudosa|dudoso|no se distingue|no se distinguen|borros|confus|probable|revisar|comprobar|verificar/i;
+
+interface DoubtInfo {
+  docId: string;
+  count: number;
+  samples: string[];
+}
+
+const apuntes = await getApuntes();
+const metaById = await getMetaMap();
+
+const withDoubts: DoubtInfo[] = [];
+for (const doc of apuntes) {
+  const body = await readNoteBody(doc.id);
+  const matches = (body.match(FLAG_RE) ?? []).filter((value) => DOUBT_RE.test(value));
+  if (matches.length > 0) {
+    withDoubts.push({
+      docId: doc.id,
+      count: matches.length,
+      samples: [...new Set(matches)].slice(0, 4),
+    });
+  }
+}
+withDoubts.sort((a, b) => b.count - a.count);
+const totalFlags = withDoubts.reduce((sum, item) => sum + item.count, 0);
+---
+
+<BaseLayout
+  title="Pendientes de revisar"
+  description="Apuntes marcados para revisar y avisos de lectura dudosa detectados en el contenido."
+>
+  <Breadcrumbs
+    slot="breadcrumb"
+    items={[{ label: 'Inicio', href: withBase('') }, { label: 'Pendientes de revisar' }]}
+  />
+
+  <div class="wrap">
+    <header class="doc-header">
+      <p class="doc-header__subject"><Icon name="list-todo" size={14} /> Seguimiento</p>
+      <h1 class="doc-header__title">Pendientes de revisar</h1>
+      <p class="doc-header__summary">
+        Tu lista personal de repaso y los puntos que los propios apuntes señalan como dudosos o
+        pendientes de comprobar contra el original.
+      </p>
+    </header>
+
+    <section class="section" aria-labelledby="mine-title">
+      <div class="section__head">
+        <h2 class="section__title" id="mine-title">
+          <Icon name="bookmark" size={18} /> Marcados por ti
+        </h2>
+        <span class="section__hint">Guardado solo en este navegador</span>
+      </div>
+      <div
+        class="grid grid--docs"
+        data-dynamic="pending"
+        data-limit="200"
+        data-empty-title="No has marcado ningún apunte"
+        data-empty-text="En cada apunte, el botón «Pendiente» lo añade a esta lista para repasarlo después."
+      >
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="flags-title">
+      <div class="section__head">
+        <h2 class="section__title" id="flags-title">
+          <Icon name="triangle-alert" size={18} /> Avisos de lectura dudosa
+        </h2>
+        <span class="section__hint">{totalFlags} avisos en {withDoubts.length} apuntes</span>
+      </div>
+
+      {
+        withDoubts.length > 0 ? (
+          <>
+            <div class="table-wrap">
+              <table class="index-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Apunte</th>
+                    <th scope="col">Avisos</th>
+                    <th scope="col">Ejemplos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {withDoubts.map((item) => (
+                    <tr>
+                      <td>
+                        <a href={withBase(`apuntes/${item.docId}/`)}>
+                          {metaById.get(item.docId)?.title ?? item.docId}
+                        </a>
+                      </td>
+                      <td>{item.count}</td>
+                      <td>{item.samples.join(' · ')}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p class="empty__text" style="margin-top:1rem">
+              Consulta también el registro completo en{' '}
+              <a href={withBase('apuntes/control/dudas-y-revision/')}>Dudas y revisión</a>.
+            </p>
+          </>
+        ) : (
+          <p class="empty__text">No se han detectado avisos de lectura dudosa.</p>
+        )
+      }
+    </section>
+  </div>
+</BaseLayout>

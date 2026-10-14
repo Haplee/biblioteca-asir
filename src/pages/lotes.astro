@@ -1,0 +1,102 @@
+---
+/**
+ * Índice de lotes y fechas: cada lote de origen con las asignaturas y fechas que
+ * aporta, calculado a partir del frontmatter real de los apuntes.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Icon from '../components/Icon.astro';
+import { withBase } from '../lib/url';
+import { getApuntes, formatDateShort } from '../lib/docs';
+import { SUBJECTS } from '../config/site';
+
+const apuntes = await getApuntes();
+
+const batchNumbers = [...new Set(apuntes.flatMap((doc) => doc.data.source_batches))].sort(
+  (a, b) => a - b,
+);
+
+const batches = batchNumbers.map((batch) => {
+  const docs = apuntes.filter((doc) => doc.data.source_batches.includes(batch));
+  const subjects = SUBJECTS.filter((subject) => docs.some((doc) => doc.data.subject === subject.key));
+  const dates = [...new Set(docs.flatMap((doc) => doc.data.dates))].sort();
+  return { batch, docs, subjects, dates };
+});
+
+const allDates = [...new Set(apuntes.flatMap((doc) => doc.data.dates))].sort();
+---
+
+<BaseLayout
+  title="Lotes y fechas"
+  description="Procedencia de los apuntes: qué lote de fotografías aportó cada documento y qué fechas cubre."
+>
+  <Breadcrumbs
+    slot="breadcrumb"
+    items={[{ label: 'Inicio', href: withBase('') }, { label: 'Índice de lotes y fechas' }]}
+  />
+
+  <div class="wrap">
+    <header class="doc-header">
+      <p class="doc-header__subject"><Icon name="layers" size={14} /> Procedencia</p>
+      <h1 class="doc-header__title">Índice de lotes y fechas</h1>
+      <p class="doc-header__summary">
+        Los apuntes provienen de {batchNumbers.length} lotes de fotografías. Cada lote puede aportar
+        contenido de varias asignaturas, por eso las asignaturas se reparten entre lotes y no al
+        contrario.
+      </p>
+    </header>
+
+    <section class="section" aria-labelledby="batches-title">
+      <div class="section__head">
+        <h2 class="section__title" id="batches-title">
+          <Icon name="layers" size={18} /> Lotes de origen
+        </h2>
+      </div>
+      <div class="table-wrap">
+        <table class="index-table">
+          <thead>
+            <tr>
+              <th scope="col">Lote</th>
+              <th scope="col">Apuntes</th>
+              <th scope="col">Asignaturas</th>
+              <th scope="col">Fechas</th>
+            </tr>
+          </thead>
+          <tbody>
+            {batches.map((item) => (
+              <tr>
+                <td><strong>Lote {item.batch}</strong></td>
+                <td>
+                  {item.docs.map((doc, index) => (
+                    <>
+                      {index > 0 && ', '}
+                      <a href={withBase(`apuntes/${doc.id}/`)}>{doc.data.title}</a>
+                    </>
+                  ))}
+                </td>
+                <td>{item.subjects.map((subject) => subject.name).join(', ') || '—'}</td>
+                <td>
+                  {item.dates.length > 0
+                    ? `${formatDateShort(item.dates[0]!)} — ${formatDateShort(item.dates[item.dates.length - 1]!)}`
+                    : 'Sin fecha'}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="dates-title">
+      <div class="section__head">
+        <h2 class="section__title" id="dates-title">
+          <Icon name="calendar-days" size={18} /> Todas las fechas
+        </h2>
+        <span class="section__hint">{allDates.length} fechas distintas</span>
+      </div>
+      <div class="subject-card__docs">
+        {allDates.map((date) => <span class="mini-chip">{formatDateShort(date)}</span>)}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

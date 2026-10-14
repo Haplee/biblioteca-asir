@@ -1,0 +1,107 @@
+---
+/**
+ * Layout base: cabecera del documento, barra lateral, barra superior, pie,
+ * diálogo de búsqueda y carga de la hoja de estilos y del script de cliente.
+ */
+import '../styles/global.css';
+import Sidebar from '../components/Sidebar.astro';
+import Topbar from '../components/Topbar.astro';
+import Footer from '../components/Footer.astro';
+import SearchDialog from '../components/SearchDialog.astro';
+import { SITE } from '../config/site';
+import { withBase } from '../lib/url';
+import { getSubjectGroups } from '../lib/docs';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Tipo Open Graph. */
+  ogType?: 'website' | 'article';
+  /** Impide la indexación (por ejemplo, en la página 404). */
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description = SITE.description,
+  ogType = 'website',
+  noIndex = false,
+} = Astro.props;
+
+const groups = await getSubjectGroups();
+const pathname = Astro.url.pathname;
+
+const pageTitle = !title || title === SITE.name ? SITE.name : `${title} · ${SITE.name}`;
+const canonical = Astro.site ? new URL(pathname, Astro.site).href : undefined;
+---
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {noIndex && <meta name="robots" content="noindex" />}
+    <meta name="author" content={SITE.author} />
+    <meta name="theme-color" content="#0b0c0f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f4f1" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="dark light" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="es_ES" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+
+    {/* Se fija el tema antes de pintar para evitar el parpadeo. */}
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('asir:theme');
+          var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+          document.documentElement.dataset.theme = theme;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <div class="read-progress" aria-hidden="true">
+      <div class="read-progress__bar" data-read-progress></div>
+    </div>
+
+    <div class="shell">
+      <Sidebar pathname={pathname} groups={groups} />
+
+      <div class="main">
+        <Topbar>
+          <slot name="breadcrumb" />
+        </Topbar>
+
+        <main id="contenido" tabindex="-1">
+          <slot />
+        </main>
+
+        <Footer />
+      </div>
+    </div>
+
+    <div class="drawer-backdrop" data-drawer-backdrop></div>
+
+    <SearchDialog />
+
+    <script>
+      import '../scripts/app.ts';
+    </script>
+  </body>
+</html>

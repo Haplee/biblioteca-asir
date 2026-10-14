@@ -1,0 +1,45 @@
+---
+/**
+ * Índice de temas: conceptos transversales que agrupan apuntes de varias
+ * asignaturas.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Icon from '../../components/Icon.astro';
+import { withBase } from '../../lib/url';
+import { getTopicGroups } from '../../lib/topics';
+
+const topics = await getTopicGroups();
+---
+
+<BaseLayout
+  title="Temas"
+  description="Temas transversales de los apuntes de ASIR: agrupan documentos de varias asignaturas."
+>
+  <Breadcrumbs
+    slot="breadcrumb"
+    items={[{ label: 'Inicio', href: withBase('') }, { label: 'Temas' }]}
+  />
+
+  <div class="wrap">
+    <header class="doc-header">
+      <p class="doc-header__subject"><Icon name="tag" size={14} /> Conceptos</p>
+      <h1 class="doc-header__title">Temas</h1>
+      <p class="doc-header__summary">
+        {topics.length} temas. Cada uno agrupa los apuntes que lo tratan, aunque pertenezcan a
+        asignaturas distintas.
+      </p>
+    </header>
+
+    <div class="subject-card__docs" style="margin-top:1.5rem">
+      {
+        topics.map((topic) => (
+          <a class="chip" href={withBase(`temas/${topic.slug}/`)}>
+            <Icon name="tag" size={11} /> {topic.name}
+            <span class="chip__count">{topic.docs.length}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,280 @@
+---
+/**
+ * Página de asignatura: descripción real, índice de temas, buscador y filtros
+ * dentro de la asignatura, y listado de apuntes.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Icon from '../../components/Icon.astro';
+import { withBase } from '../../lib/url';
+import { getSubjectGroups, getMetaMap, formatDateShort } from '../../lib/docs';
+import { slugifyTopic } from '../../lib/topics';
+
+export async function getStaticPaths() {
+  const groups = await getSubjectGroups();
+  return groups.map((group) => ({ params: { subject: group.slug }, props: { slug: group.slug } }));
+}
+
+const { slug } = Astro.props;
+const groups = await getSubjectGroups();
+const group = groups.find((item) => item.slug === slug);
+if (!group) throw new Error(`Asignatura no encontrada: ${slug}`);
+const metaById = await getMetaMap();
+
+const topicCounts = new Map<string, number>();
+for (const doc of group.docs) {
+  for (const topic of doc.data.topics) {
+    topicCounts.set(topic, (topicCounts.get(topic) ?? 0) + 1);
+  }
+}
+const topics = [...topicCounts.entries()].sort(
+  (a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'es'),
+);
+
+const allDates = group.docs.flatMap((doc) => doc.data.dates).sort();
+const firstDate = allDates[0];
+const lastDate = allDates[allDates.length - 1];
+const batches = [...new Set(group.docs.flatMap((doc) => doc.data.source_batches))].sort((a, b) => a - b);
+
+// Orden por fecha (más reciente primero) como orden inicial.
+const docs = [...group.docs].sort((a, b) => {
+  const aDate = a.data.dates[a.data.dates.length - 1] ?? '';
+  const bDate = b.data.dates[b.data.dates.length - 1] ?? '';
+  if (aDate !== bDate) return bDate.localeCompare(aDate);
+  return a.data.order - b.data.order;
+});
+---
+
+<BaseLayout title={`${group.name} — ${group.fullName}`} description={group.description}>
+  <Breadcrumbs
+    slot="breadcrumb"
+    items={[
+      { label: 'Inicio', href: withBase('') },
+      { label: 'Asignaturas', href: withBase('asignaturas/') },
+      { label: group.name },
+    ]}
+  />
+
+  <div class="wrap">
+    <header class="doc-header">
+      <p class="doc-header__subject">
+        <Icon name="graduation-cap" size={14} /> {group.fullName}
+      </p>
+      <h1 class="doc-header__title">{group.name}</h1>
+      <p class="doc-header__summary">{group.description}</p>
+      <div class="doc-header__meta">
+        <span class="chip chip--muted">
+          <Icon name="file-text" size={12} /> {group.docs.length} apuntes
+        </span>
+        {
+          firstDate && lastDate && (
+            <span class="chip chip--muted">
+              <Icon name="calendar-days" size={12} />
+              {firstDate === lastDate
+                ? formatDateShort(firstDate)
+                : `${formatDateShort(firstDate)} — ${formatDateShort(lastDate)}`}
+            </span>
+          )
+        }
+        {
+          batches.length > 0 && (
+            <span class="chip chip--muted">
+              <Icon name="layers" size={12} />
+              {batches.map((b) => `Lote ${b}`).join(', ')}
+            </span>
+          )
+        }
+      </div>
+    </header>
+
+    <section class="section" aria-labelledby="topics-title" style="margin-top:1.5rem">
+      <div class="section__head">
+        <h2 class="section__title" id="topics-title">
+          <Icon name="tag" size={18} /> Temas de la asignatura
+        </h2>
+      </div>
+      <div class="subject-card__docs">
+        {
+          topics.map(([topic, count]) => (
+            <a class="chip" href={withBase(`temas/${slugifyTopic(topic)}/`)}>
+              {topic} <span class="chip__count">{count}</span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="docs-title" data-subject-filter>
+      <div class="section__head">
+        <h2 class="section__title" id="docs-title">
+          <Icon name="notebook-text" size={18} /> Apuntes
+        </h2>
+        <span class="section__hint" data-filter-count aria-live="polite"></span>
+      </div>
+
+      <div class="filter-bar">
+        <label class="filter-bar__search">
+          <Icon name="search" size={15} />
+          <span class="visually-hidden">Buscar dentro de la asignatura</span>
+          <input
+            type="search"
+            data-filter-query
+            placeholder={`Buscar en ${group.name}…`}
+            autocomplete="off"
+          />
+        </label>
+        <label class="filter-bar__select">
+          <span class="visually-hidden">Filtrar por tema</span>
+          <select data-filter-topic>
+            <option value="">Todos los temas</option>
+            {topics.map(([topic]) => <option value={topic}>{topic}</option>)}
+          </select>
+        </label>
+        <label class="filter-bar__select">
+          <span class="visually-hidden">Ordenar</span>
+          <select data-filter-sort>
+            <option value="date">Más recientes primero</option>
+            <option value="order">Orden del índice</option>
+            <option value="title">Título (A–Z)</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="grid grid--docs" data-filter-list>
+        {
+          docs.map((doc) => {
+            const meta = metaById.get(doc.id);
+            const lastDocDate = doc.data.dates[doc.data.dates.length - 1];
+            const searchText = [doc.data.title, doc.data.summary, ...doc.data.topics, doc.id]
+              .join(' ')
+              .toLowerCase();
+            return (
+              <article
+                class="card card--link doc-card"
+                data-doc-id={doc.id}
+                data-filter-item
+                data-topics={doc.data.topics.join('|')}
+                data-title={doc.data.title}
+                data-date={lastDocDate ?? ''}
+                data-order={String(doc.data.order)}
+                data-text={searchText}
+              >
+                <div class="doc-card__head">
+                  <h3 class="doc-card__title">
+                    <a class="card__cover" href={withBase(`apuntes/${doc.id}/`)}>
+                      {doc.data.title}
+                    </a>
+                  </h3>
+                  <button
+                    type="button"
+                    class="icon-btn icon-btn--accent no-print"
+                    data-fav-toggle={doc.id}
+                    aria-pressed="false"
+                    title="Añadir a favoritos"
+                    aria-label={`Añadir «${doc.data.title}» a favoritos`}
+                  >
+                    <Icon name="star" size={15} />
+                  </button>
+                </div>
+                <div class="doc-card__sub">
+                  <span>
+                    <Icon name="clock" size={13} /> {meta?.minutes ?? '—'} min
+                  </span>
+                  {
+                    lastDocDate && (
+                      <span>
+                        <Icon name="calendar-days" size={13} /> {formatDateShort(lastDocDate)}
+                      </span>
+                    )
+                  }
+                </div>
+                <p class="doc-card__summary">{doc.data.summary}</p>
+                <div class="doc-card__meta">
+                  {doc.data.topics.slice(0, 4).map((topic) => (
+                    <span class="chip chip--muted">{topic}</span>
+                  ))}
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+
+      <div class="empty" data-filter-empty hidden role="status">
+        <Icon name="search-x" size={28} />
+        <p class="empty__title">Sin resultados en esta asignatura</p>
+        <p class="empty__text">Prueba con otro término o quita los filtros.</p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  function initSubjectFilter(): void {
+    const root = document.querySelector<HTMLElement>('[data-subject-filter]');
+    if (!root) return;
+
+    const queryInput = root.querySelector<HTMLInputElement>('[data-filter-query]');
+    const topicSelect = root.querySelector<HTMLSelectElement>('[data-filter-topic]');
+    const sortSelect = root.querySelector<HTMLSelectElement>('[data-filter-sort]');
+    const list = root.querySelector<HTMLElement>('[data-filter-list]');
+    const empty = root.querySelector<HTMLElement>('[data-filter-empty]');
+    const countLabel = root.querySelector<HTMLElement>('[data-filter-count]');
+    if (!list) return;
+
+    const items = Array.from(list.querySelectorAll<HTMLElement>('[data-filter-item]'));
+
+    const normalize = (value: string): string =>
+      value
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase();
+
+    const apply = (): void => {
+      const query = normalize(queryInput?.value.trim() ?? '');
+      const topic = topicSelect?.value ?? '';
+      const terms = query.split(/\s+/).filter(Boolean);
+      let visible = 0;
+
+      for (const item of items) {
+        const topics = (item.dataset.topics ?? '').split('|');
+        const text = normalize(item.dataset.text ?? '');
+        const matchesQuery = terms.every((term) => text.includes(term));
+        const matchesTopic = !topic || topics.includes(topic);
+        const show = matchesQuery && matchesTopic;
+        item.hidden = !show;
+        if (show) visible += 1;
+      }
+
+      if (countLabel) {
+        countLabel.textContent = `${visible} de ${items.length} apuntes`;
+      }
+      if (empty) empty.hidden = visible !== 0;
+    };
+
+    const sort = (): void => {
+      const mode = sortSelect?.value ?? 'date';
+      const sorted = [...items].sort((a, b) => {
+        if (mode === 'title') {
+          return (a.dataset.title ?? '').localeCompare(b.dataset.title ?? '', 'es');
+        }
+        if (mode === 'order') {
+          return Number(a.dataset.order ?? 0) - Number(b.dataset.order ?? 0);
+        }
+        return (b.dataset.date ?? '').localeCompare(a.dataset.date ?? '');
+      });
+      for (const item of sorted) list.append(item);
+    };
+
+    queryInput?.addEventListener('input', apply);
+    topicSelect?.addEventListener('change', apply);
+    sortSelect?.addEventListener('change', () => {
+      sort();
+      apply();
+    });
+
+    apply();
+  }
+
+  initSubjectFilter();
+</script>

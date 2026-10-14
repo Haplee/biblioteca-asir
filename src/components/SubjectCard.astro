@@ -1,0 +1,65 @@
+---
+/**
+ * Tarjeta de asignatura para el panel de inicio. El recuento de documentos y
+ * los temas son reales: se calculan a partir de los apuntes que contiene.
+ */
+import Icon from './Icon.astro';
+import { withBase } from '../lib/url';
+import type { SubjectGroup } from '../lib/docs';
+
+interface Props {
+  group: SubjectGroup;
+  maxTopics?: number;
+}
+
+const { group, maxTopics = 5 } = Astro.props;
+const url = withBase(`asignaturas/${group.slug}/`);
+
+// Temas más frecuentes de la asignatura, sin repetir.
+const topicCounts = new Map<string, number>();
+for (const doc of group.docs) {
+  for (const topic of doc.data.topics) {
+    topicCounts.set(topic, (topicCounts.get(topic) ?? 0) + 1);
+  }
+}
+const topTopics = [...topicCounts.entries()]
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'es'))
+  .slice(0, maxTopics)
+  .map(([topic]) => topic);
+
+const docWord = group.docs.length === 1 ? 'documento' : 'documentos';
+---
+
+<a class="card subject-card" href={url} style={`--subject-accent: ${group.accent}`}>
+  <div class="subject-card__top">
+    <span class="subject-card__icon">
+      <Icon name={group.icon} size={20} />
+    </span>
+    <span>
+      <span class="subject-card__name">{group.name}</span>
+      <br />
+      <span class="subject-card__full">{group.fullName}</span>
+    </span>
+  </div>
+
+  <p class="subject-card__desc">{group.description}</p>
+
+  {
+    topTopics.length > 0 && (
+      <div class="subject-card__docs">
+        {topTopics.map((topic) => (
+          <span class="mini-chip">{topic}</span>
+        ))}
+      </div>
+    )
+  }
+
+  <div class="subject-card__foot">
+    <span>
+      <Icon name="file-text" size={13} /> {group.docs.length} {docWord}
+    </span>
+    <span class="section__more" aria-hidden="true">
+      Explorar <Icon name="arrow-right" size={13} />
+    </span>
+  </div>
+</a>

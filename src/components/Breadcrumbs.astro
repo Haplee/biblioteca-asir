@@ -1,0 +1,37 @@
+---
+/**
+ * Migas de pan. `items` es una lista de { label, href? }; el último elemento se
+ * marca como página actual.
+ */
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+}
+
+const { items } = Astro.props;
+---
+<nav class="breadcrumbs" aria-label="Ruta de navegación">
+  {
+    items.map((item, index) => {
+      const isLast = index === items.length - 1;
+      return (
+        <>
+          {index > 0 && (
+            <span class="breadcrumbs__sep" aria-hidden="true">
+              /
+            </span>
+          )}
+          {item.href && !isLast ? (
+            <a href={item.href}>{item.label}</a>
+          ) : (
+            <span aria-current={isLast ? 'page' : undefined}>{item.label}</span>
+          )}
+        </>
+      );
+    })
+  }
+</nav>

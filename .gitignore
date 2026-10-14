@@ -1,0 +1,25 @@
+# Dependencias
+node_modules/
+
+# Salida de compilación (GitHub Pages se genera en CI)
+dist/
+dist-base/
+.astro/
+.output/
+
+# Comprobaciones temporales
+check.txt
+
+# Entorno
+.env
+.env.*
+!.env.example
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+.vscode/*
+!.vscode/extensions.json
+.idea/

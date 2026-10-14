@@ -1,0 +1,169 @@
+---
+/**
+ * Layout de lectura de un apunte: migas, cabecera con metadatos reales, barra
+ * de herramientas (favorito, leído, pendiente, copiar enlace, imprimir),
+ * contenido renderizado, índice lateral y navegación anterior/siguiente.
+ */
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Toc from '../components/Toc.astro';
+import Icon from '../components/Icon.astro';
+import { withBase } from '../lib/url';
+import { formatDate } from '../lib/docs';
+import { slugifyTopic } from '../lib/topics';
+import type { DocMeta } from '../lib/docs';
+
+interface Props {
+  meta: DocMeta;
+  headings: { depth: number; slug: string; text: string }[];
+  prev?: { title: string; href: string };
+  next?: { title: string; href: string };
+}
+
+const { meta, headings, prev, next } = Astro.props;
+
+const crumbs = [
+  { label: 'Inicio', href: withBase('') },
+  { label: 'Asignaturas', href: withBase('asignaturas/') },
+  ...(meta.subjectSlug
+    ? [{ label: meta.subject ?? meta.subjectName ?? '', href: withBase(`asignaturas/${meta.subjectSlug}/`) }]
+    : []),
+];
+const indexHref = meta.subjectSlug
+  ? withBase(`asignaturas/${meta.subjectSlug}/`)
+  : withBase('asignaturas/');
+const indexLabel = meta.subjectSlug ? 'Volver a la asignatura' : 'Volver al índice';
+---
+
+<BaseLayout title={meta.title} description={meta.summary} ogType="article">
+  <Breadcrumbs slot="breadcrumb" items={[...crumbs, { label: meta.title }]} />
+
+  <div class="wrap wrap--narrow" data-doc-page data-doc-id={meta.id}>
+    <div class="doc-layout">
+      <article>
+        <header class="doc-header">
+          {
+            meta.subjectSlug && (
+              <a class="doc-header__subject" href={withBase(`asignaturas/${meta.subjectSlug}/`)}>
+                <Icon name="graduation-cap" size={14} />
+                {meta.subject} — {meta.subjectName}
+              </a>
+            )
+          }
+          <h1 class="doc-header__title">{meta.title}</h1>
+          <p class="doc-header__summary">{meta.summary}</p>
+
+          <div class="doc-header__meta">
+            <span class="chip chip--muted">
+              <Icon name="clock" size={12} /> {meta.minutes} min de lectura
+            </span>
+            <span class="chip chip--muted">
+              <Icon name="file-text" size={12} /> {meta.words.toLocaleString('es-ES')} palabras
+            </span>
+            {
+              meta.dates.length > 0 && (
+                <span class="chip chip--muted">
+                  <Icon name="calendar-days" size={12} />
+                  {meta.dates.length === 1 ? formatDate(meta.dates[0]!) : `${meta.dates.length} fechas`}
+                </span>
+              )
+            }
+            {
+              meta.batches.length > 0 && (
+                <span class="chip chip--muted">
+                  <Icon name="layers" size={12} />
+                  {meta.batches.map((b) => `Lote ${b}`).join(', ')}
+                </span>
+              )
+            }
+          </div>
+
+          {
+            meta.topics.length > 0 && (
+              <div class="doc-header__meta">
+                {meta.topics.map((topic) => (
+                  <a class="chip" href={withBase(`temas/${slugifyTopic(topic)}/`)}>
+                    <Icon name="tag" size={11} /> {topic}
+                  </a>
+                ))}
+              </div>
+            )
+          }
+        </header>
+
+        <div class="doc-toolbar no-print">
+          <button
+            type="button"
+            class="btn btn--sm"
+            data-fav-toggle={meta.id}
+            aria-pressed="false"
+            title="Añadir a favoritos"
+          >
+            <Icon name="star" size={14} /> <span data-fav-label>Favorito</span>
+          </button>
+          <button
+            type="button"
+            class="btn btn--sm"
+            data-read-toggle={meta.id}
+            aria-pressed="false"
+            title="Marcar como leído"
+          >
+            <Icon name="circle-check" size={14} /> <span data-read-label>Leído</span>
+          </button>
+          <button
+            type="button"
+            class="btn btn--sm"
+            data-pending-toggle={meta.id}
+            aria-pressed="false"
+            title="Marcar como pendiente de revisar"
+          >
+            <Icon name="bookmark" size={14} /> <span data-pending-label>Pendiente</span>
+          </button>
+          <span class="doc-toolbar__spacer"></span>
+          <button type="button" class="btn btn--sm btn--ghost" data-copy-link title="Copiar enlace">
+            <Icon name="link-2" size={14} /> Copiar enlace
+          </button>
+          <button type="button" class="btn btn--sm btn--ghost" data-print title="Imprimir o guardar como PDF">
+            <Icon name="printer" size={14} /> Imprimir
+          </button>
+          <a class="btn btn--sm btn--ghost" href={indexHref}>
+            <Icon name="arrow-left" size={14} /> {indexLabel}
+          </a>
+        </div>
+
+        <div class="prose" data-prose>
+          <slot />
+        </div>
+
+        <nav class="docnav no-print" aria-label="Navegación entre apuntes">
+          {
+            prev ? (
+              <a class="docnav__item" href={prev.href}>
+                <span class="docnav__dir">
+                  <Icon name="arrow-left" size={13} /> Anterior
+                </span>
+                <span class="docnav__title">{prev.title}</span>
+              </a>
+            ) : (
+              <span class="docnav__item docnav__item--empty" aria-hidden="true"></span>
+            )
+          }
+          {
+            next ? (
+              <a class="docnav__item docnav__item--next" href={next.href}>
+                <span class="docnav__dir">
+                  Siguiente <Icon name="arrow-right" size={13} />
+                </span>
+                <span class="docnav__title">{next.title}</span>
+              </a>
+            ) : (
+              <span class="docnav__item docnav__item--empty" aria-hidden="true"></span>
+            )
+          }
+        </nav>
+      </article>
+
+      <Toc headings={headings} />
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,19 @@
+# Normaliza los finales de línea.
+#
+# En el repositorio se guarda siempre LF, con independencia del sistema donde se
+# edite. Así el contenido no sufre cambios espurios y la compilación en Linux
+# (GitHub Actions) coincide con la de Windows.
+* text=auto eol=lf
+
+# Ficheros binarios: no se tocan.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.woff binary
+*.woff2 binary

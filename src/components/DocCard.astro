@@ -1,0 +1,76 @@
+---
+/**
+ * Tarjeta de documento. Muestra solo datos reales del apunte: título, resumen,
+ * temas, fechas y tiempo de lectura estimado.
+ *
+ * El enlace que cubre la tarjeta (`.card__cover`) no envuelve al botón de
+ * favoritos: son elementos hermanos, para no anidar contenido interactivo.
+ */
+import Icon from './Icon.astro';
+import { docUrl } from '../lib/url';
+import { formatDateShort } from '../lib/docs';
+import type { DocMeta } from '../lib/docs';
+
+interface Props {
+  meta: DocMeta;
+  /** Mostrar la asignatura (útil fuera de su página). */
+  showSubject?: boolean;
+  /** Número máximo de temas visibles. */
+  maxTopics?: number;
+}
+
+const { meta, showSubject = true, maxTopics = 4 } = Astro.props;
+const url = docUrl(meta.id);
+const topics = meta.topics.slice(0, maxTopics);
+const hiddenTopics = meta.topics.length - topics.length;
+const lastDate = meta.dates.length > 0 ? meta.dates[meta.dates.length - 1] : null;
+---
+
+<article class="card card--link doc-card" data-doc-id={meta.id}>
+  <div class="doc-card__head">
+    <h3 class="doc-card__title">
+      <a class="card__cover" href={url}>{meta.title}</a>
+    </h3>
+    <button
+      type="button"
+      class="icon-btn icon-btn--accent no-print"
+      data-fav-toggle={meta.id}
+      aria-pressed="false"
+      title="Añadir a favoritos"
+      aria-label={`Añadir «${meta.title}» a favoritos`}
+    >
+      <Icon name="star" size={15} />
+    </button>
+  </div>
+
+  <div class="doc-card__sub">
+    {
+      showSubject && (
+        <span class="chip chip--accent">{meta.subject ?? meta.subjectName}</span>
+      )
+    }
+    <span class="doc-card__reading">
+      <Icon name="clock" size={13} /> {meta.minutes} min
+    </span>
+    {
+      lastDate && (
+        <span>
+          <Icon name="calendar-days" size={13} /> {formatDateShort(lastDate)}
+        </span>
+      )
+    }
+  </div>
+
+  <p class="doc-card__summary">{meta.summary}</p>
+
+  {
+    topics.length > 0 && (
+      <div class="doc-card__meta">
+        {topics.map((topic) => (
+          <span class="chip chip--muted">{topic}</span>
+        ))}
+        {hiddenTopics > 0 && <span class="chip chip--muted">+{hiddenTopics}</span>}
+      </div>
+    )
+  }
+</article>

@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+---
+<div class="theme-toggle" role="group" aria-label="Tema de la interfaz">
+  <button
+    type="button"
+    data-theme-set="dark"
+    aria-pressed="true"
+    title="Tema oscuro"
+    aria-label="Usar tema oscuro"
+  >
+    <Icon name="moon" size={15} />
+  </button>
+  <button
+    type="button"
+    data-theme-set="light"
+    aria-pressed="false"
+    title="Tema claro"
+    aria-label="Usar tema claro"
+  >
+    <Icon name="sun" size={15} />
+  </button>
+</div>

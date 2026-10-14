@@ -1,0 +1,165 @@
+---
+/**
+ * Registro de iconos Lucide.
+ *
+ * Se centraliza aquí para poder referenciar iconos por nombre desde la
+ * configuración (`src/config/site.ts`) sin repetir importaciones.
+ */
+import {
+  Terminal,
+  Globe,
+  Database,
+  Braces,
+  GitBranch,
+  Sun,
+  Moon,
+  Menu,
+  X,
+  Search,
+  SearchX,
+  House,
+  Library,
+  LayoutDashboard,
+  ListTodo,
+  Star,
+  CalendarDays,
+  Layers,
+  Copy,
+  CircleAlert,
+  TriangleAlert,
+  Info,
+  ChevronRight,
+  ChevronDown,
+  ChevronLeft,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  Link2,
+  Bookmark,
+  BookmarkCheck,
+  BookmarkX,
+  Funnel,
+  Sparkles,
+  Wrench,
+  ShieldCheck,
+  FileText,
+  Hash,
+  BookOpen,
+  Clock,
+  Tag,
+  ListTree,
+  Printer,
+  ExternalLink,
+  Check,
+  ListChecks,
+  CircleCheck,
+  RefreshCw,
+  PanelLeft,
+  Server,
+  NotebookText,
+  ScrollText,
+  GraduationCap,
+  Users,
+  KeyRound,
+  HardDrive,
+  Cable,
+  Router,
+  Wifi,
+  Lock,
+  UserCog,
+  SquareTerminal,
+  Binary,
+  Cpu,
+  Eye,
+  Network,
+} from '@lucide/astro';
+
+const REGISTRY: Record<string, unknown> = {
+  terminal: Terminal,
+  globe: Globe,
+  database: Database,
+  braces: Braces,
+  'git-branch': GitBranch,
+  sun: Sun,
+  moon: Moon,
+  menu: Menu,
+  x: X,
+  search: Search,
+  'search-x': SearchX,
+  house: House,
+  library: Library,
+  'layout-dashboard': LayoutDashboard,
+  'list-todo': ListTodo,
+  star: Star,
+  'calendar-days': CalendarDays,
+  layers: Layers,
+  copy: Copy,
+  'circle-alert': CircleAlert,
+  'triangle-alert': TriangleAlert,
+  info: Info,
+  'chevron-right': ChevronRight,
+  'chevron-down': ChevronDown,
+  'chevron-left': ChevronLeft,
+  'arrow-left': ArrowLeft,
+  'arrow-right': ArrowRight,
+  'arrow-up-right': ArrowUpRight,
+  'link-2': Link2,
+  bookmark: Bookmark,
+  'bookmark-check': BookmarkCheck,
+  'bookmark-x': BookmarkX,
+  funnel: Funnel,
+  sparkles: Sparkles,
+  wrench: Wrench,
+  'shield-check': ShieldCheck,
+  'file-text': FileText,
+  hash: Hash,
+  'book-open': BookOpen,
+  clock: Clock,
+  tag: Tag,
+  'list-tree': ListTree,
+  printer: Printer,
+  'external-link': ExternalLink,
+  check: Check,
+  'list-checks': ListChecks,
+  'circle-check': CircleCheck,
+  'refresh-cw': RefreshCw,
+  'panel-left': PanelLeft,
+  server: Server,
+  'notebook-text': NotebookText,
+  'scroll-text': ScrollText,
+  'graduation-cap': GraduationCap,
+  users: Users,
+  'key-round': KeyRound,
+  'hard-drive': HardDrive,
+  cable: Cable,
+  router: Router,
+  wifi: Wifi,
+  lock: Lock,
+  'user-cog': UserCog,
+  'square-terminal': SquareTerminal,
+  binary: Binary,
+  cpu: Cpu,
+  eye: Eye,
+  network: Network,
+};
+
+interface Props {
+  name: string;
+  size?: number | string;
+  strokeWidth?: number | string;
+  class?: string;
+  label?: string;
+}
+
+const { name, size = 18, strokeWidth = 1.75, class: className = '', label } = Astro.props;
+const Component = (REGISTRY[name] ?? Info) as typeof Info;
+---
+
+<Component
+  size={size}
+  stroke-width={strokeWidth}
+  class={className}
+  aria-hidden={label ? undefined : 'true'}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+/>

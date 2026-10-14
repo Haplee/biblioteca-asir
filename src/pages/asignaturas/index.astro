@@ -1,0 +1,83 @@
+---
+/**
+ * «Todas las asignaturas»: tarjetas por asignatura y un índice completo de
+ * documentos.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SubjectCard from '../../components/SubjectCard.astro';
+import Icon from '../../components/Icon.astro';
+import { withBase } from '../../lib/url';
+import { getSubjectGroups, getMetaMap, formatDateShort } from '../../lib/docs';
+
+const groups = await getSubjectGroups();
+const metaById = await getMetaMap();
+const total = groups.reduce((sum, group) => sum + group.docs.length, 0);
+---
+
+<BaseLayout
+  title="Todas las asignaturas"
+  description="Índice completo de asignaturas y apuntes de ASIR: ASO, IAW, BBDD, Programación/Python y control de versiones con Git."
+>
+  <Breadcrumbs
+    slot="breadcrumb"
+    items={[{ label: 'Inicio', href: withBase('') }, { label: 'Asignaturas' }]}
+  />
+
+  <div class="wrap">
+    <header class="doc-header">
+      <p class="doc-header__subject"><Icon name="library" size={14} /> Biblioteca</p>
+      <h1 class="doc-header__title">Todas las asignaturas</h1>
+      <p class="doc-header__summary">
+        {groups.length} asignaturas y {total} apuntes. Cada tarjeta muestra el número real de documentos
+        y sus temas principales.
+      </p>
+    </header>
+
+    <div class="grid grid--subjects">
+      {groups.map((group) => <SubjectCard group={group} />)}
+    </div>
+
+    {
+      groups.map((group) => (
+        <section class="section" aria-labelledby={`subject-${group.slug}`}>
+          <div class="section__head">
+            <h2 class="section__title" id={`subject-${group.slug}`}>
+              <Icon name={group.icon} size={18} /> {group.name} — {group.fullName}
+            </h2>
+            <a class="section__more" href={withBase(`asignaturas/${group.slug}/`)}>
+              Abrir asignatura <Icon name="arrow-right" size={14} />
+            </a>
+          </div>
+          <div class="table-wrap">
+            <table class="index-table">
+              <thead>
+                <tr>
+                  <th scope="col">Apunte</th>
+                  <th scope="col">Temas</th>
+                  <th scope="col">Última fecha</th>
+                  <th scope="col">Lectura</th>
+                </tr>
+              </thead>
+              <tbody>
+                {group.docs.map((doc) => {
+                  const lastDate = doc.data.dates[doc.data.dates.length - 1];
+                  return (
+                    <tr>
+                      <td>
+                        <a href={withBase(`apuntes/${doc.id}/`)}>{doc.data.title}</a>
+                      </td>
+                      <td>{doc.data.topics.slice(0, 4).join(', ')}</td>
+                      <td>{lastDate ? formatDateShort(lastDate) : '—'}</td>
+                      <td>{metaById.get(doc.id)?.minutes ?? '—'} min</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>

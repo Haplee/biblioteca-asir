@@ -1,0 +1,38 @@
+---
+/**
+ * Página de lectura. Sirve tanto los apuntes de asignatura como los bloques de
+ * control (índice general, inventario, duplicados y dudas).
+ */
+import { render, getCollection } from 'astro:content';
+import DocLayout from '../../layouts/DocLayout.astro';
+import { docUrl } from '../../lib/url';
+import { getApuntes, getControlDocs, getMetaMap, getNeighbours } from '../../lib/docs';
+
+export async function getStaticPaths() {
+  const [apuntes, control] = await Promise.all([getApuntes(), getControlDocs()]);
+  return [...apuntes, ...control].map((doc) => ({
+    params: { slug: doc.id },
+    props: { id: doc.id },
+  }));
+}
+
+const { id } = Astro.props;
+const all = await getCollection('apuntes');
+const entry = all.find((doc) => doc.id === id);
+if (!entry) throw new Error(`Apunte no encontrado: ${id}`);
+
+const { Content, headings } = await render(entry);
+const meta = (await getMetaMap()).get(id);
+if (!meta) throw new Error(`Sin metadatos para: ${id}`);
+
+const { prev, next } = await getNeighbours(entry);
+---
+
+<DocLayout
+  meta={meta}
+  headings={headings}
+  prev={prev ? { title: prev.data.title, href: docUrl(prev.id) } : undefined}
+  next={next ? { title: next.data.title, href: docUrl(next.id) } : undefined}
+>
+  <Content />
+</DocLayout>

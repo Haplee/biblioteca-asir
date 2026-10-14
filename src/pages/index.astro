@@ -1,0 +1,204 @@
+---
+/**
+ * Panel de inicio: marca, presentación, buscador, estadísticas reales,
+ * asignaturas, continuar leyendo y accesos rápidos.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SubjectCard from '../components/SubjectCard.astro';
+import Icon from '../components/Icon.astro';
+import DocCard from '../components/DocCard.astro';
+import Empty from '../components/Empty.astro';
+import { SITE } from '../config/site';
+import { withBase } from '../lib/url';
+import { getCatalog, getSubjectGroups, formatDateShort } from '../lib/docs';
+
+const groups = await getSubjectGroups();
+const catalog = await getCatalog();
+const apuntes = catalog.filter((doc) => doc.kind === 'apunte');
+
+const totalMinutes = apuntes.reduce((sum, doc) => sum + doc.minutes, 0);
+const allDates = apuntes.flatMap((doc) => doc.dates).sort();
+const firstDate = allDates[0];
+const lastDate = allDates[allDates.length - 1];
+const maxBatch = apuntes.reduce(
+  (max, doc) => Math.max(max, ...(doc.batches.length ? doc.batches : [0])),
+  0,
+);
+
+const recentDocs = [...apuntes]
+  .filter((doc) => doc.dates.length > 0)
+  .sort((a, b) => (b.dates[b.dates.length - 1] ?? '').localeCompare(a.dates[a.dates.length - 1] ?? ''))
+  .slice(0, 3);
+
+const controlDocs = catalog.filter((doc) => doc.kind === 'control');
+---
+
+<BaseLayout title={SITE.name} description={SITE.description}>
+  <div class="wrap">
+    <section class="hero">
+      <p class="hero__eyebrow">
+        <Icon name="sparkles" size={14} />
+        {SITE.subtitle}
+      </p>
+      <h1 class="hero__title">{SITE.hero.title}</h1>
+      <p class="hero__text">{SITE.hero.text}</p>
+
+      <div class="hero__actions">
+        <button type="button" class="btn btn--primary" data-search-open>
+          <Icon name="search" size={16} />
+          Buscar en los apuntes
+          <kbd>Ctrl K</kbd>
+        </button>
+        <a class="btn" href={withBase('asignaturas/')}>
+          <Icon name="library" size={16} /> Ver asignaturas
+        </a>
+        <a class="btn btn--ghost" href={withBase('apuntes/control/indice-general/')}>
+          <Icon name="list-tree" size={16} /> Índice general
+        </a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="stats-title">
+      <div class="section__head">
+        <h2 class="section__title" id="stats-title">
+          <Icon name="layout-dashboard" size={18} /> Resumen
+        </h2>
+        <span class="section__hint">Calculado a partir de los propios apuntes</span>
+      </div>
+      <div class="grid grid--stats">
+        <div class="stat">
+          <p class="stat__value">{apuntes.length}</p>
+          <p class="stat__label">Apuntes</p>
+        </div>
+        <div class="stat">
+          <p class="stat__value">{groups.length}</p>
+          <p class="stat__label">Asignaturas</p>
+        </div>
+        <div class="stat">
+          <p class="stat__value">{Math.round(totalMinutes / 60)} h</p>
+          <p class="stat__label">Lectura estimada</p>
+        </div>
+        <div class="stat">
+          <p class="stat__value">{maxBatch}</p>
+          <p class="stat__label">Lotes de origen</p>
+        </div>
+        <div class="stat">
+          <p class="stat__value">
+            {firstDate && lastDate ? `${formatDateShort(firstDate)} — ${formatDateShort(lastDate)}` : '—'}
+          </p>
+          <p class="stat__label">Fechas cubiertas</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="subjects-title">
+      <div class="section__head">
+        <h2 class="section__title" id="subjects-title">
+          <Icon name="library" size={18} /> Asignaturas
+        </h2>
+        <a class="section__more" href={withBase('asignaturas/')}>
+          Todas <Icon name="arrow-right" size={14} />
+        </a>
+      </div>
+      <div class="grid grid--subjects">
+        {groups.map((group) => <SubjectCard group={group} />)}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="continue-title">
+      <div class="section__head">
+        <h2 class="section__title" id="continue-title">
+          <Icon name="book-open" size={18} /> Continuar leyendo
+        </h2>
+        <span class="section__hint">Según tu historial en este navegador</span>
+      </div>
+      <div
+        class="grid grid--docs"
+        data-dynamic="continue"
+        data-limit="3"
+        data-empty-title="Todavía no has abierto ningún apunte"
+        data-empty-text="Cuando abras un apunte aparecerá aquí para que retomes la lectura donde la dejaste."
+      >
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="quick-title">
+      <div class="section__head">
+        <h2 class="section__title" id="quick-title">
+          <Icon name="sparkles" size={18} /> Accesos rápidos
+        </h2>
+      </div>
+      <div class="quick">
+        <a class="quick__item" href={withBase('favoritos/')}>
+          <Icon name="star" size={18} />
+          <span class="quick__text">
+            <span class="quick__title">Favoritos</span>
+            <span class="quick__sub"><span data-dynamic-count="favorites">0</span> marcados</span>
+          </span>
+        </a>
+        <a class="quick__item" href={withBase('pendientes/')}>
+          <Icon name="list-todo" size={18} />
+          <span class="quick__text">
+            <span class="quick__title">Pendientes de revisar</span>
+            <span class="quick__sub"><span data-dynamic-count="pending">0</span> marcados</span>
+          </span>
+        </a>
+        <a class="quick__item" href={withBase('lotes/')}>
+          <Icon name="calendar-days" size={18} />
+          <span class="quick__text">
+            <span class="quick__title">Índice de lotes y fechas</span>
+            <span class="quick__sub">Procedencia de los apuntes</span>
+          </span>
+        </a>
+        <a class="quick__item" href={withBase('asignaturas/')}>
+          <Icon name="library" size={18} />
+          <span class="quick__text">
+            <span class="quick__title">Todos los documentos</span>
+            <span class="quick__sub">{apuntes.length + controlDocs.length} en total</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="recent-title">
+      <div class="section__head">
+        <h2 class="section__title" id="recent-title">
+          <Icon name="clock" size={18} /> Con fecha más reciente
+        </h2>
+      </div>
+      {
+        recentDocs.length > 0 ? (
+          <div class="grid grid--docs">
+            {recentDocs.map((doc) => (
+              <DocCard meta={doc} />
+            ))}
+          </div>
+        ) : (
+          <Empty title="Sin fechas registradas" text="Los apuntes no incluyen fechas de origen." />
+        )
+      }
+    </section>
+
+    <section class="section" aria-labelledby="control-title">
+      <div class="section__head">
+        <h2 class="section__title" id="control-title">
+          <Icon name="scroll-text" size={18} /> Procedencia y control
+        </h2>
+        <span class="section__hint">Cómo se han organizado los apuntes</span>
+      </div>
+      <div class="quick">
+        {
+          controlDocs.map((doc) => (
+            <a class="quick__item" href={withBase(`apuntes/${doc.id}/`)}>
+              <Icon name="file-text" size={18} />
+              <span class="quick__text">
+                <span class="quick__title">{doc.title}</span>
+                <span class="quick__sub">{doc.summary}</span>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</BaseLayout>
