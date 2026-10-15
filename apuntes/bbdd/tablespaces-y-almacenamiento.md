@@ -1,5 +1,5 @@
 ---
-title: "BBDD — Tablespaces y almacenamiento"
+title: "BBDD · Tablespaces y almacenamiento"
 kind: "apunte"
 subject: "BBDD"
 order: 5
@@ -24,7 +24,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** BBDD — Bases de Datos.
+**Asignatura:** BBDD (Bases de Datos).
 **Temas:** jerarquía de almacenamiento (bloque, extensión, segmento), tablespaces, tipos de
 tablespaces internos, vistas de almacenamiento, creación, movimiento, redimensionado y crecimiento
 automático de datafiles.

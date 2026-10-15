@@ -1,5 +1,5 @@
 ---
-title: "IAW — Apache y VirtualHost"
+title: "IAW · Apache y VirtualHost"
 kind: "apunte"
 subject: "IAW"
 order: 1
@@ -19,7 +19,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** IAW — Implantación de Aplicaciones Web.
+**Asignatura:** IAW (Implantación de Aplicaciones Web).
 **Temas:** configuración de equipos y acceso, archivo `hosts`, configuración e instalación de Apache,
 `VirtualHost`, `DocumentRoot` y cortafuegos.
 
@@ -39,7 +39,7 @@ status: "organizado"
 
 ## 1. Configuración de equipos y acceso (20/11/2024)
 
-1. M. huésped → RBAC (?) → Alta puesto (?) — (Reset MAC). **[Lectura dudosa]**
+1. M. huésped → RBAC (?) → Alta puesto (?); (Reset MAC). **[Lectura dudosa]**
 2. M. aplicación → `C:\Windows\System32\drivers\etc\hosts`.
    - Análisis de permisos / antivirus del host. **[Lectura dudosa]**
    - Control total.
@@ -135,7 +135,7 @@ La ruta se puede cambiar y de ella depende la ubicación de los archivos que sir
 
 ## Dudas de lectura
 
-- «M. huésped → RBAC (?) → Alta puesto (?) — (Reset MAC)».
+- «M. huésped → RBAC (?) → Alta puesto (?); (Reset MAC)».
 - «Análisis de permisos / antivirus del host».
 - La entrada de `VirtualHost` y la parte de configuración de rutas y permisos.
 - `AllowOverride All`: el apunte parece escribir «Override all».

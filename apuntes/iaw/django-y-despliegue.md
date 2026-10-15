@@ -1,5 +1,5 @@
 ---
-title: "IAW — Django y despliegue"
+title: "IAW · Django y despliegue"
 kind: "apunte"
 subject: "IAW"
 order: 5
@@ -15,7 +15,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** IAW — Implantación de Aplicaciones Web.
+**Asignatura:** IAW (Implantación de Aplicaciones Web).
 **Temas:** Django como framework de Python y sus características generales.
 
 ## Fechas de los apuntes

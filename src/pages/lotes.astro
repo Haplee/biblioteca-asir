@@ -74,10 +74,10 @@ const allDates = [...new Set(apuntes.flatMap((doc) => doc.data.dates))].sort();
                     </>
                   ))}
                 </td>
-                <td>{item.subjects.map((subject) => subject.name).join(', ') || '—'}</td>
+                <td>{item.subjects.map((subject) => subject.name).join(', ') || 'Sin asignatura'}</td>
                 <td>
                   {item.dates.length > 0
-                    ? `${formatDateShort(item.dates[0]!)} — ${formatDateShort(item.dates[item.dates.length - 1]!)}`
+                    ? `${formatDateShort(item.dates[0]!)} a ${formatDateShort(item.dates[item.dates.length - 1]!)}`
                     : 'Sin fecha'}
                 </td>
               </tr>

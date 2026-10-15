@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "ASIR · Fran Vidal — Biblioteca técnica personal. Sitio estático (Astro + TypeScript) para consultar los apuntes de ASIR. Desplegado en GitHub Pages.",
+  "description": "ASIR · Fran Vidal · Biblioteca técnica personal. Sitio estático (Astro + TypeScript) para consultar los apuntes de ASIR. Desplegado en GitHub Pages.",
   "license": "MIT",
   "author": "Fran Vidal",
   "homepage": "https://haplee.github.io/biblioteca-asir/",

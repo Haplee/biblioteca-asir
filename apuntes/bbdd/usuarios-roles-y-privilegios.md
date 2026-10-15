@@ -1,5 +1,5 @@
 ---
-title: "BBDD — Usuarios, roles y privilegios"
+title: "BBDD · Usuarios, roles y privilegios"
 kind: "apunte"
 subject: "BBDD"
 order: 4
@@ -21,7 +21,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** BBDD — Bases de Datos.
+**Asignatura:** BBDD (Bases de Datos).
 **Temas:** usuarios y esquemas, roles, perfiles, bloqueo de cuentas, privilegios de objeto y
 administración de cuentas en Oracle.
 

@@ -1,5 +1,5 @@
 ---
-title: "ASO — Usuarios, permisos y políticas"
+title: "ASO · Usuarios, permisos y políticas"
 kind: "apunte"
 subject: "ASO"
 order: 4
@@ -21,7 +21,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** ASO — Administración de Sistemas Operativos.
+**Asignatura:** ASO (Administración de Sistemas Operativos).
 **Temas:** usuarios y grupos, permisos especiales (sticky bit, `Euid`/`Uid`), políticas de grupo
 (GPO) y cuotas de disco.
 

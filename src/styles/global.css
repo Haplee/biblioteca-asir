@@ -1,7 +1,12 @@
 /* ============================================================================
-   ASIR · Fran Vidal — Biblioteca Técnica Personal
-   Diseño: Ingeniería de sistemas sobria, limpia y de alto contraste
-   Inspirado en la documentación técnica de referencia (GitHub, Radix, Stripe Docs)
+   ASIR · Fran Vidal · Biblioteca Técnica Personal
+   Dirección de diseño: ver `DESIGN.md` (identidad, paleta, tipografía, diales).
+   Resumen: documentación técnica sobria para estudio prolongado, tema oscuro por
+   defecto con conmutador claro, un único acento rojo y un color por asignatura
+   que funciona como etiqueta de área, no como decoración.
+   Nota de dirección: la paleta es una decisión de marca del propietario (tonos de
+   ingeniería al estilo GitHub Primer). Se conserva por indicación expresa; lo que
+   se ha corregido es la accesibilidad (R-25), no el color.
    ========================================================================== */
 
 /* ------------------------------------------------------------------ tokens */
@@ -20,22 +25,28 @@
   --border-soft: #21262d;
   --border-strong: #484f58;
 
-  /* Texto */
+  /* Texto: tres pasos, todos >= 4.5:1 sobre la superficie más clara del tema
+     (--surface-2 #21262d) para que ninguna etiqueta pequeña quede por debajo. */
   --text: #f0f6fc;
-  --text-muted: #8b949e;
-  --text-faint: #6e7681;
+  --text-muted: #a3abb6;
+  --text-faint: #99a1ac;
 
-  /* Acento rojo técnico / carmín artesanal (sobrio, funcional, sin brillo artificial) */
+  /* Acento rojo técnico / carmín artesanal (sobrio, funcional, sin brillo artificial).
+     Mantiene el tono de marca; solo se ajusta la luminosidad lo justo para pasar AA. */
   --accent: #e5484d;
   --accent-strong: #d93d42;
   --accent-soft: rgba(229, 72, 77, 0.12);
   --accent-line: rgba(229, 72, 77, 0.32);
   --accent-text: #f87171;
+  /* Relleno del acento cuando lleva texto blanco encima: #e5484d con blanco da
+     3.91:1, así que el botón sólido y el skip-link usan esta variante (5.04:1). */
+  --accent-fill: #cf3238;
+  --accent-fill-hover: #bd2a30;
 
-  /* Semánticos */
+  /* Semánticos: legibles sobre su propio tinte de fondo (chips, avisos de lectura) */
   --warn: #d29922;
   --warn-soft: rgba(210, 153, 34, 0.12);
-  --danger: #f85149;
+  --danger: #ff7b72;
   --ok: #3fb950;
   --ok-soft: rgba(63, 185, 80, 0.12);
   --info: #58a6ff;
@@ -80,23 +91,28 @@
   --border-soft: #e7ecf0;
   --border-strong: #afb8c1;
 
+  /* Texto: tres pasos, todos >= 4.5:1 sobre la superficie más oscura del tema
+     (--surface-3 #eaeef2 y los tintes de los avisos) */
   --text: #1f2328;
-  --text-muted: #656d76;
-  --text-faint: #8c959f;
+  --text-muted: #5c6470;
+  --text-faint: #606871;
 
   --accent: #cf222e;
   --accent-strong: #a40e26;
-  --accent-soft: rgba(207, 34, 46, 0.08);
+  --accent-soft: rgba(207, 34, 46, 0.06);
   --accent-line: rgba(207, 34, 46, 0.24);
   --accent-text: #cf222e;
+  /* Blanco sobre #cf222e = 5.36:1, así que el relleno reutiliza el acento. */
+  --accent-fill: #cf222e;
+  --accent-fill-hover: #a40e26;
 
-  --warn: #9a6700;
-  --warn-soft: rgba(154, 103, 0, 0.1);
-  --danger: #cf222e;
-  --ok: #1a7f37;
-  --ok-soft: rgba(26, 127, 55, 0.1);
-  --info: #0969da;
-  --info-soft: rgba(9, 105, 218, 0.1);
+  --warn: #7d5300;
+  --warn-soft: rgba(125, 83, 0, 0.1);
+  --danger: #a40e26;
+  --ok: #14602b;
+  --ok-soft: rgba(20, 96, 43, 0.1);
+  --info: #0550ae;
+  --info-soft: rgba(5, 80, 174, 0.1);
 
   --shadow-sm: 0 1px 2px rgba(31, 35, 40, 0.04);
   --shadow: 0 3px 6px rgba(31, 35, 40, 0.08);
@@ -174,7 +190,7 @@ ol {
 }
 
 ::selection {
-  background: var(--accent);
+  background: var(--accent-fill);
   color: #fff;
 }
 
@@ -289,7 +305,7 @@ ol {
   left: 0.75rem;
   z-index: 100;
   padding: 0.6rem 1rem;
-  background: var(--accent);
+  background: var(--accent-fill);
   color: #fff;
   border-radius: var(--radius);
   transform: translateY(-160%);
@@ -359,7 +375,7 @@ ol {
   border-radius: var(--radius);
   background: var(--surface-2);
   border: 1px solid var(--border-strong);
-  color: var(--accent);
+  color: var(--accent-text);
   font-weight: 750;
   font-size: 1.15rem;
   letter-spacing: -0.03em;
@@ -438,7 +454,7 @@ kbd {
   padding: 0.95rem 0.6rem 0.4rem;
   font-size: 0.66rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--text-faint);
 }
@@ -474,7 +490,6 @@ kbd {
   width: 3px;
   border-radius: 0 3px 3px 0;
   background: var(--accent);
-  box-shadow: 0 0 8px var(--accent-glow);
 }
 .nav__link svg {
   flex: none;
@@ -622,20 +637,17 @@ kbd {
   background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
+/* Lema de portada. Antes era una insignia (caja + borde + versalitas) justo
+   encima del h1; ahora es una línea de texto: mismo contenido, sin el patrón
+   de badge decorativo. El color del texto ya pasa AA sobre la superficie. */
 .hero__eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.2rem 0.65rem;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  font-size: 0.72rem;
+  font-size: 0.84rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 1.15rem;
+  margin-bottom: 0.7rem;
 }
 .hero__eyebrow svg {
   color: var(--accent);
@@ -689,14 +701,14 @@ kbd {
   transform: translateY(1px);
 }
 .btn--primary {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--accent-fill);
+  border-color: var(--accent-fill);
   color: #fff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 .btn--primary:hover {
-  background: var(--accent-strong);
-  border-color: var(--accent-strong);
+  background: var(--accent-fill-hover);
+  border-color: var(--accent-fill-hover);
   color: #fff;
 }
 .btn--ghost {
@@ -993,7 +1005,7 @@ button.chip:hover {
   font-size: 0.72rem;
   color: var(--text-faint);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   font-weight: 600;
 }
 
@@ -1205,7 +1217,7 @@ button.chip:hover {
   margin-top: 0.35em;
 }
 .prose li::marker {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 .prose hr {
   border: 0;
@@ -1639,6 +1651,12 @@ button.chip:hover {
   gap: 0.7rem;
   padding: 0.85rem 1rem;
   border-bottom: 1px solid var(--border);
+}
+/* El input lleva `outline: none` (R-32 exige que exista un sustituto visible):
+   el foco se marca en el contenedor, igual que en `.filter-bar__search`. */
+.search-field:focus-within {
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 2px var(--accent-line);
 }
 .search-field svg {
   color: var(--text-faint);

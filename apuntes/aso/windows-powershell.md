@@ -1,5 +1,5 @@
 ---
-title: "ASO — Windows y PowerShell"
+title: "ASO · Windows y PowerShell"
 kind: "apunte"
 subject: "ASO"
 order: 1
@@ -23,7 +23,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** ASO — Administración de Sistemas Operativos.
+**Asignatura:** ASO (Administración de Sistemas Operativos).
 **Temas:** PowerShell (red, procesos, servicios), apagado programado, Windows Server y dominio, RDP,
 listado de archivos por tamaño en Windows.
 
@@ -46,7 +46,7 @@ Los nombres de archivo completos de cada lote están en `00_Indice_y_control/inv
 
 ---
 
-## 1. PowerShell — Configuración de red (13/01/2025)
+## 1. PowerShell: Configuración de red (13/01/2025)
 
 Consultar las características que podemos consultar y activar:
 

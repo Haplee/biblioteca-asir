@@ -1,5 +1,5 @@
 ---
-title: "BBDD — Fundamentos de un SGBD"
+title: "BBDD · Fundamentos de un SGBD"
 kind: "apunte"
 subject: "BBDD"
 order: 1
@@ -17,7 +17,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** BBDD — Bases de Datos.
+**Asignatura:** BBDD (Bases de Datos).
 **Temas:** Big Data, dato e información, SOP/SOD, fichero/BD/SGBD, esquemas, funciones y componentes
 de un SGBD, estructura multicapa, funcionamiento, estructuras operacionales, tipos de SGBD, problemas
 del modelo relacional, sistemas NoSQL, funciones del DBA y elección de un SGBD.

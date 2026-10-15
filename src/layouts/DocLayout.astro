@@ -46,7 +46,7 @@ const indexLabel = meta.subjectSlug ? 'Volver a la asignatura' : 'Volver al índ
             meta.subjectSlug && (
               <a class="doc-header__subject" href={withBase(`asignaturas/${meta.subjectSlug}/`)}>
                 <Icon name="graduation-cap" size={14} />
-                {meta.subject} — {meta.subjectName}
+                {meta.subject} · {meta.subjectName}
               </a>
             )
           }

@@ -4,8 +4,8 @@
  * Comprueba dos cosas independientes:
  *
  *  A) FIDELIDAD DE RENDERIZADO (bloqueante).
- *     Cada fragmento técnico del Markdown de un apunte —bloques de código,
- *     código en línea, rutas y comandos— debe aparecer en el HTML generado de
+ *     Cada fragmento técnico del Markdown de un apunte (bloques de código,
+ *     código en línea, rutas y comandos) debe aparecer en el HTML generado de
  *     ese mismo apunte. Detecta contenido que la cadena Markdown→HTML hubiera
  *     podido perder o alterar (resaltado, plugins, tablas…).
  *
@@ -181,7 +181,7 @@ const failed = missingTotal > 0 || report.some((item) => item.error);
 console.log('');
 console.log(
   failed
-    ? 'RESULTADO: REVISAR — hay fragmentos que no llegan al HTML.'
-    : 'RESULTADO: OK — todo el contenido de los apuntes se renderiza.',
+    ? 'RESULTADO: REVISAR: hay fragmentos que no llegan al HTML.'
+    : 'RESULTADO: OK: todo el contenido de los apuntes se renderiza.',
 );
 process.exitCode = failed ? 1 : 0;

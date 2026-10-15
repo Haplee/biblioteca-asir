@@ -1,5 +1,5 @@
 ---
-title: "BBDD — Transacciones (ACID)"
+title: "BBDD · Transacciones (ACID)"
 kind: "apunte"
 subject: "BBDD"
 order: 6
@@ -14,7 +14,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** BBDD — Bases de Datos.
+**Asignatura:** BBDD (Bases de Datos).
 **Temas:** propiedades ACID de las transacciones.
 
 ## Fechas de los apuntes

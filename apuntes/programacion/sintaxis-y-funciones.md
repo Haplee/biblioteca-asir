@@ -1,5 +1,5 @@
 ---
-title: "Programación / Python — Sintaxis y funciones"
+title: "Programación / Python · Sintaxis y funciones"
 kind: "apunte"
 subject: "Programación"
 order: 1

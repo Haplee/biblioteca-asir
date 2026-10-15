@@ -1,5 +1,5 @@
 ---
-title: "Control de versiones — Git"
+title: "Control de versiones · Git"
 kind: "apunte"
 subject: "Git"
 order: 1

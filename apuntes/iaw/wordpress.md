@@ -1,5 +1,5 @@
 ---
-title: "IAW — WordPress"
+title: "IAW · WordPress"
 kind: "apunte"
 subject: "IAW"
 order: 4
@@ -18,7 +18,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** IAW — Implantación de Aplicaciones Web.
+**Asignatura:** IAW (Implantación de Aplicaciones Web).
 **Temas:** diferencia entre página y entrada, categorías y etiquetas, acceso al backend, formato de
 fecha, enlaces permanentes y caché.
 
@@ -34,7 +34,7 @@ fecha, enlaces permanentes y caché.
 
 ---
 
-## WordPress — Páginas, entradas, categorías y etiquetas
+## WordPress: Páginas, entradas, categorías y etiquetas
 
 **Diferencia entre página y entrada:**
 

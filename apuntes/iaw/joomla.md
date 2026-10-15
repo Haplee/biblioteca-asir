@@ -1,5 +1,5 @@
 ---
-title: "IAW — Joomla"
+title: "IAW · Joomla"
 kind: "apunte"
 subject: "IAW"
 order: 3
@@ -19,7 +19,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** IAW — Implantación de Aplicaciones Web.
+**Asignatura:** IAW (Implantación de Aplicaciones Web).
 **Temas:** plantillas y posiciones de módulos, instalación de Joomla, base de datos, inserción de
 vídeos y mapas, menús y distribución del contenido, sindicación de contenido (RSS).
 
@@ -37,7 +37,7 @@ vídeos y mapas, menús y distribución del contenido, sindicación de contenido
 
 ---
 
-## 1. Joomla — Posiciones de las plantillas
+## 1. Joomla: Posiciones de las plantillas
 
 - Sistema → Plantillas.
 - Previsualizar la posición de los módulos.
@@ -80,7 +80,7 @@ Salir de MySQL. Descomprimir el archivo ZIP de Joomla dentro de `public_html` y 
 
 ---
 
-## 3. Joomla — Insertar vídeos
+## 3. Joomla: Insertar vídeos
 
 Ruta aproximada:
 
@@ -92,7 +92,7 @@ Ruta aproximada:
 
 ---
 
-## 4. Joomla — Insertar un mapa
+## 4. Joomla: Insertar un mapa
 
 - Abrir Google Maps.
 - Buscar la ubicación.
@@ -107,7 +107,7 @@ Ruta aproximada:
 
 ---
 
-## 5. Joomla — Menús y distribución del contenido
+## 5. Joomla: Menús y distribución del contenido
 
 **Main Menu → Menu → Choose Layout**
 

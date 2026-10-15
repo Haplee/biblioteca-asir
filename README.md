@@ -23,8 +23,8 @@ oscuro, sin cuentas y sin backend.**
 
 > ## «Todo tu conocimiento. En un solo lugar.»
 
-Apuntes de **ASO**, **IAW**, **BBDD**, **Programación** y **Git** —tal como salieron
-de clase, sin reescribir ni «maquillar»— organizados para encontrar un comando, una
+Apuntes de **ASO**, **IAW**, **BBDD**, **Programación** y **Git** (tal como salieron
+de clase, sin reescribir ni «maquillar») organizados para encontrar un comando, una
 ruta o una idea en segundos.
 
 ---
@@ -33,11 +33,11 @@ ruta o una idea en segundos.
 
 | Área | Qué encontrarás |
 | --- | --- |
-| 🖥️ **ASO** — Administración de Sistemas Operativos | Windows y PowerShell, Linux y Bash, redes y servicios (LDAP, DHCP, SSH, iptables, GPG, Samba, CUPS) y usuarios, permisos y políticas. |
-| 🌐 **IAW** — Implantación de Aplicaciones Web | Apache y VirtualHost, PHP, gestores de contenido (Joomla y WordPress) y Django. |
-| 🗄️ **BBDD** — Bases de Datos | Fundamentos de un SGBD, SQL y MySQL, Oracle y PL/SQL, usuarios, roles y privilegios, tablespaces y almacenamiento, y transacciones ACID. |
-| 🐍 **Programación** — Python | Sintaxis y funciones, con ejemplos reales sacados de los apuntes. |
-| 🌿 **Git** — Control de versiones | Configuración, repositorios, ramas y remotos. |
+| 🖥️ **ASO** · Administración de Sistemas Operativos | Windows y PowerShell, Linux y Bash, redes y servicios (LDAP, DHCP, SSH, iptables, GPG, Samba, CUPS) y usuarios, permisos y políticas. |
+| 🌐 **IAW** · Implantación de Aplicaciones Web | Apache y VirtualHost, PHP, gestores de contenido (Joomla y WordPress) y Django. |
+| 🗄️ **BBDD** · Bases de Datos | Fundamentos de un SGBD, SQL y MySQL, Oracle y PL/SQL, usuarios, roles y privilegios, tablespaces y almacenamiento, y transacciones ACID. |
+| 🐍 **Programación** · Python | Sintaxis y funciones, con ejemplos reales sacados de los apuntes. |
+| 🌿 **Git** · Control de versiones | Configuración, repositorios, ramas y remotos. |
 
 Además, **temas transversales** («Redes y servicios», «Oracle», «PL/SQL», «Bash»,
 «VirtualHost»…) que agrupan apuntes de distintas asignaturas sin duplicar contenido.
@@ -105,7 +105,7 @@ src/
 
 ```yaml
 ---
-title: "ASO — Linux y Bash"
+title: "ASO · Linux y Bash"
 kind: "apunte"          # apunte | control
 subject: "ASO"
 order: 2

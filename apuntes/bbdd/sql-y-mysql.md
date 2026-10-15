@@ -1,5 +1,5 @@
 ---
-title: "BBDD — SQL y MySQL"
+title: "BBDD · SQL y MySQL"
 kind: "apunte"
 subject: "BBDD"
 order: 2
@@ -16,7 +16,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** BBDD — Bases de Datos.
+**Asignatura:** BBDD (Bases de Datos).
 **Temas:** creación de base de datos, usuario, privilegios y aplicación de cambios en MySQL.
 
 ## Fechas de los apuntes

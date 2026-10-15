@@ -1,5 +1,5 @@
 ---
-title: "ASO — Linux y Bash"
+title: "ASO · Linux y Bash"
 kind: "apunte"
 subject: "ASO"
 order: 2
@@ -37,7 +37,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** ASO — Administración de Sistemas Operativos.
+**Asignatura:** ASO (Administración de Sistemas Operativos).
 **Temas:** scripts de Bash, variables, funciones, bucles, redirecciones, permisos usados en scripts,
 empaquetado, procesos, monitorización, arrays, condicionales, filtros con `awk`, parámetros, `case`
 y ficheros temporales.
@@ -49,7 +49,7 @@ y ficheros temporales.
 | 28/10/2024 | Permisos y primer script con grupos | 2 |
 | 31/10/2024 | Bucles en Bash | 2 |
 | 25/11/2024 | Funciones y redirecciones | 2 |
-| 28/11/2024 – 30/11/2024 | Monitorización y variables | 2 |
+| 28/11/2024 a 30/11/2024 | Monitorización y variables | 2 |
 | 05/12/2024 | Operaciones `if` y permisos especiales | 2 |
 | 12/12/2024 | Saltos y tabulaciones | 3 |
 | 16/12/2024 | Parámetros | 3 |

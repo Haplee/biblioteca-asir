@@ -47,7 +47,7 @@ const docs = [...group.docs].sort((a, b) => {
 });
 ---
 
-<BaseLayout title={`${group.name} — ${group.fullName}`} description={group.description}>
+<BaseLayout title={`${group.name} · ${group.fullName}`} description={group.description}>
   <Breadcrumbs
     slot="breadcrumb"
     items={[
@@ -74,7 +74,7 @@ const docs = [...group.docs].sort((a, b) => {
               <Icon name="calendar-days" size={12} />
               {firstDate === lastDate
                 ? formatDateShort(firstDate)
-                : `${formatDateShort(firstDate)} — ${formatDateShort(lastDate)}`}
+                : `${formatDateShort(firstDate)} a ${formatDateShort(lastDate)}`}
             </span>
           )
         }
@@ -137,7 +137,7 @@ const docs = [...group.docs].sort((a, b) => {
           <select data-filter-sort>
             <option value="date">Más recientes primero</option>
             <option value="order">Orden del índice</option>
-            <option value="title">Título (A–Z)</option>
+            <option value="title">Título (A-Z)</option>
           </select>
         </label>
       </div>
@@ -170,7 +170,7 @@ const docs = [...group.docs].sort((a, b) => {
                 </div>
                 <div class="doc-card__sub">
                   <span>
-                    <Icon name="clock" size={13} /> {meta?.minutes ?? '—'} min
+                    <Icon name="clock" size={13} /> {meta?.minutes != null ? `${meta.minutes} min` : 'Sin datos'}
                   </span>
                   {
                     lastDocDate && (

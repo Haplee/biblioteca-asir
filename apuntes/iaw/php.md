@@ -1,5 +1,5 @@
 ---
-title: "IAW — PHP"
+title: "IAW · PHP"
 kind: "apunte"
 subject: "IAW"
 order: 2
@@ -15,7 +15,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** IAW — Implantación de Aplicaciones Web.
+**Asignatura:** IAW (Implantación de Aplicaciones Web).
 **Temas:** configuración de PHP (`php.ini`), extensiones necesarias, búfer de salida y tamaño de
 archivos subidos.
 

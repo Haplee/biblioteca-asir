@@ -37,7 +37,9 @@ export interface SubjectConfig {
   description: string;
   /** Nombre del icono Lucide (ver `src/components/Icon.astro`). */
   icon: string;
-  /** Color de acento del área (solo decorativo). */
+  /** Color de área: identifica la asignatura en tarjetas y chips (etiqueta de
+      reconocimiento, no decoración). Los cinco colores se documentan en
+      `DESIGN.md`; sin ese sistema serían 5 colores sueltos sobre el límite. */
   accent: string;
 }
 
@@ -85,7 +87,7 @@ export const SUBJECTS: SubjectConfig[] = [
     key: 'Git',
     slug: 'git',
     name: 'Git',
-    fullName: 'Control de versiones — Git',
+    fullName: 'Control de versiones · Git',
     description: 'Comandos esenciales de Git: configuración, repositorios, ramas y remotos.',
     icon: 'git-branch',
     accent: '#8fd18a',

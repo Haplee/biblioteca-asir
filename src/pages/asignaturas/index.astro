@@ -43,7 +43,7 @@ const total = groups.reduce((sum, group) => sum + group.docs.length, 0);
         <section class="section" aria-labelledby={`subject-${group.slug}`}>
           <div class="section__head">
             <h2 class="section__title" id={`subject-${group.slug}`}>
-              <Icon name={group.icon} size={18} /> {group.name} — {group.fullName}
+              <Icon name={group.icon} size={18} /> {group.name} · {group.fullName}
             </h2>
             <a class="section__more" href={withBase(`asignaturas/${group.slug}/`)}>
               Abrir asignatura <Icon name="arrow-right" size={14} />
@@ -62,14 +62,15 @@ const total = groups.reduce((sum, group) => sum + group.docs.length, 0);
               <tbody>
                 {group.docs.map((doc) => {
                   const lastDate = doc.data.dates[doc.data.dates.length - 1];
+                  const minutes = metaById.get(doc.id)?.minutes;
                   return (
                     <tr>
                       <td>
                         <a href={withBase(`apuntes/${doc.id}/`)}>{doc.data.title}</a>
                       </td>
                       <td>{doc.data.topics.slice(0, 4).join(', ')}</td>
-                      <td>{lastDate ? formatDateShort(lastDate) : '—'}</td>
-                      <td>{metaById.get(doc.id)?.minutes ?? '—'} min</td>
+                      <td>{lastDate ? formatDateShort(lastDate) : 'Sin fecha'}</td>
+                      <td>{minutes != null ? `${minutes} min` : 'Sin datos'}</td>
                     </tr>
                   );
                 })}

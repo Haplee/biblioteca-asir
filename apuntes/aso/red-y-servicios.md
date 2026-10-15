@@ -1,5 +1,5 @@
 ---
-title: "ASO — Red y servicios"
+title: "ASO · Red y servicios"
 kind: "apunte"
 subject: "ASO"
 order: 3
@@ -30,7 +30,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** ASO — Administración de Sistemas Operativos.
+**Asignatura:** ASO (Administración de Sistemas Operativos).
 **Temas:** conceptos de red (VPN, switch, SLA, DMZ), LDAP, DHCP, SSH, cortafuegos (iptables),
 encriptación (GPG), servidor Samba y servidor de impresión CUPS.
 
@@ -43,7 +43,7 @@ encriptación (GPG), servidor Samba y servidor de impresión CUPS.
 | (sin fecha) | Redes: VPN, switch, SLA, DMZ | 2 |
 | 10/02/2025 | Redes y servicios (RA 4): DHCP y SSH | 4 |
 | (sin fecha) | Seguridad y cortafuegos: iptables y encriptación | 4 |
-| 21/11/2024 | Servidor Linux — Samba y CUPS (detallado) | 6 |
+| 21/11/2024 | Servidor Linux: Samba y CUPS (detallado) | 6 |
 
 ## Lotes de origen
 
@@ -73,10 +73,10 @@ encriptación (GPG), servidor Samba y servidor de impresión CUPS.
 
 ---
 
-## 3. DHCP (Lote 4 — RA 4)
+## 3. DHCP (Lote 4, RA 4)
 
 - **Sentido:** Servidor → Cliente.
-- **Puertos:** 67 – 68.
+- **Puertos:** 67 y 68.
 - Como root:
 
 ```bash
@@ -94,7 +94,7 @@ systemctl stop/start isc-dhcp-server
 
 ---
 
-## 4. SSH (Lote 4 — RA 4)
+## 4. SSH (Lote 4, RA 4)
 
 - **Puerto:** 22.
 
@@ -140,14 +140,14 @@ gpg -d archivo.txt   # desencriptar
 
 ## 6. Servidor Samba y CUPS
 
-### 6.1. Apunte del Lote 2 — Samba y CUPS (práctica 3, 07/11/2024)
+### 6.1. Apunte del Lote 2: Samba y CUPS (práctica 3, 07/11/2024)
 
 Controlador de dominio secundario del principal; y en horas de descanso sincronizarlo con el 1º por
 el ancho de banda (red satelital). Securizar Samba, configurar `smb.conf`, configurar carpetas
 compartidas, comprobar en otro equipo, instalar CUPS, configurar impresora, cuotas
 (`apt install quota`), cuota para con = 1.
 
-### 6.2. Apunte del Lote 6 — Samba y CUPS (21/11/2024, detallado)
+### 6.2. Apunte del Lote 6: Samba y CUPS (21/11/2024, detallado)
 
 **Instalación de Samba:**
 

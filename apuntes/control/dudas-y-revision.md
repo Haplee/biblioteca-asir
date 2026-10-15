@@ -27,10 +27,10 @@ Estados: `pendiente` (sin resolver) · `resuelto` (confirmado por el usuario).
 
 | # | Lote | Documento | Fragmento | Estado |
 |---|---|---|---|---|
-| A1 | 1 | `IAW/01_Apache_y_VirtualHost.md` | «M. huésped → RBAC (?) → Alta puesto (?) — (Reset MAC)» | pendiente |
+| A1 | 1 | `IAW/01_Apache_y_VirtualHost.md` | «M. huésped → RBAC (?) → Alta puesto (?); (Reset MAC)» | pendiente |
 | A2 | 1 | `IAW/01_Apache_y_VirtualHost.md` | «Análisis de permisos / antivirus del host» | pendiente |
 | A3 | 1 | `IAW/01_Apache_y_VirtualHost.md` | Entrada de `VirtualHost`: parte del texto original dudosa | pendiente |
-| A4 | 1 | `IAW/01_Apache_y_VirtualHost.md` | `AllowOverride All` — el apunte parece poner «Override all» | pendiente |
+| A4 | 1 | `IAW/01_Apache_y_VirtualHost.md` | `AllowOverride All`: el apunte parece poner «Override all» | pendiente |
 | A5 | 1 | `IAW/01_Apache_y_VirtualHost.md` | Comandos `chown` y `chmod` del directorio web | pendiente |
 | A6 | 1 | `IAW/01_Apache_y_VirtualHost.md` | Comandos para habilitar el sitio y reiniciar Apache (no se distinguen con claridad) | pendiente |
 | A7 | 1 | `IAW/02_PHP.md` | `upload_file_size` (probable `upload_max_filesize`) | pendiente |

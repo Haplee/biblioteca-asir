@@ -1,5 +1,5 @@
 ---
-title: "BBDD — Oracle y PL/SQL"
+title: "BBDD · Oracle y PL/SQL"
 kind: "apunte"
 subject: "BBDD"
 order: 3
@@ -32,7 +32,7 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** BBDD — Bases de Datos.
+**Asignatura:** BBDD (Bases de Datos).
 **Temas:** tablas y vistas de Oracle, red de Oracle (`listener.ora`, puerto 1521), triggers,
 funciones, procedimientos, cursores, secuencias, control de flujo en PL/SQL, administración de
 instancia y vistas del diccionario.
@@ -41,9 +41,9 @@ instancia y vistas del diccionario.
 
 | Fecha | Contenido | Lote |
 |---|---|---|
-| 28/10/2024 – 29/10/2024 | Administración de instancia | 6 |
+| 28/10/2024 a 29/10/2024 | Administración de instancia | 6 |
 | 05/11/2024 | Conceptos y tablas de Oracle | 4 |
-| 25/11/2024 | (Tablespaces — en `05_…almacenamiento`) | 5 |
+| 25/11/2024 | (Tablespaces, en `05_…almacenamiento`) | 5 |
 | 14/01/2025 | Conceptos de PL/SQL | 5 |
 | 20/01/2025 | Sintaxis PL/SQL | 5 |
 | 21/01/2025 | PL/SQL: control de flujo | 6 |
@@ -323,7 +323,7 @@ END nombre;
 
 La línea `RETURN v` es orientativa; el apunte presenta el esquema general.
 
-### 04/02/2025 — `MOD` y `%ROWCOUNT`
+### 04/02/2025: `MOD` y `%ROWCOUNT`
 
 ```sql
 MOD()
@@ -421,7 +421,7 @@ EXEC nombre(parametros);
 
 ---
 
-## 10. Administración de instancia (28/10/2024 – 29/10/2024, Lote 6)
+## 10. Administración de instancia (28/10/2024 a 29/10/2024, Lote 6)
 
 - En terminal: `export CV_ASSUME_DIS`
 - Para la práctica de Debian y Rocky → `OEL7.8`
