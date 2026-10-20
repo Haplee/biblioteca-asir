@@ -236,7 +236,19 @@ Donde `<valor preferencia>` indica el orden de preferencia cuando hay varios ser
 
 ### 8. Proceso de resolución DNS
 
-En las fotografías aparece el final del procedimiento, concretamente los pasos 4 a 7. (Los pasos 1 a 3 no se ven; suelen describir la consulta inicial del cliente al servidor DNS local, la comprobación de su caché y, si el dato está ahí, la respuesta directa.)
+En las fotografías aparece el final del procedimiento, concretamente los pasos 4 a 7. Los pasos 1 a 3 no aparecen en las fotos: se han completado según el funcionamiento estándar de DNS y quedan marcados con una nota al final de la sección.
+
+#### Paso 1
+
+El cliente (el resolver del sistema operativo) recibe la petición de la aplicación y comprueba primero sus fuentes locales: caché, historial y el fichero `/etc/hosts`. Si encuentra ahí la asociación nombre/dirección IP, responde directamente y el proceso termina sin salir de la máquina.
+
+#### Paso 2
+
+Si el dato no está en local, el cliente envía la consulta al servidor DNS primario configurado (el primero declarado en `/etc/resolv.conf`, o el que indique DHCP en Windows).
+
+#### Paso 3
+
+El servidor DNS primario comprueba su caché y sus zonas. Si puede responder (dato en caché o porque es autoritativo para la zona), devuelve la dirección IP al cliente. Si no puede proporcionar la respuesta, se pasa al paso 4.
 
 #### Paso 4
 
@@ -253,6 +265,8 @@ Al recibir la respuesta, se realiza una consulta al servidor DNS que gestiona la
 #### Paso 7
 
 Finalmente, la respuesta se envía al resolver del cliente para que la aplicación pueda utilizarla y empaquetar la información adecuadamente.
+
+> **Nota:** Los pasos 1 a 3 se han completado por el funcionamiento estándar de DNS (resolución local, consulta al servidor DNS local y respuesta directa o escalado). Los pasos 4 a 7 son los que aparecen en las fotografías originales.
 
 ---
 
