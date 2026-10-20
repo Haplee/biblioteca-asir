@@ -15,7 +15,7 @@ oscuro, sin cuentas y sin backend.**
 
 ### 🔎 [**Abrir el sitio →**](https://haplee.github.io/biblioteca-asir/)
 
-<sub>21 apuntes · 5 áreas · búsqueda global (Ctrl/Cmd + K) · sin cookies</sub>
+<sub>22 apuntes · 5 áreas · búsqueda global (Ctrl/Cmd + K) · sin cookies</sub>
 
 </div>
 
@@ -33,7 +33,7 @@ ruta o una idea en segundos.
 
 | Área | Qué encontrarás |
 | --- | --- |
-| 🖥️ **ASO** · Administración de Sistemas Operativos | Windows y PowerShell, Linux y Bash, redes y servicios (LDAP, DHCP, SSH, iptables, GPG, Samba, CUPS) y usuarios, permisos y políticas. |
+| 🖥️ **ASO** · Administración de Sistemas Operativos | Windows y PowerShell, Linux y Bash, redes y servicios (LDAP, DHCP, SSH, iptables, GPG, Samba, CUPS), enrutamiento y DNS (RIP, OSPF, EIGRP) y usuarios, permisos y políticas. |
 | 🌐 **IAW** · Implantación de Aplicaciones Web | Apache y VirtualHost, PHP, gestores de contenido (Joomla y WordPress) y Django. |
 | 🗄️ **BBDD** · Bases de Datos | Fundamentos de un SGBD, SQL y MySQL, Oracle y PL/SQL, usuarios, roles y privilegios, tablespaces y almacenamiento, y transacciones ACID. |
 | 🐍 **Programación** · Python | Sintaxis y funciones, con ejemplos reales sacados de los apuntes. |
@@ -169,7 +169,7 @@ el título H1, que pasó al frontmatter con el mismo texto.
 
 El script `scripts/verify-integrity.mjs` lo comprueba en cada compilación: extrae
 todos los fragmentos técnicos (bloques de código, código en línea, rutas y comandos)
-de los 21 apuntes y verifica que aparecen en el HTML generado.
+de los 22 apuntes y verifica que aparecen en el HTML generado.
 
 Se conservan literalmente los marcadores `[ilegible]`, `[lectura dudosa]` y
 `[revisar]`, que se muestran como avisos destacados. Cuando algo parece un error

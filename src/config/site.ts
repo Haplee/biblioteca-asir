@@ -50,7 +50,7 @@ export const SUBJECTS: SubjectConfig[] = [
     name: 'ASO',
     fullName: 'Administración de Sistemas Operativos',
     description:
-      'Windows y PowerShell, Linux y Bash, redes y servicios (LDAP, DHCP, SSH, iptables, GPG, Samba, CUPS) y usuarios, permisos y políticas.',
+      'Windows y PowerShell, Linux y Bash, redes y servicios (LDAP, DHCP, SSH, iptables, GPG, Samba, CUPS), enrutamiento y DNS (RIP, OSPF, EIGRP) y usuarios, permisos y políticas.',
     icon: 'terminal',
     accent: '#ff6b7d',
   },
