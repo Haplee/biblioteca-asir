@@ -1,0 +1,313 @@
+{
+  "aso": [
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\ASO\\PDF_S CONSERVAR\\VirtualBox.pdf",
+      "name": "VirtualBox.pdf",
+      "content": "%PDF-1.5\n%쏢\n5 0 obj\n<</Length 6 0 R/Filter /FlateDecode>>\nstream\nxVMo\u001c7\fE6v&6vڪ\u0014XE(Q\u0016%\u0002=8=I\u0002\u000e`\u0003%K\\\u00160\u00026G\u001eG\\\\b잿dn\\vﺫ<y\\KV\u0003m\u0007\u00068\f\u001c|&pˮ7l0y\u0012?\u0010y$Ϩ\u000e_.d{\u00035$_߻߶݋.T0DФ!X\bX\nhE\fGr %2IJc\fDLP*ZsLB\u001a\u0006\u0015\tsw,\u0001]6Gaĩ1\u0012\u001f5~3?\u001e.ɣu!scr{\u001cA\u0012)%&$X\n9r\u0011\u0003X\u0010\"K=Z/޼{df@7zT,d\u001f\u001e\n'w\u000ff\u001d&{=GmtdyP\u000b\u0013Jϣ\u0019|VYwNԖ\nПC}N@\u0011c\u0000\u0001u\f\nܿsٌ\u0002\u001d\u001emiF\u001b3f!\b\u001f!Uc;tjk➭W]L⟔DUӽ'U\u0015\u0016}u1Z6XxZj`NF/$}㘥s!eIx\fdb\u0015\u0015<ĐT)\u001a&\u0011E|\u001c:\u0018El${.H\"ڤ\u0011P<\u001b\b^'\u00139hv\u0003(nȟ\u0005fJHh\u001aLʟ{\u0005l>\u001f6䓈\u001c&}̚R?\u001d6I/Ffo1dH1_*1\u0002r[P\u001e\u000f$u~\\\u001c\u0005+t\nJ'\n\"`\u000e\u001eLtc&~na\u001e\u000e\"\u0017B\u0014>\niCig\u001ef\u0014_r\u001b720iІT8\n,>\\A7 ~|q\u0005CX\u0006|\u001dЙ<@c\u001dsR>\u001b\u0011(Tk~/e0",
+      "size": 3656414
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\ASO\\Tema 1\\26-09-2024.txt",
+      "name": "26-09-2024.txt",
+      "content": "*COMANDOS DE JUAN CARLOS*\n\ntime -f : te la los logs de todos los eventos que pasen en el sistema\n\negrep : Similar al grep pero tiene mas funciones\n\ntime -f | egrep -i \"error | critical\" : Para que solo te saque los errores o los críticos en los logs\n\nls -lart\n\ncat /etc/services : ver el puerto de cualquier servicio en linux\n\n\n04-10-2024\n\n// INCOMPLETO\nps -ef | awk { print $2 $8 } | grep -v grep | grep -i \"hdp\" | awk { print $1 } | xargs kill -9 {}\\; \n",
+      "size": 473
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\ASO\\Tema 1\\Entrega de Prácticas Propuestas (Script).sh",
+      "name": "Entrega de Prácticas Propuestas (Script).sh",
+      "content": "#!/bin/bash\n$info=home/usuario/email.txt\n$fecha= date \"+%Y:%m:%w\"\n#creacion de directorios\n\nif $UID=0 then \n        mkdir /home/campaña/pub\n        mkdir /home/campaña/proyecto\n        mkdir /home/educatica/empresa/$fecha\n        for $i in $info\n        do\n        #Sacamos los datos de forma ordenada en nombre, apellidos, departamento\n                $nombre=$i | cut -d ';' -f2\n                $dept=$i | cut -d ';' -f3 | cut -d ' ' -f2\n\n                #Crear los usuarios con su direcotrio corre",
+      "size": 867
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\ASO\\Tema 1\\Entrega de Prácticas Propuestas (Script).txt",
+      "name": "Entrega de Prácticas Propuestas (Script).txt",
+      "content": "#!/bin/bash\n$info=home/usuario/email.txt\n$fecha= date \"+%Y:%m:%w\"\n#creacion de directorios\n\nif $UID=0 then \n        mkdir /home/campaña/pub\n        mkdir /home/campaña/proyecto\n        mkdir /home/educatica/empresa/$fecha\n        for $i in $info\n        do\n        #Sacamos los datos de forma ordenada en nombre, apellidos, departamento\n                $nombre=$i | cut -d ';' -f2\n                $dept=$i | cut -d ';' -f3 | cut -d ' ' -f2\n\n                #Crear los usuarios con su direcotrio corre",
+      "size": 867
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\ASO\\Tema 1\\eje15.sh",
+      "name": "eje15.sh",
+      "content": "#!/bin/bash     \n\n# Procesos en ejecución\nfunction procesos {\n    echo \"Procesos en ejecución\"\n    ps -aux\n}\n\n# Mostrar nombre solicitado 5 veces\nfunction nombre {\n    read -p $nombre \n    echo $nombre\n}\n\n# Menu \nopcion=0\nwhile $opcion<3; do\n    echo \"1. Procesos en ejecución\"\n        procesos\n        sleep 5\n    echo \"2. Mostrar nombre solicitado 5 veces\"\n        nombre\n        sleep 5\n    echo \"3. Salir\"\n    sleep 3\n    echo \"Saliendo\"\n    read -p \"Seleccione una opción: \" opcion\ndone\n",
+      "size": 496
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\ASO\\Tema 4\\LDAP_ASO.pdf",
+      "name": "LDAP_ASO.pdf",
+      "content": "%PDF-1.4\n%\n1 0 obj\n<</Title (LDAP_ASO)\n/Producer (Skia/PDF m91 Google Docs Renderer)>>\nendobj\n3 0 obj\n<</ca 1\n/BM /Normal>>\nendobj\n8 0 obj\n<</CA 1\n/ca 1\n/LC 0\n/LJ 0\n/LW 1.33333337\n/ML 10\n/SA true\n/BM /Normal>>\nendobj\n9 0 obj\n<</Type /XObject\n/Subtype /Image\n/Width 940\n/Height 686\n/ColorSpace /DeviceRGB\n/BitsPerComponent 8\n/Filter /FlateDecode\n/Length 312079>> stream\nx\u0007|\u001du/^\u00146(\u0004NJH5\u0017Il-E\u0012%_~_ؒX@JN+\u0013GV\u001d;\u0017\u0017 @\u0010\u0004I\u0010 \u0000^.[7JT!mrZ{wg޽=?0p٠\u0012B\u0015j@\fܶm\u0010spA\u0010?3\u000f\u001ce]󠠠p=>N͛7oذ뮻6nܸ:\u0003\u001f5\u001fc=Ɛi'GAAAAAAAAᓂvjx_zس\\E\u0004;,p@\u0010",
+      "size": 2303028
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\ASO\\Tema 4\\Presentación del Tema 4. LDAP..pdf",
+      "name": "Presentación del Tema 4. LDAP..pdf",
+      "content": "%PDF-1.6\n%äüöß\n2 0 obj\n<</Length 3 0 R/Filter/FlateDecode>>\nstream\nxQMK\u0003A\fϯYhdaYhm\u000bz+,x\u0010Oj\u0015i7;~ $yMBm@@H f!\n8\u0017i|x5\u000f7i\u0018f|\u0000kf;ҫvo#ʼ͍YCZ(q,\u001ek`Q\u0004wfzs\"Goΰ\nHYg^`!n\u0010݇Yv暨Q(\u0001'%?soѳ&0G;?gK\u0018\u0013٬(vQO|oŬɘs֙\u0013\u0006qcs-\u001e~\u0003j9K8e1s\\nlr :lArDrrJp:ǆpC\u001cy\nۉ4\u0014)3ZѼ@<*\u0015rrVBEfJm;\u0019\u00171\u0005̊IUafm؞\u000bS:Pb\u001f\f{lt'U\u0012shmR,N\u001d\u0003\u0010\u0013\nendstream\nendobj\n\n3 0 obj\n382\nendobj\n\n5 0 obj\n<</Type/XObject/Subtype/Image/Width 752/Height 34/BitsPerComponent 8/Length 6 0 R\n/Filter/FlateDecode/ColorSpace/DeviceRGB\n>>\nstream\nx1\n\u0000A\u0010İ\u001c\u001adrw\u001f\u0000@\u0019\u0000 N\u0000\u0000uz\u0006\u00003\u0000@\u0001\u0000\f\u0000Pg\u0000m\u000f",
+      "size": 811595
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\ASO\\Tema 5\\scripts\\contraseña y asteriscos.sh",
+      "name": "contraseña y asteriscos.sh",
+      "content": "#!/bin/bash\n# Secure sh\n#V\nsalida=\"Introduzca la contraseña: \"\n\nwhile IFS= read -p \"$salida\" -s -n 1 letra\ndo\n\n    if [[ $letra == 'a' ]] || [[ $letra == $'\\0' ]]\n    then \n        break\n    fi\n\n    salida='*'\n    contra+=\"$letra\"\ndone\n\necho\necho \"La contraseña es: $contra\"\n\n",
+      "size": 278
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\PowerShell. Actividades Propuestas\\Ejercicio1.ps1",
+      "name": "Ejercicio1.ps1",
+      "content": "﻿clear\n$content=Get-Content -Path C:\\Users\\usuario\\Desktop\\usuarios.csv | Select-Object -Skip 1 #Buscando por foros la opcion -skip es para saltarse la linea x del fichero\n# Se podria mejorar si se pone una ruta relativa en vez de absoluta\nforeach ($i in $content)\n{\n    $nombre=$i.Split(',')[0]\n    $passplana=$i.Split(',')[1]\n    $pass=ConvertTo-SecureString $passplana -AsPlainText -Force\n    New-LocalUser -Name $nombre -Password $pass  \n    Write-Host \"Se esta creando el usuario:\" $nombre \"con ",
+      "size": 744
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\PowerShell. Actividades Propuestas\\Ejercicio2.ps1",
+      "name": "Ejercicio2.ps1",
+      "content": "﻿clear\n$content=Get-Content -Path C:\\Users\\usuario\\Desktop\\usuarios.csv | Select-Object -Skip 1 #Buscando por foros la opcion -skip es para saltarse la linea x del fichero\nforeach ($i in $content)\n{\n    $nombre=$i.Split(',')[0]\n    Remove-LocalUser -Name $nombre \n    Write-Host \"Borrando el usuario:\" $usuario\n    sleep 3\n    clear\n}\n#Listo a todos los usuarios\nGet-LocalUser | Select-Object -Property Name,Enabled ",
+      "size": 429
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\PowerShell. Actividades Propuestas\\Ejercicio3.ps1",
+      "name": "Ejercicio3.ps1",
+      "content": "﻿clear\n$content=Get-Content  -Path 'C:\\Users\\usuario\\Desktop\\PowerShell. Actividades Propuestas\\ips.csv' | Select-Object -Skip 1 #Buscando por foros la opcion -skip es para saltarse la linea x del fichero\n# Se podria mejorar si se pone una ruta relativa en vez de absoluta\nforeach ($i in $content)\n{\n    $ip=$i.Split(',')[0]\n    $result=Test-Connection $ip -Count 1 -Quiet #Da $true o $false\n    if ($result)\n    {\n        Write-Host \"Se puede establecer conexióna la ip: \"$ip\n        sleep 3\n    }\n ",
+      "size": 624
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\PowerShell. Actividades Propuestas\\Ejercicio4.ps1",
+      "name": "Ejercicio4.ps1",
+      "content": "﻿clear\n$rutadisco=Read-Host \"Introduzca la ruta del disco\"\n[double]$sizedisco=Read-Host \"Introduzca el tamaño del disco en bytes\"\n\nNew-VHD -Path $diskPath -SizeBytes $diskSizeBytes -Dynamic\n    $result = $true\n\n# Mostrar resultado\nif ($result)\n{\n    Write-Host \"Se ha creado el disco virtual en: $diskPath\"\n    Write-Host \"Información del disco creado:\"\n    Get-VHD -Path $diskPath | Format-List\n    Start-Sleep -Seconds 3\n}\nelse\n{\n    Write-Host \"No se pudo crear el disco virtual en: $diskPath\"\n   ",
+      "size": 802
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\PowerShell. Actividades Propuestas\\Ejercicio5.ps1",
+      "name": "Ejercicio5.ps1",
+      "content": "﻿clear\nfunction f_menu {\n    Write-Host \"`tConfiguración IP\"\n    Write-Host \"`t1.- IP-Fija\"\n    Write-Host \"`t2.- IP-DHCP\"\n    Write-Host \"`t3.- Salir\" \n    $opcion=Read-Host \"`tIntroduce la opcion\"\n    return $opcion\n}\n\nfunction f_solicitarDatosAdaptador {\n    Write-Host \"`tAdaptadores de red disponibles:\"\n    Get-NetAdapter | Format-Table Name, InterfaceDescription\n    $interfaz=Read-Host \"`tIntroduce el nombre del interfaz\"\n    return $interfaz\n}\n\nfunction f_fija {\n    $interfaz=f_solicitarDa",
+      "size": 1851
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\PowerShell. Actividades Propuestas\\Ejercicio7.ps1",
+      "name": "Ejercicio7.ps1",
+      "content": "# 7.- Realiza la instalación de una impresora, siguiendo los pasos que se indican en los apuntes.\nclear\n\n",
+      "size": 109
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\PowerShell. Actividades Propuestas\\ips.csv",
+      "name": "ips.csv",
+      "content": "ip,nombre,localizacion\n192.168.0.1,Tauro,Dpto\n192.168.1.1,Capricornio,Aula1\n192.168.2.1,Libra,Aula2\n",
+      "size": 104
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\PowerShell. Actividades Propuestas\\usuarios.csv",
+      "name": "usuarios.csv",
+      "content": "nombre,contra\nusuario01,usuario01\nusuario02,usuario02\nusuario03,usuario03\nusuario04,usuario04",
+      "size": 97
+    }
+  ],
+  "bbdd": [
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\BD\\Tema2\\03 Instalación de Oracle 19c en Windows 10\\InstalaciónOracleWindows10_Francisco Vidal Mateo.pdf",
+      "name": "InstalaciónOracleWindows10_Francisco Vidal Mateo.pdf",
+      "content": "%PDF-1.4\n%\n1 0 obj\n<</Title <FEFF0030003300200049006E007300740061006C00610063006900F3006E0020006400650020004F007200610063006C0065002000310039006300200065006E002000570069006E0064006F00770073002000310030002D004600720061006E0063006900730063006F00200056006900640061006C0020004D006100740065006F>\n/Producer (Skia/PDF m132 Google Docs Renderer)>>\nendobj\n3 0 obj\n<</ca 1\n/BM /Normal>>\nendobj\n6 0 obj\n<</CA 1\n/ca 1\n/LC 0\n/LJ 0\n/LW 1.33333337\n/ML 10\n/SA true\n/BM /Normal>>\nendobj\n8 0 obj\n<</N 3\n/Filter /FlateD",
+      "size": 401878
+    }
+  ],
+  "iaw": [
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\IMAW\\Tema 2\\18-09-2024 IMAW.txt",
+      "name": "18-09-2024 IMAW.txt",
+      "content": "18-09-2024 IMAW\n\n\"PW=PAGINA WEB\"\n\n-¿Que es una aplicación web?\n-Estructura cliente-servidor\n-Diferencias entre TCP/UTP\n\tTCP=Con seguridad de entrega\n\tUTO=Sin seguridad de entrega\n-GET-> No encriptado\n-POST-> Encriptado\n \n-AW Especificas\n\tFramework\n\n-¿Como acceder a una pagina web (estática/dinámica)?\n\n-VENTAJAS/INCONVENIENTES (PW estáticas)\n\n-VENTAJAS/INCONVENIENTES (PW dinámica)\n\n\n",
+      "size": 414
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\IMAW\\Tema 2\\Manual de Git.txt",
+      "name": "Manual de Git.txt",
+      "content": "/////////////\nMANUAL DE GIT \n/////////////\n\n//GIT CONFIG//\n\ngit config --global user.name \"nombre-usuario\" -> Pone el nombre del usaurio\ngit config --global user.email \"email-usuario\" -> Pone el email del usaurio\ngit config --list -> Lista el la configuracion\n\n\n//GIT INIT//\n\ngit init \"nombre-repositorio\" -> Inicia el repositorio\n\n//GIT CLONE//\n\ngit clone \"url-repositorio\" -> Clona el repositorio\n\n//GIT ADD (Zona intercambio temporal)//\n\ngit add \"fichero\" -> Añade el fichero\ngit add \"carpeta\" -> ",
+      "size": 3068
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\IMAW\\Tema 2\\Prueba Inicial - Implantación de Aplicaciones Web\\!DOCTYPE.html",
+      "name": "!DOCTYPE.html",
+      "content": "<html>\n    <head>\n        <title>Ejercicio Práctico HTML y CSS</title>\n        <meta charset=UTF8>\n        <h1>Texto Informativo de las funciones de la aplicación</h1>\n        <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n        <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n        <link href=\"https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap\" rel=\"stylesheet\">\n    </head>\n\n    <body>\n        <ol>\n            <p>Caracteristica 1</p>",
+      "size": 718
+    }
+  ],
+  "programacion": [
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\EIE\\Practica\\#Bolentin 1 Python.py",
+      "name": "#Bolentin 1 Python.py",
+      "content": "#Bolentin 1 Python\n\n#1 Diseña un programa que solicite al usuario una frase y una letra, y luego indique cuántas veces aparece esa letra dentro de la frase.\n\n\n#frase=input(\"Introduce una frase: \")\n#letra=input(\"Intoduce una letra: \")\n#cont=0\n#\n#for i in frase:\n#    if i == letra:\n#        cont=cont+1\n#\n#print(f\"Hay {cont} letras\")\n\n#2 Desarrolla un programa que almacene una clave en una variable y pida al usuario que la introduzca. El programa seguirá solicitándola hasta que el usuario escriba l",
+      "size": 1607
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\.vscode\\extensions.json",
+      "name": "extensions.json",
+      "content": "{\n    \"recommendations\": [\n        \"github.copilot-chat\"\n    ]\n}",
+      "size": 68
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\Boletin_ejercicios_python_1\\1.py",
+      "name": "1.py",
+      "content": "#1 \n#Diseña un programa que solicite al usuario una frase y una letra, y luego indique cuántas veces\n#aparece esa letra dentro de la frase.\n\nfrase=input('Di la frase: ')\nletra=input('Di la letra: ')\ncont=0\n\nfor i in frase:\n    if i==letra:\n        cont=cont+1\n        \nprint(cont)",
+      "size": 294
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\Boletin_ejercicios_python_1\\10.py",
+      "name": "10.py",
+      "content": "#10\n#Crea un programa que almacene varias matrices en una lista y calcule su producto.\n#Nota: Representa las matrices como listas anidadas, donde cada fila de la matriz sea una lista\n#dentro de la lista principal.\n\n",
+      "size": 220
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\Boletin_ejercicios_python_1\\2.py",
+      "name": "2.py",
+      "content": "#2\n#Desarrolla un programa que almacene una clave en una variable y pida al usuario que la\n#introduzca. El programa seguirá solicitándola hasta que el usuario escriba la clave correcta.\ncontra='contraseña'\npalabra=''\nwhile palabra!=contra:\n    palabra=input('Intenta adivinar la contraseña: ')\nprint('Contraseña correcta')\n",
+      "size": 336
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\Boletin_ejercicios_python_1\\3.py",
+      "name": "3.py",
+      "content": "#3\n#Crea un programa que le pida al usuario una palabra y, a continuación, muestre cada una de las\n#letras de la palabra en orden inverso, es decir, comenzando por la última\n\npalabra=input('Introduce la palabra: ')\n\nfor i in range(len(palabra)-1,-1,-1):\n    print(palabra[i],end='')",
+      "size": 291
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\Boletin_ejercicios_python_1\\4.py",
+      "name": "4.py",
+      "content": "\n#4\n#Escribe un programa que pregunte al usuario por una frase y una letra, y que calcule cuántas\n#veces aparece esa letra en la frase dada.\nfrase=input('Di la frase: ')\nletra=input('Di la letra: ')\ncont=0\n\nfor i in frase:\n    if i==letra:\n        cont=cont+1\n        \nprint(cont)",
+      "size": 293
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\Boletin_ejercicios_python_1\\5.py",
+      "name": "5.py",
+      "content": "#5\n#Diseña un programa que continúe repitiendo todo lo que el usuario escriba, hasta que el usuario\n#introduzca la palabra “salir” para finalizar el programa.\npalabra=input('Escribe algo: ')\n\nwhile palabra!='salir':\n    palabra=input('Escribe algo: ')\n\nprint('Programa finalizado')\n",
+      "size": 297
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\Boletin_ejercicios_python_1\\6.py",
+      "name": "6.py",
+      "content": "#6\n#Crea un programa que solicite al usuario un número entero y dibuje en pantalla un triángulo\n#rectángulo con la altura indicada, como se muestra a continuación:\n#*\n#**\n#***\n#****\n#*****\n\naltura=int(input('Que altura quieres que tenga: '))\ni=0\nwhile i<altura:\n    print('*'*i)\n    i=i+1",
+      "size": 305
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\Boletin_ejercicios_python_1\\7.py",
+      "name": "7.py",
+      "content": "#7\n#Desarrolla un programa que almacene una lista de asignaturas de un curso (por ejemplo:\n#Matemáticas, Física, Química, Historia y Lengua). Luego, deberá preguntarle al usuario la nota\n#obtenida en cada asignatura y eliminar de la lista aquellas asignaturas aprobadas. Al finalizar,\n#mostrará las asignaturas que deberá recuperar.\n\nasignatura=['Matematicas','Fisica','Quimica','Historia','Lengua']\nlista_aprov=[]\nlista_susp=[]\n\nfor i in asignatura:\n    nota=int(input(f'¿Que nota has sacado en {i}?",
+      "size": 757
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\Boletin_ejercicios_python_1\\8.py",
+      "name": "8.py",
+      "content": "#8\n#Escribe un programa que pida una palabra al usuario y cuente cuántas veces aparece cada una\n#de las vocales en esa palabra.\n\nv_vocales=['a','e','i','o','u']\nv_palabra=input('Introduce la palabra: ')\nv_cont=0\n\nfor i in v_palabra:\n    if i in v_vocales:\n        v_cont=v_cont+1\n\nprint(f'La palabra {v_palabra} tiene {v_cont} vocales.')\n        ",
+      "size": 360
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\Boletin_ejercicios_python_1\\9.py",
+      "name": "9.py",
+      "content": "#9\n#Diseña un programa que almacene una lista de precios (por ejemplo: 50, 75, 46, 22, 80, 65, 8) y\n#determine cuál es el valor más alto y el más bajo sin utilizar las funciones max() o min().\n\nprecios=[50,75,46,22,80,65,8]\nprecios_ord=sorted(precios,reverse=True)\nprint(precios_ord)",
+      "size": 293
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\Boletin_ejercicios_python_1\\Boletín_I_Python_FranciscoVidalMateo.pdf",
+      "name": "Boletín_I_Python_FranciscoVidalMateo.pdf",
+      "content": "%PDF-1.4\n%\n1 0 obj\n<</Title <FEFF0042006F006C0065007400ED006E005F0049005F0050007900740068006F006E005F004600720061006E0063006900730063006F0056006900640061006C004D006100740065006F>\n/Producer (Skia/PDF m134 Google Docs Renderer)>>\nendobj\n3 0 obj\n<</ca 1\n/BM /Normal>>\nendobj\n10 0 obj\n<</N 3\n/Filter /FlateDecode\n/Length 296>> stream\nx}J`\u0014\u001fkA\u0014A\u000e\u000e\u0019\u001c\\hX\\[V4M؟\u0005&.ހe(\b\u000e%o\u001a$\u0005{x/@$*\u001aNs˥Q\u001d\u0018SLeZ}K}^'7\u001bv!y.'\u001bV>\u0003s<^(\u0013F>7V=fWtV%J-جS#LQ\"'IB ENPyzfISP\u0017YH)\f@\u000b&/C~\u0005\u000f\u0010{\ne6\u0006\u00171]shEH\t0W'9]Y?\u001abM4\t?K\nendstream\nendobj\n8 0",
+      "size": 467359
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\devolver_cambio.py",
+      "name": "devolver_cambio.py",
+      "content": "# Variables de entrada\nmoneda=[500,200,100,50,20,10,5,2,1]\nimporte=int(input('Introduce el importe: '))\npago=int(input('Introduce la cantidad con lo que se ha realizado el pago: '))\na_devol=importe-pago\n\n\nwhile importe>0 :\n    print('dentro del bucle')\n    if importe>pago :\n        importe=importe-pago\n\n        \n",
+      "size": 327
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\ejemplos-1.py",
+      "name": "ejemplos-1.py",
+      "content": "v_vocales=['a','e','i','o','u']\nv_palabra=input('Introduce la palabra: ')\nv_cont=0\n\nfor i in v_palabra:\n    if i in v_vocales:\n       v_cont=v_cont+1\n       \nprint('La palabra ',v_palabra,' tiene ',v_cont,' vocales.')\n        ",
+      "size": 235
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\ejemplos-2.py",
+      "name": "ejemplos-2.py",
+      "content": "v_dim=int(input(\"Dimension de la Matriz: \"))\n\nfor i in range(v_dim):\n    for j in range(v_dim):\n        if i==j:\n            print('1',end='')\n        else:\n            print('*',end='')\n    print()",
+      "size": 206
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\ejemplos-3.py",
+      "name": "ejemplos-3.py",
+      "content": "contra='contraseña'\npalabra=''\nwhile palabra!=contra:\n    palabra=input('Intenta adivinar la contraseña: ')",
+      "size": 112
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\ejemplos-4.py",
+      "name": "ejemplos-4.py",
+      "content": "palabra=input('Introduce la palabra: ')\n\nfor i in range(len(palabra)-1,-1,-1):\n    print(palabra[i])",
+      "size": 103
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\ejemplos-5.py",
+      "name": "ejemplos-5.py",
+      "content": "frase=input('Di la frase: ')\nletra=input('Di la letra: ')\ncont=0\n\nfor i in frase:\n    if i==letra:\n        cont=cont+1\n        \nprint(cont)",
+      "size": 147
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\ejemplos-6.py",
+      "name": "ejemplos-6.py",
+      "content": "altura=int(input('Que altura quieres que tenga: '))\ni=1\nwhile i<altura:\n    print('*'*i)\n    i=i+1",
+      "size": 102
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\ejemplos-7.py",
+      "name": "ejemplos-7.py",
+      "content": "asignaturas['Matematicas','Fisica','Quimica','Historia','Lengua']\n\nfor i in asignaturas:\n    nota=int(input(f'¿Que nota has sacado en {i}?'))\n    if i>5:\n        lista_apro",
+      "size": 178
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\numeros-primos.py",
+      "name": "numeros-primos.py",
+      "content": " def num_primos(n,m):\n     for i in range(n,m+1)\n         if n%!=0 or m%!=0\n             n_primo\n         else:\n     \n     \n     return n_primo",
+      "size": 150
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\palabra_palindroma.py",
+      "name": "palabra_palindroma.py",
+      "content": "palabra=input('Introduce la palabra: ')\nreves=''\n\nfor i in range(len(palabra)-1,-1,-1):\n    reves=reves+palabra[i]\n    \nif reves==palabra:\n    print(f'{palabra} es palindroma')\nelse:\n    print(f'{palabra} no es palindroma')",
+      "size": 232
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\pruebas-mysql.py",
+      "name": "pruebas-mysql.py",
+      "content": "#Pruebas conexion a mysql con pytho\n\nimport mysql.connector\n\ntry:\n    connection = mysql.connector.connect(\n        host='localhost',\n        user='root ',\n        password='root'\n    )\n\n    if connection.is_connected():\n        print(\"Connected to MySQL database\")\n\nexcept mysql.connector.Error as err:\n    print(f\"Error: {err}\")\n\nfinally:\n    if connection.is_connected():\n        connection.close()\n        print(\"MySQL connection is closed\")",
+      "size": 465
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\python-instituto\\pruebas-python.py",
+      "name": "pruebas-python.py",
+      "content": "ano=int(input('Introduce el año: '))\n\nif ano%4==0:\n    print('El año es bisiesto')\nelif ano%400==0:\n    print('El año es bisiesto')\nelse:\n    print('El año no es bisiesto')",
+      "size": 183
+    }
+  ],
+  "git": [],
+  "control": [
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\EIE\\Practica\\Practicas.py",
+      "name": "Practicas.py",
+      "content": "#Variables\nopcion=0\n#Funciones\ndef menu():\n    print(\"######## CALCULADORA ########\")\n    print(\"1. Sumar\")\n    print(\"2. Resta\")\n    print(\"3. Multiplicacion\")\n    print(\"4. Division\")\n    print(\"5. Resto\")\n    print(\"6. Salir\")\n    print(\"################################\")\n    opcion=int(input(\"Que operacion queires realizar: \"))\n\n#PP\n\nwhile opcion!=6 :\n    menu\n    if opcion != [0,1,2,3,4,5,6] :\n        print(\"Opcion no valida....\")\n        break\n    else :\n        if opcion==1:\n            p",
+      "size": 967
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\EIE\\Practica\\practica.sh",
+      "name": "practica.sh",
+      "content": "#!/bin/bash\n#Variables\n\n\n#Funciones\nfunction menu()\n{\n    cat << menu_fin\n        1. Crear usuarios\n        2. Borrar usuarios\n        3. Crear fichero/directorio\n        4. Cambiar permisos a fichero/directorio\n        5. Crear grupos\n        6. Salir\nmenu_fin\n    echo -ne \"\\tIntroduce la opcion que quieras realizar: \"\n    read opcion\n\n}\n\n\nfunction com_root()\n{\n    if [ `id -u` != 0 ]\n    then \n        echo -e \"\\t Debes de ser root para ejecurtar este script.....\"\n        exit 0\n    fi\n}\n\nfunct",
+      "size": 2278
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\EIE\\Tema 3\\Resumen Tema3.txt",
+      "name": "Resumen Tema3.txt",
+      "content": "1. Estudio de mercado\n\nConjunto de compradores y vendedores de un producto o servicio\n\n-Oferta: Cantidad de producto que los vendedores con un producoto a un determinado precio precio.\n-Demanda: Cantidad de producto que los compradores adquiriren a un precio determinado.\n\n2. Elementos Basicos del Mercado\n\n\t- 2.1 Cuota de mercado\n\t\tSe obtiene con la siguiente formula: Cuota de mercado=Mercado Actual/Mercado Total*100\n\n\t- 2.2 Producto: se define en 3 niveles\n\t\t-Basico: Satisface la necesidad mas b",
+      "size": 4720
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\EIE\\Tema1\\Tema 1 Quiero crear mi propia empresa.txt",
+      "name": "Tema 1 Quiero crear mi propia empresa.txt",
+      "content": "• 1. Trabajo por cuenta propia \n• 2. Cultura Empredendora\n• 3. ¿Que significa ser Empresario?\n• 4. La idea de negocio\n\t4.1 Creatividad e Innocavión \n\t4.2 Innovación y desarrollo económico\n\t4.3 ¿Cómo podemos innovar?\n\t4.4 Proceso de valoración de la idea inicial\n\n-----------------------------------------------------//-----------------------------------------------------\n\n• 1. Trabajo por cuenta propia \n\nLas relaciones de trabajo estan sufriendo transformaciones debido a:\n\t• Nuevas oportunidades \n",
+      "size": 5114
+    },
+    {
+      "path": "C:\\Users\\franc\\Desktop\\PC\\Instituto\\2024-2025\\EIE\\Tema2\\Resumen-presentacion.txt",
+      "name": "Resumen-presentacion.txt",
+      "content": "1. La empresa y su entorno:\n\n- Las empresas operan dentro de un contexto que incluye factores externos que influyen en su funcionamiento. Se identifican dos niveles de entorno: el macroentorno y el microentorno. El macroentorno abarca factores políticos, sociales, económicos, normativos, hábitos de consumo y tecnología, mientras que el microentorno se centra en aspectos más cercanos a la empresa, como clientes, competencia y proveedores .\n\n2. La empresa como sistema:\n\n- La empresa se considera u",
+      "size": 2528
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+node scripts/verify-integrity.mjs > verify_out.txt 2>&1

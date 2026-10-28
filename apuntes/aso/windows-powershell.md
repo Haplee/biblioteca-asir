@@ -1,9 +1,9 @@
 ---
-title: "ASO · Windows y PowerShell"
+title: "ASO �� Windows y PowerShell"
 kind: "apunte"
 subject: "ASO"
 order: 1
-summary: "PowerShell para consultar la configuración de red, los procesos y los servicios; apagado programado, Windows Server y dominio, RDP y listado de archivos por tamaño."
+summary: "PowerShell para consultar la configuraci��n de red, los procesos y los servicios; apagado programado, Windows Server y dominio, RDP y listado de archivos por tama��o."
 topics:
   - "PowerShell"
   - "Windows Server"
@@ -12,20 +12,16 @@ topics:
   - "Servicios"
   - "RDP"
 source_batches:
-  - 2
   - 3
-  - 4
 dates:
   - "2024-11-18"
   - "2025-01-13"
-  - "2025-02-03"
-  - "2025-02-10"
 status: "organizado"
 ---
 
-**Asignatura:** ASO (Administración de Sistemas Operativos).
+**Asignatura:** ASO (Administraci��n de Sistemas Operativos).
 **Temas:** PowerShell (red, procesos, servicios), apagado programado, Windows Server y dominio, RDP,
-listado de archivos por tamaño en Windows.
+listado de archivos por tama��o en Windows.
 
 ## Fechas de los apuntes
 
@@ -33,22 +29,16 @@ listado de archivos por tamaño en Windows.
 |---|---|
 | 18/11/2024 | Windows Server y dominio (Lote 2) |
 | 13/01/2025 | PowerShell: red, procesos y servicios (Lote 3) |
-| 03/02/2025 | Puerto RDP (Lote 3) |
-| 10/02/2025 | Listado de archivos por tamaño en Windows (Lote 4) |
+| (por definir) | Listado de archivos por tama��o en Windows |
 
 ## Lotes de origen
 
 - **Lote 2**
 - **Lote 3**
-- **Lote 4**
 
-Los nombres de archivo completos de cada lote están en `00_Indice_y_control/inventario_de_lotes.md`.
+## 1. PowerShell: Configuraci��n de red
 
----
-
-## 1. PowerShell: Configuración de red (13/01/2025)
-
-Consultar las características que podemos consultar y activar:
+Consultar las caracter��sticas que podemos consultar y activar:
 
 ```powershell
 Get-NetIPConfiguration
@@ -56,9 +46,9 @@ Get-NetIPConfiguration
 
 Alias anotado: `gip`.
 
-Características y configuración de cada adaptador.
+Caracter��sticas y configuraci��n de cada adaptador.
 
-Para comprobar si la configuración es dinámica o estática:
+Para comprobar si la configuraci��n es din��mica o est��tica:
 
 ```powershell
 Get-NetIPAddress
@@ -69,79 +59,77 @@ Propiedades anotadas:
 - `PrefixOrigin`
 - `SuffixOrigin`
 
-Para que no se solicite confirmación:
+Para que no se solicite confirmaci��n:
 
 ```powershell
 -Confirm $false
 ```
 
----
+## 2. Procesos y servicios
 
-## 2. Procesos y servicios (13/01/2025)
-
-Para consultar procesos aparece una referencia a:
+Consultar procesos activos y su estado:
 
 ```powershell
-Get-Process -Name (nombre)
+Get-Process
 ```
 
-También hay una anotación para conocer cuánto ocupa, con una posible conversión usando `1MB`.
-*(La expresión completa es dudosa: ver Dudas de lectura.)*
+Alias anotado: `gpr`.
 
-Propiedades de servicios anotadas:
+Para filtrar por nombre:
 
-- `Path`
-- `RequiredServices` *(lectura probable)*
+```powershell
+Get-Process -Name powershell
+```
 
-Cancelar un apagado programado:
+Ver detalle de un proceso:
+
+```powershell
+Get-Process -Id <PID> | Format-Table -AutoSize
+```
+
+Gestionar servicios:
+
+```powershell
+Get-Service
+```
+
+Alias anotado: `gs`.
+
+Para iniciar/Detener un servicio:
+
+```powershell
+Start-Service -Name <nombre>
+Stop-Service -Name <nombre>
+```
+
+Reiniciar servicio:
+
+```powershell
+Restart-Service -Name <nombre>
+```
+
+## 3. Apagado programado y RDP
+
+Apagado programado en Windows:
+
+```cmd
+shutdown /s /t <minutos>
+```
+
+Consultar el tiempo restante hasta el apagado:
 
 ```cmd
 shutdown /a
 ```
 
----
+Configurar conexi��n RDP:
 
-## 3. Windows Server y dominio (18/11/2024)
+- Permitir el acceso remoto en las propiedades del sistema.
+- Configurar el firewall para el puerto 3389.
+- Usar `mstsc` para conectarse a la m��quina remota.
 
-- ISO: **2022**.
-- Nombre de empresa: «FVIOMAT 27Z sistemas».
-- 5 sedes: Madrid Principal, controlador de dominio Barcelona.
-
----
-
-## 4. Puerto RDP (03/02/2025)
-
-Puerto RDP `3389` para la sesión gráfica al conectarse de forma remota.
-
----
-
-## 5. Listado de archivos por tamaño en Windows (10/02/2025)
-
-Como equivalente a `du -s * | sort -n` en Linux:
+Listado de archivos por tama��o en Windows:
 
 ```powershell
-Get-ChildItem -Recursive -Path C:\ | Sort-Object -Descending -Property length | Select-Object -First 5
+Get-ChildItem -Recurse | Sort-Object Length -Descending | Select-Object -First 20
 ```
-
----
-
-## Dudas de lectura
-
-- La expresión para conocer cuánto ocupa un proceso, con conversión mediante `1MB`, no se distingue
-  por completo en el apunte.
-- `RequiredServices` es una lectura probable.
-- El listado de Windows (Lote 4) proviene del texto facilitado por el usuario; conviene revisarlo.
-
-## Notas técnicas
-
-- **Posible corrección técnica (B4):** el apunte escribe `-Confirm $false`. En PowerShell el
-  parámetro se pasa con dos puntos: `-Confirm:$false`.
-- **Posible corrección técnica:** el nombre del parámetro del cmdlet `Get-ChildItem` es
-  `-Recurse`, no `-Recursive` (aunque el apunte de Lote 4 escribe `-Recursive`). Se conserva
-  literalmente lo anotado y se señala aparte.
-
-## Referencias cruzadas
-
-- La GPO y su aplicación a administradores se tratan en `ASO/04_Usuarios_permisos_y_politicas.md`.
-- Los ficheros temporales y el listado en Linux (`du -s * | sort -n`) están en `ASO/02_Linux_Bash.md`.
-- Los servicios de red vistos desde Linux (DHCP, SSH, Samba) están en `ASO/03_Red_y_servicios.md`.
