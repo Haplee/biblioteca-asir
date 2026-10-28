@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="es" data-theme="dark" data-nav="closed"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BBDD · Oracle y PL/SQL · ASIR · Fran Vidal</title><meta name="description" content="Tablas y vistas de Oracle, red de Oracle (listener.ora, puerto 1521), triggers, funciones, procedimientos, cursores, secuencias, control de flujo en PL/SQL, administración de instancia y vistas del diccionario."><meta name="author" content="Fran Vidal"><meta name="theme-color" content="#0b0c0f" media="(prefers-color-scheme: dark)"><meta name="theme-color" content="#f5f4f1" media="(prefers-color-scheme: light)"><meta name="color-scheme" content="dark light"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:ital,wght@0,400..600;1,400..600&display=swap" rel="stylesheet"><meta property="og:type" content="article"><meta property="og:site_name" content="ASIR · Fran Vidal"><meta property="og:title" content="BBDD · Oracle y PL/SQL · ASIR · Fran Vidal"><meta property="og:description" content="Tablas y vistas de Oracle, red de Oracle (listener.ora, puerto 1521), triggers, funciones, procedimientos, cursores, secuencias, control de flujo en PL/SQL, administración de instancia y vistas del diccionario."><meta property="og:locale" content="es_ES"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="BBDD · Oracle y PL/SQL · ASIR · Fran Vidal"><meta name="twitter:description" content="Tablas y vistas de Oracle, red de Oracle (listener.ora, puerto 1521), triggers, funciones, procedimientos, cursores, secuencias, control de flujo en PL/SQL, administración de instancia y vistas del diccionario."><script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('asir:theme');
+          var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+          document.documentElement.dataset.theme = theme;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      })();
+    </script><script>
+      (function () {
+        try {
+          var desktop = window.matchMedia('(min-width: 1024px)').matches;
+          var stored = localStorage.getItem('asir:nav');
+          document.documentElement.dataset.nav = desktop && stored !== 'closed' ? 'open' : 'closed';
+        } catch (e) {
+          document.documentElement.dataset.nav = 'closed';
+        }
+      })();
+    </script><noscript><style>
+        @media (min-width: 1024px) {
+          html[data-nav='closed'] .sidebar {
+            width: var(--sidebar-w);
+            padding-inline: 1rem;
+            border-right-color: var(--border);
+            overflow-y: auto;
+          }
+        }
+      </style></noscript><link rel="stylesheet" href="/_astro/BaseLayout.Bulo6LH7.css"></head> <body> <a class="skip-link" href="#contenido">Saltar al contenido</a> <div class="read-progress" aria-hidden="true"> <div class="read-progress__bar" data-read-progress></div> </div> <div class="shell"> <aside class="sidebar" id="sidebar" data-sidebar aria-label="Navegación principal"> <a class="brand" href="/" aria-label="ASIR · Fran Vidal · inicio"> <span class="brand__mark" aria-hidden="true">F</span> <span class="brand__text"> <span class="brand__name">ASIR</span> <span class="brand__signature">FRAN VIDAL</span> </span> </a> <button type="button" class="sidebar__search" data-search-open aria-label="Buscar en los apuntes"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"> <path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle>  </svg> <span>Buscar…</span> <kbd>Ctrl</kbd><kbd>K</kbd> </button> <nav aria-label="Secciones"> <div class="nav"> <a class="nav__link" href="/"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house lucide-home" aria-hidden="true"> <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>  </svg> <span>Inicio</span>  </a><a class="nav__link" href="/asignaturas/"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-library" aria-hidden="true"> <path d="m16 6 4 14"></path><path d="M12 6v14"></path><path d="M8 8v12"></path><path d="M4 4v16"></path>  </svg> <span>Todas las asignaturas</span> <span class="nav__count">18</span> </a> </div> <p class="nav__label" id="nav-subjects">Asignaturas</p> <div class="nav" aria-labelledby="nav-subjects"> <a class="nav__link" href="/asignaturas/aso/"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-terminal" aria-hidden="true"> <path d="M12 19h8"></path><path d="m4 17 6-6-6-6"></path>  </svg> <span>ASO</span> <span class="nav__count">6</span> </a><a class="nav__link" href="/asignaturas/iaw/"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe" aria-hidden="true"> <circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path>  </svg> <span>IAW</span> <span class="nav__count">5</span> </a><a class="nav__link" href="/asignaturas/bbdd/"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-database" aria-hidden="true"> <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path>  </svg> <span>BBDD</span> <span class="nav__count">6</span> </a><a class="nav__link" href="/asignaturas/programacion/"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-braces lucide-curly-braces" aria-hidden="true"> <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1"></path><path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"></path>  </svg> <span>Programación</span> <span class="nav__count">1</span> </a> </div> <p class="nav__label" id="nav-study">Estudio</p> <div class="nav" aria-labelledby="nav-study"> <a class="nav__link" href="/temas/redes-y-servicios/"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-network" aria-hidden="true"> <rect x="16" y="16" width="6" height="6" rx="1"></rect><rect x="2" y="16" width="6" height="6" rx="1"></rect><rect x="9" y="2" width="6" height="6" rx="1"></rect><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"></path><path d="M12 12V8"></path>  </svg> <span>Redes y servicios</span> </a> <a class="nav__link" href="/pendientes/"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-todo" aria-hidden="true"> <path d="M13 5h8"></path><path d="M13 12h8"></path><path d="M13 19h8"></path><path d="m3 17 2 2 4-4"></path><rect x="3" y="4" width="6" height="6" rx="1"></rect>  </svg> <span>Pendientes de revisar</span> <span class="nav__badge" data-count="pending" hidden></span> </a> <a class="nav__link" href="/lotes/"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days" aria-hidden="true"> <path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path><path d="M8 13h.01"></path><path d="M12 13h.01"></path><path d="M16 13h.01"></path><path d="M8 17h.01"></path><path d="M12 17h.01"></path><path d="M16 17h.01"></path>  </svg> <span>Índice de lotes y fechas</span> </a> </div> <p class="nav__label" id="nav-control">Procedencia</p> <div class="nav" aria-labelledby="nav-control"> <a class="nav__link" href="/apuntes/control/indice-general/"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-tree" aria-hidden="true"> <path d="M8 5h13"></path><path d="M13 12h8"></path><path d="M13 19h8"></path><path d="M3 10a2 2 0 0 0 2 2h3"></path><path d="M3 5v12a2 2 0 0 0 2 2h3"></path>  </svg> <span>Índice general</span> </a><a class="nav__link" href="/apuntes/control/inventario-de-lotes/"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers lucide-layers-3" aria-hidden="true"> <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path>  </svg> <span>Inventario de lotes</span> </a><a class="nav__link" href="/apuntes/control/registro-de-duplicados/"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"> <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>  </svg> <span>Duplicados y solapamientos</span> </a><a class="nav__link" href="/apuntes/control/dudas-y-revision/"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-alert lucide-alert-circle" aria-hidden="true"> <circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line>  </svg> <span>Dudas y revisión</span> </a> </div> </nav> </aside> <div class="main"> <header class="topbar"> <button type="button" class="icon-btn sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false" aria-label="Mostrar la navegación"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"> <path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path>  </svg> </button> <div class="topbar__breadcrumb">  </div> <div class="topbar__spacer"></div> <button type="button" class="icon-btn icon-btn--search" data-search-open aria-label="Buscar en los apuntes"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"> <path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle>  </svg> </button> <div class="theme-toggle" role="group" aria-label="Tema de la interfaz"> <button type="button" data-theme-set="dark" aria-pressed="true" title="Tema oscuro" aria-label="Usar tema oscuro"> <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" aria-hidden="true"> <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path>  </svg> </button> <button type="button" data-theme-set="light" aria-pressed="false" title="Tema claro" aria-label="Usar tema claro"> <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" aria-hidden="true"> <circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>  </svg> </button> </div> </header> <main id="contenido" tabindex="-1">   <div class="wrap wrap--narrow" data-doc-page data-doc-id="bbdd/oracle-y-pl-sql"> <div class="doc-layout"> <article> <header class="doc-header"> <a class="doc-header__subject" href="/asignaturas/bbdd/"> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap" aria-hidden="true"> <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>  </svg> BBDD · Bases de Datos </a> <h1 class="doc-header__title">BBDD · Oracle y PL/SQL</h1> <p class="doc-header__summary">Tablas y vistas de Oracle, red de Oracle (listener.ora, puerto 1521), triggers, funciones, procedimientos, cursores, secuencias, control de flujo en PL/SQL, administración de instancia y vistas del diccionario.</p> <div class="doc-header__meta"> <span class="chip chip--muted"> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock" aria-hidden="true"> <circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path>  </svg> 4 min de lectura
+</span> <span class="chip chip--muted"> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text" aria-hidden="true"> <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path>  </svg> 881 palabras
+</span> <span class="chip chip--muted"> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days" aria-hidden="true"> <path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path><path d="M8 13h.01"></path><path d="M12 13h.01"></path><path d="M16 13h.01"></path><path d="M8 17h.01"></path><path d="M12 17h.01"></path><path d="M16 17h.01"></path>  </svg> 10 fechas </span> <span class="chip chip--muted"> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers lucide-layers-3" aria-hidden="true"> <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path>  </svg> Lote 3, Lote 4, Lote 5, Lote 6 </span> </div> <div class="doc-header__meta"> <a class="chip" href="/temas/oracle/"> <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag" aria-hidden="true"> <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>  </svg> Oracle </a><a class="chip" href="/temas/pl-sql/"> <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag" aria-hidden="true"> <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>  </svg> PL/SQL </a><a class="chip" href="/temas/triggers/"> <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag" aria-hidden="true"> <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>  </svg> Triggers </a><a class="chip" href="/temas/procedimientos/"> <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag" aria-hidden="true"> <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>  </svg> Procedimientos </a><a class="chip" href="/temas/funciones/"> <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag" aria-hidden="true"> <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>  </svg> Funciones </a><a class="chip" href="/temas/cursores/"> <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag" aria-hidden="true"> <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>  </svg> Cursores </a><a class="chip" href="/temas/secuencias/"> <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag" aria-hidden="true"> <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>  </svg> Secuencias </a><a class="chip" href="/temas/listener-ora/"> <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag" aria-hidden="true"> <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>  </svg> listener.ora </a> </div> </header> <div class="doc-toolbar no-print"> <button type="button" class="btn btn--sm" data-read-toggle="bbdd/oracle-y-pl-sql" aria-pressed="false" title="Marcar como leído"> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check lucide-check-circle-2" aria-hidden="true"> <circle cx="12" cy="12" r="10"></circle><path d="m16 9-5.5 5.5L8 12"></path>  </svg> <span data-read-label>Leído</span> </button> <button type="button" class="btn btn--sm" data-pending-toggle="bbdd/oracle-y-pl-sql" aria-pressed="false" title="Marcar como pendiente de revisar"> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark" aria-hidden="true"> <path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z"></path>  </svg> <span data-pending-label>Pendiente</span> </button> <span class="doc-toolbar__spacer"></span> <button type="button" class="btn btn--sm btn--ghost" data-copy-link title="Copiar enlace"> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link-2" aria-hidden="true"> <path d="M9 17H7A5 5 0 0 1 7 7h2"></path><path d="M15 7h2a5 5 0 1 1 0 10h-2"></path><line x1="8" x2="16" y1="12" y2="12"></line>  </svg> Copiar enlace
+</button> <button type="button" class="btn btn--sm btn--ghost" data-print title="Imprimir o guardar como PDF"> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-printer" aria-hidden="true"> <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"></path><rect x="6" y="14" width="12" height="8" rx="1"></rect>  </svg> Imprimir
+</button> <a class="btn btn--sm btn--ghost" href="/asignaturas/bbdd/"> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left" aria-hidden="true"> <path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path>  </svg> Volver a la asignatura </a> </div> <div class="prose" data-prose>  <p><strong>Asignatura:</strong> BBDD (Bases de Datos).
+<strong>Temas:</strong> tablas y vistas de Oracle, red de Oracle (<code>listener.ora</code>, puerto 1521), triggers,
+funciones, procedimientos, cursores, secuencias, control de flujo en PL/SQL, administración de
+instancia y vistas del diccionario.</p>
+<h2 id="fechas-de-los-apuntes">Fechas de los apuntes</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla (desplazable horizontalmente)">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Fecha</th><th>Contenido</th><th>Lote</th></tr></thead><tbody><tr><td>28/10/2024 a 29/10/2024</td><td>Administración de instancia</td><td>6</td></tr><tr><td>05/11/2024</td><td>Conceptos y tablas de Oracle</td><td>4</td></tr><tr><td>25/11/2024</td><td>(Tablespaces, en <code>05_…almacenamiento</code>)</td><td>5</td></tr><tr><td>14/01/2025</td><td>Conceptos de PL/SQL</td><td>5</td></tr><tr><td>20/01/2025</td><td>Sintaxis PL/SQL</td><td>5</td></tr><tr><td>21/01/2025</td><td>PL/SQL: control de flujo</td><td>6</td></tr><tr><td>27/01/2025</td><td>Cursores</td><td>3</td></tr><tr><td>28/01/2025</td><td>Tipos y procedimientos</td><td>3</td></tr><tr><td>04/02/2025</td><td><code>MOD</code>, <code>%ROWCOUNT</code></td><td>3</td></tr><tr><td>11/02/2025</td><td><code>ROWNUM</code></td><td>3</td></tr><tr><td>(sin fecha)</td><td>Triggers, sinónimos, funciones, secuencias</td><td>3 y 6</td></tr></tbody></table></div>
+<h2 id="lotes-de-origen">Lotes de origen</h2>
+<ul>
+<li><strong>Lote 3</strong></li>
+<li><strong>Lote 4</strong></li>
+<li><strong>Lote 5</strong></li>
+<li><strong>Lote 6</strong></li>
+</ul>
+<hr>
+<h2 id="1-conceptos-y-tablas-de-oracle-05112024-lote-4">1. Conceptos y tablas de Oracle (05/11/2024, Lote 4)</h2>
+<p><strong>Tablas más usadas:</strong></p>
+<ul>
+<li><strong>Tablas base:</strong> almacenan información de la BD (NO TOCAR).</li>
+<li><strong>Vistas (estáticas).</strong></li>
+<li><strong>Vistas dinámicas (tiempo real).</strong></li>
+</ul>
+<p>Comando de formato:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">col </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> format A10;</span></span></code></pre>
+<p><strong>Protocolos:</strong></p>
+<ul>
+<li><strong>Protocolo BEQ:</strong> conexión en la misma máquina.</li>
+<li><strong>SQL*NET:</strong> framework de red para conectar cliente al servidor.</li>
+<li><strong>Protocolo PGA:</strong> conexión remota al servidor.</li>
+</ul>
+<p><strong>Archivos de red</strong> (ruta: <code>/opt/oracle/product/19c/dbhome_1/network/admin</code>):</p>
+<ul>
+<li>Puerto por defecto: <code>1521</code></li>
+<li><code>listener.ora</code> → servidor</li>
+<li><code>tnsnames.ora</code> → cliente y servidor</li>
+<li><code>sqlnet.ora</code> → cliente y servidor (a no ser que los 2 ficheros anteriores estén mal, NO TOCAR)</li>
+</ul>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>LSNRCTL -> se ejecuta como usuario normal</span></span></code></pre>
+<hr>
+<h2 id="2-conceptos-de-plsql-14012025-lote-5">2. Conceptos de PL/SQL (14/01/2025, Lote 5)</h2>
+<ul>
+<li><strong>Bloque:</strong> trozo de código que no se almacena y que se ejecuta; sin nombre.</li>
+<li><strong>Programa:</strong> conjunto de bloques; sí se almacena.</li>
+<li><strong>Función:</strong> programa que devuelve un valor. En el apunte aparece «siempre».</li>
+<li><strong>Procedimiento:</strong> programa que no devuelve un valor; se puede almacenar en una variable y luego
+mostrarla. <strong>[Definición resumida en la hoja]</strong></li>
+<li><strong>Trigger:</strong> programa que se ejecuta cuando ocurre una situación o evento en el sistema.</li>
+<li><strong>Paquete:</strong> conjunto de procedimientos y funciones.</li>
+</ul>
+<hr>
+<h2 id="3-sintaxis-plsql-20012025-lote-5">3. Sintaxis PL/SQL (20/01/2025, Lote 5)</h2>
+<p>La anotación indica: <strong>«Siempre poner IS, no AS»</strong>.</p>
+<p>Comentarios de una línea:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">-- Comentario</span></span></code></pre>
+<p>Comentarios de varias líneas:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/*</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">Comentario</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">*/</span></span></code></pre>
+<p>Asignación:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span></span></code></pre>
+<p>También se anota <code>DEFAULT</code> con una advertencia. <strong>[Contexto insuficiente]</strong></p>
+<p>Escribir por pantalla:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">DBMS_OUTPUT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">PUT_LINE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(v);</span></span></code></pre>
+<p>Tipo de una variable según una columna:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">%</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">TYPE</span></span></code></pre>
+<p>La anotación indica que hereda el tipo definido en la tabla, pero no la restricción <code>NOT NULL</code>.</p>
+<p>Fecha del sistema:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">SYSDATE</span></span></code></pre>
+<p>También aparece una referencia a <code>FROM sys.dual</code>.</p>
+<p>Activar salida por pantalla:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">SET</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> SERVEROUTPUT </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">ON</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
+<p>Concatenar:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">||</span></span></code></pre>
+<p>Número aleatorio:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">DBMS_RANDOM</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">RANDOM</span></span></code></pre>
+<p>Línea en blanco:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">DBMS_OUTPUT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">NEW_LINE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span></code></pre>
+<hr>
+<h2 id="4-control-de-flujo-en-plsql-21012025-lote-6">4. Control de flujo en PL/SQL (21/01/2025, Lote 6)</h2>
+<ul>
+<li><code>merge</code> → Inserta y Actualiza.</li>
+</ul>
+<p><strong>CASE:</strong> el valor que devuelve se debe almacenar siempre en una variable.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">v :</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> case</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> v_2</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  when</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'x'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> then</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'x'</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  when</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'y'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> then</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'y'</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  else</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'error'</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">end</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
+<p><strong>LOOP:</strong> mínimo se ejecuta 1 vez. Se le pueden asignar etiquetas.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;&#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> mi_bucle </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">>></span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">loop</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  -- instrucciones</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">end</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> loop</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x3C;&#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> mi_bucle </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">>></span></span></code></pre>
+<p><strong>WHILE:</strong> se ejecuta 0 o n veces. (No se le ponen etiquetas.)</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">while</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> condición </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">loop</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  -- instrucciones</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">end</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> loop</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
+<p><strong>FOR:</strong> (se pueden poner etiquetas.)</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">in</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> select</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> dni, nombre </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> alumnos</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">-- x actúa como un registro con los tipos de la select</span></span></code></pre>
+<ul>
+<li>Se usa <code>%rowtype</code>.</li>
+</ul>
+<hr>
+<h2 id="5-secuencias-lote-6">5. Secuencias (Lote 6)</h2>
+<ul>
+<li>Nunca van hacia atrás, siempre hacia delante.</li>
+</ul>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">create</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> sequence</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> nombre</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">increment </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">by</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> n</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">start</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> with</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> n</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">maxvalue n ;</span></span></code></pre>
+<p>Consultar valores:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">select</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> nombre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">nextval</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">currval </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> dual;</span></span></code></pre>
+<p>(<code>nextval</code> = siguiente valor, <code>currval</code> = valor actual.)</p>
+<hr>
+<h2 id="6-triggers-lote-3">6. Triggers (Lote 3)</h2>
+<h3 id="trigger-para-update">Trigger para <code>UPDATE</code></h3>
+<p>Estructura anotada:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">CREATE OR REPLACE</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> TRIGGER</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> nombre</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">BEFORE</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> UPDATE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> OF campo</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">ON</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> tabla</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">FOR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> EACH </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">ROW</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">BEGIN</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">END</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
+<p>El campo que acompaña a <code>UPDATE OF</code> no se distingue con seguridad.</p>
+<hr>
+<h2 id="7-consultas-y-funciones-lote-3">7. Consultas y funciones (Lote 3)</h2>
+<h3 id="consultar-las-tablas-del-usuario-hr">Consultar las tablas del usuario HR</h3>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">SELECT</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> *</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">FROM</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> all_objects</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">WHERE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> object_type </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'TABLE'</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  AND</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> owner</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'HR'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
+<h3 id="rownum-11022025"><code>ROWNUM</code> (11/02/2025)</h3>
+<p>Consulta anotada:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">SELECT</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> *</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">FROM</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> nombre_tabla</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">WHERE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> ROWNUM ...;</span></span></code></pre>
+<p>Aparecen operadores de comparación <code>></code>, <code>>=</code>, <code>&#x3C;</code> y <code>&#x3C;=</code>, relacionados con números. La condición
+concreta es ilegible.</p>
+<h3 id="trunc"><code>TRUNC</code></h3>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">TRUNC(x, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
+<p>En el apunte se indica que trunca el valor a las decenas.</p>
+<p>Ejemplo:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>47 → 40</span></span></code></pre>
+<h3 id="sinónimos-y-funciones">Sinónimos y funciones</h3>
+<p><strong>Sinónimos = alias.</strong></p>
+<p>Esqueleto de función:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">CREATE OR REPLACE</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> FUNCTION</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> nombre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (v tipo)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">RETURN</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> tipo</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">IS</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    -- Declaraciones de variables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">BEGIN</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    RETURN</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> v;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">END</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> nombre;</span></span></code></pre>
+<p>La línea <code>RETURN v</code> es orientativa; el apunte presenta el esquema general.</p>
+<h3 id="04022025-mod-y-rowcount">04/02/2025: <code>MOD</code> y <code>%ROWCOUNT</code></h3>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">MOD()</span></span></code></pre>
+<p>En la hoja aparece relacionado con <code>%</code>.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">%ROWCOUNT</span></span></code></pre>
+<p>Número de filas procesadas por el cursor.</p>
+<hr>
+<h2 id="8-cursores-27012025-lote-3">8. Cursores (27/01/2025, Lote 3)</h2>
+<p>En la página se citan los esquemas o usuarios <code>HR</code>, <code>USERS</code>, <code>TEMP</code> y <code>ORACLE_HOME</code>
+<strong><span class="asir-flag asir-flag--dudosa" data-flag="dudosa" title="Lectura dudosa">[parte del texto es dudosa]</span></strong>.</p>
+<p>Pasos para trabajar con un cursor:</p>
+<ol>
+<li>Declarar el cursor.</li>
+<li>Abrir el cursor.</li>
+<li>Procesar el cursor.</li>
+<li>Cerrar el cursor.</li>
+</ol>
+<p>Estructura aproximada:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">CURSOR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> nombre </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">IS</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    SELECT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> ...</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    FROM</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> ...</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    JOIN</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> tabla </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">USING</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (campo)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    GROUP BY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> campo;</span></span></code></pre>
+<p>Abrir:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">OPEN</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> cursor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
+<p>Obtener datos:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">FETCH</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> cursor</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> INTO</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> variables;</span></span></code></pre>
+<p>Las variables deben tener el tipo correspondiente a los datos recibidos; se menciona <code>%TYPE</code>.</p>
+<p>Procesar:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">LOOP</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    ...</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    EXIT </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">WHEN</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> ...;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">END</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> LOOP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
+<p>Cerrar:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">CLOSE</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> cursor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
+<p>Atributos de cursores:</p>
+<ul>
+<li><code>%ISOPEN</code>: indica si el cursor está abierto.</li>
+<li><code>%NOTFOUND</code>: verdadero cuando no se encuentran más filas.</li>
+<li><code>%FOUND</code>: verdadero cuando se ha encontrado una fila.</li>
+<li><code>%ROWCOUNT</code>: contador de filas procesadas.</li>
+</ul>
+<hr>
+<h2 id="9-tipos-y-procedimientos-28012025-lote-3">9. Tipos y procedimientos (28/01/2025, Lote 3)</h2>
+<p>Para ver la estructura de una tabla:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">DESC</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> nombre_base_de_datos</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">tabla</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
+<p>Tipo de una variable según una columna:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">nombre_variable </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">tabla</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">campo</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">%</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">TYPE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
+<p>Lanzar un procedimiento:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">EXEC</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> nombre(parametros);</span></span></code></pre>
+<hr>
+<h2 id="10-administración-de-instancia-28102024-a-29102024-lote-6">10. Administración de instancia (28/10/2024 a 29/10/2024, Lote 6)</h2>
+<ul>
+<li>En terminal: <code>export CV_ASSUME_DIS</code></li>
+<li>Para la práctica de Debian y Rocky → <code>OEL7.8</code></li>
+<li>Ruta: <code>$ORACLE_HOME/dbs</code> (se deben encontrar los ficheros <code>spfile.ora</code> y el <code>init.ora</code>)</li>
+</ul>
+<p><strong>Tipos de parada:</strong></p>
+<ul>
+<li><code>Normal</code>: espera a que termine la sesión.</li>
+<li><code>Immediate</code>: termina todas las transacciones y cierra.</li>
+<li><code>Transactional</code>: espera que terminen las transacciones y cierra.</li>
+<li><code>Abort</code>: cierra todo.</li>
+</ul>
+<p><strong>Parámetros de sesión/sistema:</strong></p>
+<ul>
+<li><code>Alter system</code> → cambios permanentes.</li>
+<li><code>Alter session</code> → cambios en la sesión.</li>
+<li><code>Nombre_usu</code> → siempre mayúscula.</li>
+<li><code>contraseña_user</code> → key sensitive.</li>
+<li><code>alter session set "_ORACLE_SCRIPT"=TRUE</code></li>
+<li>Comandos de visualización: <code>show parameter</code> o <code>select * from v$parameter</code></li>
+<li>Diferencia: <code>v$PARAMETER</code> (valores en tiempo real) ≠ <code>v$SPPARAMETER</code> (valores base).</li>
+</ul>
+<hr>
+<h2 id="11-vistas-del-diccionario-lote-6">11. Vistas del diccionario (Lote 6)</h2>
+<ul>
+<li><code>DBA_</code>: todos los objetos del sistema.</li>
+<li><code>ALL_</code>: objetos a los que tengo acceso.</li>
+<li><code>USER_</code>: mis objetos.</li>
+<li><code>V$</code>: vistas dinámicas.</li>
+<li><code>GV$</code>: vistas globales.</li>
+</ul>
+<hr>
+<h2 id="dudas-de-lectura">Dudas de lectura</h2>
+<ul>
+<li>Campo tras <code>UPDATE OF</code> en el trigger (no se distingue).</li>
+<li>Condición de <code>ROWNUM</code> (ilegible).</li>
+<li>Esquemas o usuarios <code>HR</code>, <code>USERS</code>, <code>TEMP</code> y <code>ORACLE_HOME</code> (parte dudosa).</li>
+<li>«Función: programa que devuelve un valor. En el apunte aparece “siempre”.»</li>
+<li><code>DEFAULT</code> con una advertencia (contexto insuficiente).</li>
+</ul>
+<h2 id="notas-técnicas">Notas técnicas</h2>
+<ul>
+<li><strong>Posible corrección técnica (B5):</strong> el apunte escribe <code>LSNRCTL</code>; el ejecutable de Oracle es
+<code>lsnrctl</code> (minúsculas).</li>
+<li><strong>Posible corrección técnica (B6):</strong> <code>for x in select dni, nombre from alumnos</code> no es sintaxis
+PL/SQL válida por sí sola; lo habitual es <code>FOR x IN (SELECT ...) LOOP ... END LOOP;</code>.</li>
+<li><strong>Posible corrección técnica (B7):</strong> <code>export CV_ASSUME_DIS</code> parece incompleto; probablemente sea
+<code>export CV_ASSUME_DISTID=OEL7.8</code> o similar. Se conserva la lectura literal.</li>
+<li>El apunte indica «Siempre poner IS, no AS» al declarar subprogramas PL/SQL.</li>
+</ul>
+<h2 id="referencias-cruzadas">Referencias cruzadas</h2>
+<ul>
+<li>Usuarios, roles, perfiles y privilegios: <code>BBDD/04_Usuarios_roles_y_privilegios.md</code>.</li>
+<li>Tablespaces y almacenamiento (incluye la creación de tablespaces del 19/12/2024): <code>BBDD/05_Tablespaces_y_almacenamiento.md</code>.</li>
+<li>Fundamentos de SGBD y diccionario de datos: <code>BBDD/01_Fundamentos_SGBD.md</code>.</li>
+</ul>  </div> <nav class="docnav no-print" aria-label="Navegación entre apuntes"> <a class="docnav__item" href="/apuntes/bbdd/sql-y-mysql/"> <span class="docnav__dir"> <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left" aria-hidden="true"> <path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path>  </svg> Anterior
+</span> <span class="docnav__title">BBDD · SQL y MySQL</span> </a> <a class="docnav__item docnav__item--next" href="/apuntes/bbdd/usuarios-roles-y-privilegios/"> <span class="docnav__dir">
+Siguiente <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"> <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>  </svg> </span> <span class="docnav__title">BBDD · Usuarios, roles y privilegios</span> </a> </nav> </article> <nav class="toc no-print" aria-labelledby="toc-title"> <p class="toc__title" id="toc-title"> <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-tree" aria-hidden="true"> <path d="M8 5h13"></path><path d="M13 12h8"></path><path d="M13 19h8"></path><path d="M3 10a2 2 0 0 0 2 2h3"></path><path d="M3 5v12a2 2 0 0 0 2 2h3"></path>  </svg> En esta página
+</p> <ul class="toc__list"> <li> <a class="toc__link" href="#fechas-de-los-apuntes" data-toc-depth="2"> Fechas de los apuntes </a> </li><li> <a class="toc__link" href="#lotes-de-origen" data-toc-depth="2"> Lotes de origen </a> </li><li> <a class="toc__link" href="#1-conceptos-y-tablas-de-oracle-05112024-lote-4" data-toc-depth="2"> 1. Conceptos y tablas de Oracle (05/11/2024, Lote 4) </a> </li><li> <a class="toc__link" href="#2-conceptos-de-plsql-14012025-lote-5" data-toc-depth="2"> 2. Conceptos de PL/SQL (14/01/2025, Lote 5) </a> </li><li> <a class="toc__link" href="#3-sintaxis-plsql-20012025-lote-5" data-toc-depth="2"> 3. Sintaxis PL/SQL (20/01/2025, Lote 5) </a> </li><li> <a class="toc__link" href="#4-control-de-flujo-en-plsql-21012025-lote-6" data-toc-depth="2"> 4. Control de flujo en PL/SQL (21/01/2025, Lote 6) </a> </li><li> <a class="toc__link" href="#5-secuencias-lote-6" data-toc-depth="2"> 5. Secuencias (Lote 6) </a> </li><li> <a class="toc__link" href="#6-triggers-lote-3" data-toc-depth="2"> 6. Triggers (Lote 3) </a> </li><li> <a class="toc__link" href="#trigger-para-update" data-toc-depth="3" style="padding-left:1.2rem"> Trigger para UPDATE </a> </li><li> <a class="toc__link" href="#7-consultas-y-funciones-lote-3" data-toc-depth="2"> 7. Consultas y funciones (Lote 3) </a> </li><li> <a class="toc__link" href="#consultar-las-tablas-del-usuario-hr" data-toc-depth="3" style="padding-left:1.2rem"> Consultar las tablas del usuario HR </a> </li><li> <a class="toc__link" href="#rownum-11022025" data-toc-depth="3" style="padding-left:1.2rem"> ROWNUM (11/02/2025) </a> </li><li> <a class="toc__link" href="#trunc" data-toc-depth="3" style="padding-left:1.2rem"> TRUNC </a> </li><li> <a class="toc__link" href="#sinónimos-y-funciones" data-toc-depth="3" style="padding-left:1.2rem"> Sinónimos y funciones </a> </li><li> <a class="toc__link" href="#04022025-mod-y-rowcount" data-toc-depth="3" style="padding-left:1.2rem"> 04/02/2025: MOD y %ROWCOUNT </a> </li><li> <a class="toc__link" href="#8-cursores-27012025-lote-3" data-toc-depth="2"> 8. Cursores (27/01/2025, Lote 3) </a> </li><li> <a class="toc__link" href="#9-tipos-y-procedimientos-28012025-lote-3" data-toc-depth="2"> 9. Tipos y procedimientos (28/01/2025, Lote 3) </a> </li><li> <a class="toc__link" href="#10-administración-de-instancia-28102024-a-29102024-lote-6" data-toc-depth="2"> 10. Administración de instancia (28/10/2024 a 29/10/2024, Lote 6) </a> </li><li> <a class="toc__link" href="#11-vistas-del-diccionario-lote-6" data-toc-depth="2"> 11. Vistas del diccionario (Lote 6) </a> </li><li> <a class="toc__link" href="#dudas-de-lectura" data-toc-depth="2"> Dudas de lectura </a> </li><li> <a class="toc__link" href="#notas-técnicas" data-toc-depth="2"> Notas técnicas </a> </li><li> <a class="toc__link" href="#referencias-cruzadas" data-toc-depth="2"> Referencias cruzadas </a> </li> </ul> </nav> </div> </div>  </main> <footer class="site-foot"> <span> <strong>ASIR · Fran Vidal</strong> · Biblioteca técnica personal </span> <span> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check" aria-hidden="true"> <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path>  </svg> Datos guardados solo en tu navegador
+</span> <span class="site-foot__spacer"></span> <a href="/apuntes/control/indice-general/">Índice general</a> <a href="/apuntes/control/inventario-de-lotes/">Lotes de origen</a> <a href="/apuntes/control/dudas-y-revision/">Dudas y revisión</a> </footer> </div> </div> <div class="drawer-backdrop" data-drawer-backdrop></div> <div class="search-overlay" data-search-overlay hidden> <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="search-title"> <h2 id="search-title" class="visually-hidden">Buscar en los apuntes</h2> <div class="search-field"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"> <path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle>  </svg> <input type="search" data-search-input placeholder="Buscar apuntes, comandos, temas…" aria-label="Términos de búsqueda" autocomplete="off" autocapitalize="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="search-results"> <button type="button" class="icon-btn" data-search-close aria-label="Cerrar búsqueda"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x" aria-hidden="true"> <path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>  </svg> </button> </div> <div class="search-filters"> <button type="button" class="chip" data-search-subject="" aria-pressed="true">
+Todas
+</button> <button type="button" class="chip" data-search-subject="ASO" aria-pressed="false"> ASO </button><button type="button" class="chip" data-search-subject="IAW" aria-pressed="false"> IAW </button><button type="button" class="chip" data-search-subject="BBDD" aria-pressed="false"> BBDD </button><button type="button" class="chip" data-search-subject="Programación" aria-pressed="false"> Programación </button><button type="button" class="chip" data-search-subject="Git" aria-pressed="false"> Git </button> <label class="search-filters__topic"> <span class="visually-hidden">Filtrar por tema</span> <select data-search-topic> <option value="">Todos los temas</option> </select> </label> </div> <div class="search-results" id="search-results" data-search-results></div> <p class="visually-hidden" role="status" data-search-status></p> <div class="search-foot"> <span><kbd>↑</kbd><kbd>↓</kbd> navegar</span> <span><kbd>Enter</kbd> abrir</span> <span><kbd>Esc</kbd> cerrar</span> <span class="search-foot__local"> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check" aria-hidden="true"> <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path>  </svg> Índice local
+</span> </div> </div> </div><script type="module" src="/_astro/BaseLayout.astro_astro_type_script_index_0_lang.Dgt7DzhQ.js"></script></body> </html>
