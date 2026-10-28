@@ -1,5 +1,5 @@
 ---
-title: "ASO �� PowerShell Prácticas"
+title: "ASO - PowerShell Prácticas"
 kind: "apunte"
 subject: "ASO"
 order: 3

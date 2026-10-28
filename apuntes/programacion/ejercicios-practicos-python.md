@@ -1,5 +1,5 @@
 ---
-title: "Programación / Python �� Ejercicios prácticos"
+title: "Programación / Python - Ejercicios prácticos"
 kind: "apunte"
 subject: "Programación"
 order: 2

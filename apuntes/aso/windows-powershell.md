@@ -1,9 +1,9 @@
 ---
-title: "ASO �� Windows y PowerShell"
+title: "ASO - Windows y PowerShell"
 kind: "apunte"
 subject: "ASO"
 order: 1
-summary: "PowerShell para consultar la configuraci��n de red, los procesos y los servicios; apagado programado, Windows Server y dominio, RDP y listado de archivos por tama��o."
+summary: "PowerShell para consultar la configuraci-n de red, los procesos y los servicios; apagado programado, Windows Server y dominio, RDP y listado de archivos por tama-o."
 topics:
   - "PowerShell"
   - "Windows Server"
@@ -19,9 +19,9 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** ASO (Administraci��n de Sistemas Operativos).
+**Asignatura:** ASO (Administraci-n de Sistemas Operativos).
 **Temas:** PowerShell (red, procesos, servicios), apagado programado, Windows Server y dominio, RDP,
-listado de archivos por tama��o en Windows.
+listado de archivos por tama-o en Windows.
 
 ## Fechas de los apuntes
 
@@ -29,16 +29,16 @@ listado de archivos por tama��o en Windows.
 |---|---|
 | 18/11/2024 | Windows Server y dominio (Lote 2) |
 | 13/01/2025 | PowerShell: red, procesos y servicios (Lote 3) |
-| (por definir) | Listado de archivos por tama��o en Windows |
+| (por definir) | Listado de archivos por tama-o en Windows |
 
 ## Lotes de origen
 
 - **Lote 2**
 - **Lote 3**
 
-## 1. PowerShell: Configuraci��n de red
+## 1. PowerShell: Configuraci-n de red
 
-Consultar las caracter��sticas que podemos consultar y activar:
+Consultar las caracter-sticas que podemos consultar y activar:
 
 ```powershell
 Get-NetIPConfiguration
@@ -46,9 +46,9 @@ Get-NetIPConfiguration
 
 Alias anotado: `gip`.
 
-Caracter��sticas y configuraci��n de cada adaptador.
+Caracter-sticas y configuraci-n de cada adaptador.
 
-Para comprobar si la configuraci��n es din��mica o est��tica:
+Para comprobar si la configuraci-n es din-mica o est-tica:
 
 ```powershell
 Get-NetIPAddress
@@ -59,7 +59,7 @@ Propiedades anotadas:
 - `PrefixOrigin`
 - `SuffixOrigin`
 
-Para que no se solicite confirmaci��n:
+Para que no se solicite confirmaci-n:
 
 ```powershell
 -Confirm $false
@@ -122,13 +122,13 @@ Consultar el tiempo restante hasta el apagado:
 shutdown /a
 ```
 
-Configurar conexi��n RDP:
+Configurar conexi-n RDP:
 
 - Permitir el acceso remoto en las propiedades del sistema.
 - Configurar el firewall para el puerto 3389.
-- Usar `mstsc` para conectarse a la m��quina remota.
+- Usar `mstsc` para conectarse a la m-quina remota.
 
-Listado de archivos por tama��o en Windows:
+Listado de archivos por tama-o en Windows:
 
 ```powershell
 Get-ChildItem -Recurse | Sort-Object Length -Descending | Select-Object -First 20

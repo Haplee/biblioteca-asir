@@ -1,9 +1,9 @@
 ---
-title: "Git �� Comandos básicos"
+title: "Git - Comandos básicos"
 kind: "apunte"
 subject: "git"
 order: 1
-summary: "Manual completo de Git: configuraci�n, init, clone, add, commit, status, log, ramas, merge, rebase, checkout, diff y repositorios remotos."
+summary: "Manual completo de Git: configuraciñn, init, clone, add, commit, status, log, ramas, merge, rebase, checkout, diff y repositorios remotos."
 topics:
   - "Git"
   - "Versionado"
@@ -20,7 +20,7 @@ status: "organizado"
 ---
 
 **Asignatura:** Git (Control de versiones).
-**Temas:** configuraci�n inicial, comandos b�sicos, gesti�n de ramas, merge, rebase, operaciones con repositorios remotos.
+**Temas:** configuraciñn inicial, comandos bñsicos, gestiñn de ramas, merge, rebase, operaciones con repositorios remotos.
 
 ## Fechas de los apuntes
 
@@ -34,12 +34,12 @@ status: "organizado"
 
 ---
 
-## 1. Configuraci�n inicial
+## 1. Configuraciñn inicial
 
 ```bash
 git config --global user.nombre "nombre-usuario" -> Pone el nombre del usuario
 git config --global user.email "email-usuario" -> Pone el email del usuario
-git config --list -> Lista la configuraci�n
+git config --list -> Lista la configuraciñn
 ```
 
 ## 2. Iniciar un repositorio
@@ -66,7 +66,7 @@ git add . -> Añade todo los archivos no guardados
 
 ```bash
 git commit -m "mensaje" -> Guardamos los cambios realizados y le añadimos un mensaje
-git commit --amend -m "mensaje" -> Cambiamos el �ltimo mensaje de commit por uno nuevo
+git commit --amend -m "mensaje" -> Cambiamos el ñltimo mensaje de commit por uno nuevo
 ```
 
 ## 6. Estado del repositorio
@@ -79,24 +79,24 @@ git status -> Muestra el estado actual del repositorio (ficheros modificados, st
 
 ```bash
 git log -> Muestra el historial de commits
-git log --oneline -> Muestra el h de commits con una salida m�s compacta
+git log --oneline -> Muestra el h de commits con una salida mñs compacta
 git log --graph -> Muestra el historial en forma de grado
-git show -> Muestra la informaci�n del �ltimo commit
-git annotate -> Muestra el contenido de un fichero con la informaci�n del �ltimo commit
+git show -> Muestra la informaciñn del ñltimo commit
+git annotate -> Muestra el contenido de un fichero con la informaciñn del ñltimo commit
 ```
 
 ## 8. Diferencias
 
 ```bash
 git diff -> Muestra las diferencias entre directorio de trabajo y la zona de intercambio temporal
-git diff --cached -> Muestra las diferencias entre la zona de intercambio temporal y el �ltimo commit
-git diff HEAD -> Muestra la diferencia entre directorio de trabajo y el �ltimo commit
+git diff --cached -> Muestra las diferencias entre la zona de intercambio temporal y el ñltimo commit
+git diff HEAD -> Muestra la diferencia entre directorio de trabajo y el ñltimo commit
 ```
 
 ## 9. Checkout y Reset
 
 ```bash
-git checkout "commit" -> Volver a la versi�n anterior
+git checkout "commit" -> Volver a la versiñn anterior
 git reset "fichero" -> Elimina los cambios del fichero
 git reset --hard "commit" -> Elimina todos los cambios desde el commit
 git reset "commit" -> Actualiza el HEAD al commit
@@ -107,7 +107,7 @@ git reset "commit" -> Actualiza el HEAD al commit
 ```bash
 git branch "nombre" -> Crea una nueva rama
 git branch -> Muestra ramas activas del repositorio
-git checkout "rama" -> Actualiza los ficheros del directorio de trabajo a la �ltima versi�n del repositorio correspondiente a la rama
+git checkout "rama" -> Actualiza los ficheros del directorio de trabajo a la ñltima versiñn del repositorio correspondiente a la rama
 git checkout -b "rama" -> Crea una nueva rama con el nombre de rama y la activa
 ```
 

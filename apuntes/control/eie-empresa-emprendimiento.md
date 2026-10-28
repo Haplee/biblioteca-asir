@@ -1,5 +1,5 @@
 ---
-title: "Control �� EIE - Empresa e Iniciativa Emprendedora"
+title: "Control - EIE - Empresa e Iniciativa Emprendedora"
 kind: "apunte"
 subject: "Control"
 order: 5

@@ -1,14 +1,14 @@
 ---
-title: "IAW �� Joomla"
+title: "IAW - Joomla"
 kind: "apunte"
 subject: "IAW"
 order: 3
-summary: "Plantillas y posiciones de m�dulos, instalaci�n de Joomla, base de datos, inserci�n de v�deos y mapas, men�s y sindicaci�n de contenido (RSS)."
+summary: "Plantillas y posiciones de mñdulos, instalaciñn de Joomla, base de datos, inserciñn de vñdeos y mapas, menñs y sindicaciñn de contenido (RSS)."
 topics:
   - "Joomla"
   - "CMS"
   - "Plantillas"
-  - "Men�s"
+  - "Menñs"
   - "RSS"
   - "MySQL"
 source_batches:
@@ -19,17 +19,17 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** IAW (Implantaci�n de Aplicaciones Web).
-**Temas:** plantillas y posiciones de m�dulos, instalaci�n de Joomla, base de datos, inserci�n de
-v�deos y mapas, men�s y distribuci�n del contenido, sindicaci�n de contenido (RSS).
+**Asignatura:** IAW (Implantaciñn de Aplicaciones Web).
+**Temas:** plantillas y posiciones de mñdulos, instalaciñn de Joomla, base de datos, inserciñn de
+vñdeos y mapas, menñs y distribuciñn del contenido, sindicaciñn de contenido (RSS).
 
 ## Fechas de los apuntes
 
 | Fecha | Contenido |
 |---|---|
-| 20/11/2024 | Configuraci�n de equipos y acceso, denegaci�n del backend (relacionado con Joomla) |
-| (sin fecha) | Plantillas, instalaci�n, v�deos, mapas, men�s |
-| 04/12/2024 | Sindicaci�n de contenido (RSS) |
+| 20/11/2024 | Configuraciñn de equipos y acceso, denegaciñn del backend (relacionado con Joomla) |
+| (sin fecha) | Plantillas, instalaciñn, vñdeos, mapas, menñs |
+| 04/12/2024 | Sindicaciñn de contenido (RSS) |
 
 ## Lotes de origen
 
@@ -39,9 +39,9 @@ v�deos y mapas, men�s y distribuci�n del contenido, sindicaci�n de conte
 
 ## 1. Joomla: Posiciones de las plantillas
 
-- Sistema ��' Plantillas.
-- Previsualizar la posici�n de los m�dulos.
-- Habilitar la previsualizaci�n de posiciones.
+- Sistema -' Plantillas.
+- Previsualizar la posiciñn de los mñdulos.
+- Habilitar la previsualizaciñn de posiciones.
 
 En el navegador:
 
@@ -49,20 +49,20 @@ En el navegador:
 URL/?tp=1
 ```
 
-## 2. Instalaci�n de Joomla y base de datos
+## 2. Instalaciñn de Joomla y base de datos
 
-- Descargar Joomla **4.4.9** desde la m��quina.
+- Descargar Joomla **4.4.9** desde la m-quina.
 - Mover el archivo descargado al directorio `public_html`.
 - Configurar el propietario del directorio web con `www-data`.
 - Instalar MySQL Server.
 
-La creaci�n de la base de datos y del usuario se detalla en `BBDD/02_SQL_y_MySQL.md`:
+La creaciñn de la base de datos y del usuario se detalla en `BBDD/02_SQL_y_MySQL.md`:
 
 ```sql
 CREATE DATABASE nombre;
 
 CREATE USER 'usuario'@'localhost'
-IDENTIFIED BY 'contrase�a';
+IDENTIFIED BY 'contraseña';
 
 GRANT ALL PRIVILEGES ON nombre.*
 TO 'usuario'@'localhost';
@@ -73,23 +73,23 @@ FLUSH PRIVILEGES;
 Salir de MySQL. Descomprimir el archivo ZIP de Joomla dentro de `public_html` y comprobar los permisos.
 
 > Las sentencias SQL se han reconstruido siguiendo la sintaxis habitual de MySQL cuando los
-> caracteres no se distinguen bien. El tratamiento principal del bloque MySQL est�
-> en `BBDD/02_SQL_y_MySQL.md`; aqu� se conserva por formar parte del procedimiento de Joomla.
+> caracteres no se distinguen bien. El tratamiento principal del bloque MySQL estñ
+> en `BBDD/02_SQL_y_MySQL.md`; aquñ se conserva por formar parte del procedimiento de Joomla.
 ```
 
-## 3. Posiciones y m�dulos en Joomla
+## 3. Posiciones y mñdulos en Joomla
 
-- M�dulos posicionen en las diferentes �reas del sitio.
+- Mñdulos posicionen en las diferentes ñreas del sitio.
 - Posiciones comunes: `position-1`, `position-2`, `position-3`, etc.
-- Asociar m�dulos a posiciones espec�ficas en la configuraci�n de la plantilla.
+- Asociar mñdulos a posiciones especñficas en la configuraciñn de la plantilla.
 
-## 4. RSS y sindicaci�n de contenido
+## 4. RSS y sindicaciñn de contenido
 
 - Configurar feeds RSS para entradas del sitio.
-- Direcci�n del feed: `index.php?option=com_fireboard&view=feed`
+- Direcciñn del feed: `index.php?option=com_fireboard&view=feed`
 - Lectores RSS compatibles.
 
 ## 5. Videos y mapas
 
 - Insertar videos de YouTube o Vimeo en articulos.
-- A�adir mapas de Google Maps en posiciones de m�dulos.
+- Añadir mapas de Google Maps en posiciones de mñdulos.
