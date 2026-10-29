@@ -19,11 +19,11 @@ export const SITE = {
     text: 'Apuntes, comandos y documentación técnica de ASIR, organizados para encontrar lo que necesitas.',
   },
   description:
-    'Biblioteca personal de apuntes de ASIR: sistemas operativos, redes y servicios, implantación de aplicaciones web, bases de datos, programación, empresa e iniciativa emprendedora y control de versiones. Con búsqueda y modo claro/oscuro.',
+    'Biblioteca personal de apuntes de ASIR: sistemas operativos, redes y servicios, implantación de aplicaciones web, bases de datos, programación, empresa e iniciativa emprendedora, control de versiones y exámenes resueltos. Con búsqueda y modo claro/oscuro.',
   author: 'Fran Vidal',
 } as const;
 
-export type SubjectKey = 'ASO' | 'IAW' | 'BBDD' | 'Programación' | 'Git' | 'EIE';
+export type SubjectKey = 'ASO' | 'IAW' | 'BBDD' | 'Programación' | 'Git' | 'EIE' | 'Exámenes';
 
 export interface SubjectConfig {
   key: SubjectKey;
@@ -38,7 +38,7 @@ export interface SubjectConfig {
   /** Nombre del icono Lucide (ver `src/components/Icon.astro`). */
   icon: string;
   /** Color de área: identifica la asignatura en tarjetas y chips (etiqueta de
-      reconocimiento, no decoración). Los seis colores se documentan en
+      reconocimiento, no decoración). Los siete colores se documentan en
       `DESIGN.md`; sin ese sistema serían 6 colores sueltos sobre el límite. */
   accent: string;
 }
@@ -93,14 +93,14 @@ export const SUBJECTS: SubjectConfig[] = [
     accent: '#8fd18a',
   },
   {
-    key: 'EIE',
-    slug: 'eie',
-    name: 'EIE',
-    fullName: 'Empresa e Iniciativa Emprendedora',
+    key: 'Exámenes',
+    slug: 'examenes',
+    name: 'Exámenes',
+    fullName: 'Exámenes y pruebas prácticas',
     description:
-      'Autoempleo, cultura emprendedora, idea de negocio, innovación, estudio de mercado y plan de empresa.',
-    icon: 'briefcase',
-    accent: '#e879c9',
+      'Enunciados y resoluciones de pruebas reales: control de acceso y consultas SQL, comandos de Linux, servidor DNS con BIND y despliegue de Apache con VirtualHost. Datos personales y del centro sustituidos por etiquetas.',
+    icon: 'file-check',
+    accent: '#7f9ef3',
   },
 ];
 

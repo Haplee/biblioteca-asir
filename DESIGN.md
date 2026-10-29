@@ -6,7 +6,8 @@ de la identidad; `AGENTS.md` / antislop actúan como filtro encima de él.
 ## Identidad
 
 - **Qué es:** biblioteca personal de apuntes técnicos de ASIR (ASO, IAW, BBDD,
-  Programación, Git, más documentos de control y procedencia).
+  Programación, Git, EIE, exámenes resueltos, más documentos de control y
+  procedencia).
 - **Para quién:** una sola persona (el propietario) estudiando durante sesiones
   largas, a menudo releyendo y buscando entre apuntes propios.
 - **Personalidad:** instrumento de consulta, no escaparate. Sobrio, denso en
@@ -60,10 +61,10 @@ corrigió fue el contraste, no el color.
 
 ### Colores de asignatura
 
-Seis colores, uno por área. No son decoración: funcionan como **etiqueta de
+Siete colores, uno por área. No son decoración: funcionan como **etiqueta de
 reconocimiento** (barra superior de la tarjeta + icono), para localizar una
 asignatura de un vistazo en una rejilla. Sin este sistema documentado serían
-seis colores sueltos sobre el límite de paleta.
+siete colores sueltos sobre el límite de paleta.
 
 | Área | Color | Se reconoce por |
 | --- | --- | --- |
@@ -73,6 +74,7 @@ seis colores sueltos sobre el límite de paleta.
 | Programación | `#a98bf5` | Python |
 | Git | `#8fd18a` | Control de versiones |
 | EIE | `#e879c9` | Empresa e iniciativa emprendedora |
+| Exámenes | `#7f9ef3` | Pruebas y exámenes resueltos |
 
 ## Tipografía
 
