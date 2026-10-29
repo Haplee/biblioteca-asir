@@ -1,9 +1,9 @@
 ---
-title: "Programaciñn / Python - Sintaxis y funciones"
+title: "Programación / Python - Sintaxis y funciones"
 kind: "apunte"
-subject: "Programaciñn"
+subject: "Programación"
 order: 1
-summary: "print y salto de lñnea, definiciñn de funciones con parñmetros y cadenas formateadas (f-strings)."
+summary: "print y salto de línea, definición de funciones con parámetros y cadenas formateadas (f-strings)."
 topics:
   - "Python"
   - "Funciones"
@@ -17,15 +17,15 @@ dates:
 status: "organizado"
 ---
 
-**Asignatura:** Programaciñn / Python.
-**Temas:** `print`, salto de lñnea, definiciñn de funciones con parñmetros y cadenas formateadas
+**Asignatura:** Programación / Python.
+**Temas:** `print`, salto de línea, definición de funciones con parámetros y cadenas formateadas
 (f-strings).
 
 ## Fechas de los apuntes
 
 | Fecha | Contenido |
 |---|---|
-| 23/01/2025 y 29/01/2025 | Sintaxis bñsica y funciones (Lote 2) |
+| 23/01/2025 y 29/01/2025 | Sintaxis básica y funciones (Lote 2) |
 
 ## Lotes de origen
 
@@ -33,23 +33,23 @@ status: "organizado"
 
 ---
 
-## 1. Salto de lñnea
+## 1. Salto de línea
 
 ```python
 print('\n', end='')
 ```
 
-**Aclaraciñn:** `print('\n', end='')` imprime un salto de lñnea sin añadir el salto adicional que
+**Aclaración:** `print('\n', end='')` imprime un salto de línea sin añadir el salto adicional que
 `print` agrega por defecto. Se reproduce tal cual.
 
-## 2. Funciñn
+## 2. Función
 
 ```python
 def nombre(0..n parametros):
     return v_fin
 ```
 
-**Aclaraciñn:** la notaciñn `def nombre(0..n parametros)` es una forma de indicar -de 0 a n parñmetros-,
+**Aclaración:** la notación `def nombre(0..n parametros)` es una forma de indicar -de 0 a n parámetros-,
 no sintaxis literal de Python.
 
 ## 3. Meter variables en print
@@ -93,7 +93,7 @@ while importe > 0:
         importe = importe - pago
 ```
 
-### Ejemplo 3: Palabra palindrñmica
+### Ejemplo 3: Palabra palindrómica
 
 ```python
 def es_palindroma(palabra):
@@ -104,14 +104,14 @@ def es_palindroma(palabra):
 
 - El contenido proviene del texto facilitado por el usuario; conviene revisarlo si se requiere
   literalidad.
-- La notaciñn `def nombre(0..n parametros)` es una forma de indicar -de 0 a n parñmetros-, no
+- La notación `def nombre(0..n parametros)` es una forma de indicar -de 0 a n parámetros-, no
   sintaxis literal de Python.
 
-## 7. Notas tñcnicas
+## 7. Notas técnicas
 
-- **Aclaraciñn:** `print('\n', end='')` imprime un salto de lñnea sin añadir el salto adicional que
+- **Aclaración:** `print('\n', end='')` imprime un salto de línea sin añadir el salto adicional que
   `print` agrega por defecto. Se reproduce tal cual.
-- **Aclaraciñn:** las f-strings (`f'...'`) permiten interpolar variables dentro de la cadena.
+- **Aclaración:** las f-strings (`f'...'`) permiten interpolar variables dentro de la cadena.
 
 ## 8. Referencias cruzadas
 

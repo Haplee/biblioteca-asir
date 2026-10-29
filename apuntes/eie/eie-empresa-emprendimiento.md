@@ -1,8 +1,8 @@
 ---
-title: "Control - EIE - Empresa e Iniciativa Emprendedora"
+title: "EIE - Empresa e Iniciativa Emprendedora"
 kind: "apunte"
-subject: "Control"
-order: 5
+subject: "EIE"
+order: 1
 summary: "Empresa e Iniciativa Emprendedora: autoempleo, emprendedor vs intraemprendedor, idea de negocio, innovación, estudio de mercado, plan de empresa."
 topics:
   - "EIE"

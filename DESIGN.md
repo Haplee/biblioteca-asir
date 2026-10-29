@@ -60,10 +60,10 @@ corrigió fue el contraste, no el color.
 
 ### Colores de asignatura
 
-Cinco colores, uno por área. No son decoración: funcionan como **etiqueta de
+Seis colores, uno por área. No son decoración: funcionan como **etiqueta de
 reconocimiento** (barra superior de la tarjeta + icono), para localizar una
 asignatura de un vistazo en una rejilla. Sin este sistema documentado serían
-cinco colores sueltos sobre el límite de paleta.
+seis colores sueltos sobre el límite de paleta.
 
 | Área | Color | Se reconoce por |
 | --- | --- | --- |
@@ -72,6 +72,7 @@ cinco colores sueltos sobre el límite de paleta.
 | BBDD | `#5ec8d8` | Bases de datos |
 | Programación | `#a98bf5` | Python |
 | Git | `#8fd18a` | Control de versiones |
+| EIE | `#e879c9` | Empresa e iniciativa emprendedora |
 
 ## Tipografía
 

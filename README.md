@@ -23,7 +23,7 @@ oscuro, sin cuentas y sin backend.**
 
 > ## «Todo tu conocimiento. En un solo lugar.»
 
-Apuntes de **ASO**, **IAW**, **BBDD**, **Programación** y **Git** (tal como salieron
+Apuntes de **ASO**, **IAW**, **BBDD**, **Programación**, **Git** y **EIE** (tal como salieron
 de clase, sin reescribir ni «maquillar») organizados para encontrar un comando, una
 ruta o una idea en segundos.
 
@@ -38,6 +38,7 @@ ruta o una idea en segundos.
 | 🗄️ **BBDD** · Bases de Datos | Fundamentos de un SGBD, SQL y MySQL, Oracle y PL/SQL, usuarios, roles y privilegios, tablespaces y almacenamiento, y transacciones ACID. |
 | 🐍 **Programación** · Python | Sintaxis y funciones, con ejemplos reales sacados de los apuntes. |
 | 🌿 **Git** · Control de versiones | Configuración, repositorios, ramas y remotos. |
+| 💼 **EIE** · Empresa e Iniciativa Emprendedora | Autoempleo, cultura emprendedora, idea de negocio, innovación, estudio de mercado y plan de empresa. |
 
 Además, **temas transversales** («Redes y servicios», «Oracle», «PL/SQL», «Bash»,
 «VirtualHost»…) que agrupan apuntes de distintas asignaturas sin duplicar contenido.
@@ -78,7 +79,7 @@ tokens CSS**. Todas las versiones están fijadas en `package-lock.json`.
 
 ```
 apuntes/                      ← contenido (Markdown + frontmatter YAML)
-  aso/ iaw/ bbdd/ programacion/ git/      apuntes por asignatura
+  aso/ iaw/ bbdd/ programacion/ git/ eie/  apuntes por asignatura
   control/                                índice general, lotes, duplicados, dudas
 apuntes_unificados_lotes_1-7.md           documento maestro original (no se publica)
 public/favicon.svg

@@ -122,7 +122,7 @@ done < ${variable}  # -> lee el fichero
 ## 5. Monitorizaci-n y variables (28/11/2024 a 30/11/2024)
 
 - Uso de `top`, `ps`, `vmstat` para monitorizar el sistema.
-- Variables de entorno comñnmente usadas.
+- Variables de entorno comúnmente usadas.
 - Registro de logs y rotaci-n.
 
 ---
@@ -130,22 +130,22 @@ done < ${variable}  # -> lee el fichero
 ## 6. Saltos y tabulaciones (12/12/2024)
 
 - Caracteres de escape especiales en Bash.
-- Uso de `\t` para tabulaciñn y `\n` para salto de lñnea.
+- Uso de `\t` para tabulación y `\n` para salto de línea.
 
 ---
 
 ## 7. Paramentros (16/12/2024)
 
-- $1, $2, $n para acceder a parñmetros del script.
-- `shift` para desplazar parñmetros.
-- Validaciñn de nñmero de parñmetros con `$#`.
+- $1, $2, $n para acceder a parámetros del script.
+- `shift` para desplazar parámetros.
+- Validación de número de parámetros con `$#`.
 
 ---
 
 ## 8. Repaso de scripts de contrase-a y autorizaciones (23/01/2025)
 
 - Scripts para gestionar autorizaciones por departamento.
-- Uso de `sudo` y configuraciñn de ficheros de sudoers.
+- Uso de `sudo` y configuración de ficheros de sudoers.
 
 ---
 
@@ -159,6 +159,6 @@ case "$1" in
     ;;
   restart) echo "Reiniciando servicio...";
     ;;
-  *)       echo "Opcion no vñlida";
+  *)       echo "Opcion no válida";
     esac
 ```
